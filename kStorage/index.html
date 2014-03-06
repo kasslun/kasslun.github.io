@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>首页-本地存储框架kstorage</title>
+    <link rel="stylesheet" href="../stylesheets/prettify.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
+</head>
+<body>
+    <div class="header">
+        <div class="main">
+            <h1 class="logo">kStorage</h1>
+            <ul class="nav">
+                <li><a class="checked" href="index.html">首页</a></li>
+                <li><a target="_blank" href="https://github.com/kasslun/kStorage">项目&下载</a></li>
+                <li><a href="api.html">API文档</a></li>
+                <li><a href="use.html">快速入门</a></li>
+                <li><a href="extend.html">扩展</a></li>
+                <li><a href="example.html">例子</a></li>
+                <li><a target="_blank" href="kStorageViewer/">查看工具</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="banner">
+        <div class="banner-text">兼容IE6+和所有支持localStorage功能的浏览器</div>
+        <a class="banner-project banner-button" target="_blank" href="https://github.com/kasslun/kStorage">Github中查看</a>
+        <a class="banner-download banner-button" href="https://github.com/kasslun/kStorage/archive/master.zip">下载源文件</a>
+    </div>
+    <div class="content main">
+    <h2>特性</h2>
+    <hr />
+    <ul>
+        <li>是一个轻量级的高效的javascript本地存储框架，即实现文本数据离线存储到浏览器端。</li>
+        <li>支持IE6+，Firefox，Chrame等PC端和移动端的浏览器。</li>
+        <li>kStorage不需要安装任何插件，只要引用一个.js文件便可实现本地存储功能。</li>
+        <li>kStorage实现了数据保存，查询，清除和过期管理，cookie模拟，存储查看器等功能。</li>
+        <li>kStorage以json格式保存数据，只要是json支持的数据类型，它都支持。</li>
+        <li>本地存储有大小限制，kStorage能自动清除过期的数据，一定程度上减缓其大小限制。</li>
+        <li>数据只当前域可读写。</li>
+    </ul>
+    <h2>如何使用</h2>
+    <hr />
+        <p>支持IE6+以及其他主流浏览器引用kStorage.full.min.js。</p>
+
+<pre class="prettyprint language-html">
+&lt;script src="kStorage.full.min.js" type="text/javascript"&gt;&lt;/script&gt;
+</pre>
+    <p>不需要支持IE6-7引用kStorage.min.js。</p>
+<pre class="prettyprint language-html">
+&lt;script src="kStorage.min.js" type="text/javascript"&gt;&lt;/script&gt;
+</pre>
+    <p>便可开始使用</p>
+<pre class="prettyprint lang-js">
+var myStorage = kst.use("myStorage");
+myStorage.set("myName", "Jason");
+myStorage.get("myName");
+</pre>
+
+    <h2>适用场景</h2>
+        <hr />
+    <ul>
+        <li>如果不需要与服务器传递信息，完全可以替代cookie，cookie会有HTTP请求上的性能问题。</li>
+        <li>本地存储为一些提升用户工作效率或提升用户体验的前端扩展的开发提供了更好的选择。
+            <ul>
+                <li>可用用来缓存一些配置项内容。</li>
+                <li>可用用于本地持久化或本地个性化。</li>
+                <li>可用暂存一些用户相关的临时数据，跨窗口数据操作也更方便。</li>
+                <li>可用暂存用户的页面状态。</li>
+            </ul>
+        </li>
+    </ul>
+
+    <h2>浏览器支持性</h2>
+        <hr />
+    <p>kStorage能存储一些内容，但是不能当数据库使用，因为本地存储有大小限制。</p>
+    <table class="table">
+        <thead>
+        <tr>
+            <th width="16%">支持特性</th>
+            <th width="14%">Firefox</th>
+            <th width="14%">Chrome</th>
+            <th width="14%">IE6,7</th>
+            <th width="14%">IE8</th>
+            <th width="14%">IE9</th>
+            <th width="14%">IE10</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>支持版本</td>
+            <td>v3.5+</td>
+            <td>v4.0+</td>
+            <td>支持</td>
+            <td>支持</td>
+            <td>支持</td>
+            <td>支持</td>
+        </tr>
+        <tr>
+            <td>最大存储量<br />(一个字符2B，不区分中英文)</td>
+            <td>10.4MB</td>
+            <td><span class="red">5.2MB</span></td>
+            <td><span class="red">1.0MB<br/>单个数据最大128KB<br/>数据个数不限</span></td>
+            <td>8.4MB</td>
+            <td>14.2MB</td>
+            <td>15.8MB</td>
+        </tr>
+        </tbody>
+    </table>
+        <h2>优点</h2>
+        <hr />
+        <p>kStorage是一个优秀的本地存储框架，下面是与几个老外开发的框架的比较。</p>
+        <img src="img/table.png" width="678" height="357" alt=""/>
+    </div>
+    <div class="footer">By Jason.wong / kasslun@gmail.com</div>
+    <script src="../javascripts/run_prettify.js" type="text/javascript"></script>
+</body>
+</html>

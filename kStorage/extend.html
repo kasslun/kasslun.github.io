@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>扩展-本地存储框架kstorage</title>
+    <link rel="stylesheet" href="../stylesheets/prettify.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="extend/kStorage.autoComplete.min.css"/>
+    <style>
+        #v{background: none repeat scroll 0 0 #FFF1E5;
+            background: #222;
+            min-height:30px;
+            color:#fff;
+            *height : 30px;
+            padding: 10px;
+            font-family: consolas;
+            color:#ffff00;
+            margin-top: 1em;
+        }
+        #v span{color:#666;}
+        .console{
+            background: #222;
+            min-height:100px;
+            color:#fff;
+            *height : 100px;
+            padding: 10px;
+            font-family: consolas;
+            color:#ffff00;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="main">
+        <h1 class="logo">kStorage</h1>
+        <ul class="nav">
+            <li><a href="index.html">首页</a></li>
+            <li><a target="_blank" href="https://github.com/kasslun/kStorage">项目&下载</a></li>
+            <li><a href="api.html">API文档</a></li>
+            <li><a href="use.html">快速入门</a></li>
+            <li><a class="checked" href="extend.html">扩展</a></li>
+            <li><a href="example.html">例子</a></li>
+            <li><a target="_blank" href="kStorageViewer/">查看工具</a></li>
+        </ul>
+    </div>
+</div>
+<div class="banner">
+    <div class="banner-text">兼容IE6+和所有支持localStorage功能的浏览器</div>
+    <a class="banner-project banner-button" target="_blank" href="https://github.com/kasslun/kStorage">Github中查看</a>
+    <a class="banner-download banner-button" href="https://github.com/kasslun/kStorage/archive/master.zip">下载源文件</a>
+</div>
+<div class="content main">
+    <h2>本地自动完成</h2>
+    <hr/>
+    <p>这是一个cStorage的自动完成扩展组件，主要用以显示当前域的输入的历史记录，对当前页面的所有输入框生效。</p>
+    <p>请在下面输入框中输入一些内容，失去焦点后，再次输出的时候，将提示输入记录。</p>
+    <input type="text" style="width: 300px; height: 23px;"/>
+    <h3>用法</h3>
+    <p>1.本组件没有任何接口，只需引用kStorage.autocomplete.min.css和在kStorage后面引用kStorage.autocomplete.min.js便可。</p>
+<pre class="prettyprint lang-html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;link rel="stylesheet" href="extend/kStorage.autoComplete.min.css"/&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        ...
+        ...
+        &lt;script src="kStorage.min.js" type="text/javascript" &gt;&lt;/script&gt;
+        &lt;script src="extend/kStorage.autoComplete.min.js" type="text/javascript" &gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+    <p>2.对disabled、readonly或有属性autocomplete="off"的input不生效，密码输入框不会产生自动完成。</p>
+<pre class="prettyprint lang-html">
+    &lt;!-- 如下类型的输入框不生效 --&lt;
+    &lt;input readonly="readonly" type="text" /&gt;
+    &lt;input disabled="disabled" type="text" /&gt;
+    &lt;input autocomplete="off" type="text" /&gt;
+    &lt;input type="password" /&gt;
+</pre>
+    <p>3.设置如下属性kst.autocomplete = "off"，当前页面的所有input都不会产生自动完成。</p>
+    <p>4.它将记录你的输入内容到本地存储，只记录2-20个字符的输入内容。</p>
+</div>
+<p>&nbsp;</p>
+<div class="footer">By Jason.wong / kasslun@gmail.com</div>
+<script type="text/javascript" src="kStorage.full.min.js"></script>
+<script type="text/javascript" src="extend/kStorage.autoComplete.min.js"></script>
+<script src="../javascripts/run_prettify.js" type="text/javascript"></script>
+</body>
+</html>

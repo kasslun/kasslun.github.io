@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>API文档-本地存储框架kstorage</title>
+    <link rel="stylesheet" href="css/main.css"/>
+</head>
+<body>
+<div class="header">
+    <div class="main">
+        <h1 class="logo">kStorage</h1>
+        <ul class="nav">
+            <li><a href="index.html">首页</a></li>
+            <li><a target="_blank" href="https://github.com/kasslun/kStorage">项目&下载</a></li>
+            <li><a class="checked" href="api.html">API文档</a></li>
+            <li><a href="use.html">快速入门</a></li>
+            <li><a href="extend.html">扩展</a></li>
+            <li><a href="example.html">例子</a></li>
+            <li><a target="_blank" href="kStorageViewer/">查看工具</a></li>
+        </ul>
+    </div>
+</div>
+<div class="banner">
+    <div class="banner-text">兼容IE6+和所有支持localStorage功能的浏览器</div>
+    <a class="banner-project banner-button" target="_blank" href="https://github.com/kasslun/kStorage">Github中查看</a>
+    <a class="banner-download banner-button" href="https://github.com/kasslun/kStorage/archive/master.zip">下载源文件</a>
+</div>
+<div class="content main">
+
+<h3>1. kst对象属性</h3>
+kst对象含有2个命名空间：全命名kstorage和短命名kst，它们是同一个kst对象。
+<table class="table">
+    <thead>
+    <tr>
+        <th width="20%">名称</th>
+        <th width="20%">返回值类型</th>
+        <th width="60%">描述</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>kst.type</td>
+        <td>String</td>
+        <td>返回存储类型，返回值有：'none','storage','userData'<br />
+            none：表示当前浏览器不支持本地存储<br />
+            storage：表示当前浏览器采用HTML5的storage<br />
+            userData：表示当前浏览器采用IE6/7内核的userData进行存储
+        </td>
+    </tr>
+    <tr>
+        <td>kst.support</td>
+        <td>Boolean</td>
+        <td>当前浏览器是否支持本地存储功能，当返回false的时候组件自动会用空操作函数替代，防止报错。 </td>
+    </tr>
+    <tr>
+        <td>kst.cookie</td>
+        <td>Object</td>
+        <td>cookie模拟对象，详细请看“4. 模拟cookie对象API”</td>
+    </tr>
+    </tbody>
+</table>
+<h3>2. kst对象方法</h3>
+<div class="red">注意：如果要支持IE6/7，需要注意单个存储数据上限为128KB，整个域名的数据上限为1MB（一个Unicode字符为2B，不区分中英文）。</div>
+<table class="table">
+    <thead>
+    <tr>
+        <th width="20%">名称</th>
+        <th width="30%">参数</th>
+        <th width="10%">返回</th>
+        <th width="40%">描述</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>kst.use(storageId, maxAge)</td>
+        <td>storageId：String存储数据的ID，只能由字母、数字和下划线组成的字符串，必须唯一。<br /><br />
+            maxAge：Number可选，存储数据的有效期（单位：天），为正整数。<br />
+            （注意：如果不按照要求设置过期天数，配置可能不会生效）
+        <td>Object：存储对象</td>
+        <td>使用已有存储数据或创建一个新的存储数据，参数maxAge只在创建新存储数据时有效，默认为0（表示关闭浏览器后便失效）。<br /><br />
+            有效期：在设置的时间内从未被加载过则失效；如果有加载过则重新计算有效期。
+        </td>
+    </tr>
+    <tr>
+        <td>kst.exists(storageId)</td>
+        <td>storageId：String存储数据的ID</td>
+        <td>Boolean</td>
+        <td>查询存储数据是否存在。<br></td>
+    </tr>
+    <tr>
+        <td>kst.destroy(storageId)</td>
+        <td>storageId：String存储数据的ID</td>
+        <td>无</td>
+        <td>销毁指定的存储数据及其存储对象。</td>
+    </tr>
+    </tbody>
+</table>
+
+<h3>3. 存储对象API</h3>
+即是由kst.use(storageId, maxAge)返回的对象，用来操作名称为storageId的存储对象的数据，数据以json格式保存。<br />
+<div class="blue">建议：为了存储更多的内容，请注意使用简短属性名和精简您的属性值。</div>
+<table class="table">
+    <thead>
+    <tr>
+        <th width="15%">名称</th>
+        <th width="28%">参数</th>
+        <th width="22%">返回</th>
+        <th width="35%">描述</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>set(name, value)</td>
+        <td>name：String存储对象的数据属性名<br>
+            value：存储对象的数据属性值
+        </td>
+        <td>this：Object当前存储对象</td>
+        <td>设置存储对象的数据，可以链式调用。<br>
+            name、value 均需要符合Json属性格式。
+        </td>
+    </tr>
+    <tr>
+        <td>set(obj)</td>
+        <td>obj:object</td>
+        <td>this：Object当前存储对象</td>
+        <td>设置存储对象的一个或多个数据，可以链式调用。<br>
+            如 set({"a": [1], "b": true}) 设置属性"a"和"b"
+        </td>
+    </tr>
+    <tr>
+        <td>get(name)</td>
+        <td>name：String存储对象的数据属性名</td>
+        <td>value：存储对象的数据属性值</td>
+        <td>获取指定的存储对象数据的属性值，如果数据属性名不存在，返回undefined</td>
+    </tr>
+    <tr>
+        <td>remove(name)</td>
+        <td>name：String存储对象的数据属性名</td>
+        <td>this：Object当前存储对象</td>
+        <td>移除存储对象中指定的数据，可以链式调用。</td>
+    </tr>
+    <tr>
+        <td>count()</td>
+        <td>无</td>
+        <td>属性个数</td>
+        <td>统计当前存储对象中的属性个数。</td>
+    </tr>
+    <tr>
+        <td>clear()</td>
+        <td>无</td>
+        <td>this：Object当前存储对象</td>
+        <td>清除当前存储对象中的全部数据，可以链式调用。</td>
+    </tr>
+    <tr>
+        <td>setMaxAge(days)</td>
+        <td>days：number(int)有效期（单位：天），为正整数<br />（注意：如果不按照要求设置过期天数，配置可能不会生效）</td>
+        <td>this：Object当前存储对象</td>
+        <td>设置当前存储数据的有效期，可以链式调用。 </td>
+    </tr>
+    <tr>
+        <td>getMaxAge()</td>
+        <td>无</td>
+        <td>Number：存储数据的有效期</td>
+        <td>返回当前存储数据的有效期。</td>
+    </tr>
+    </tbody>
+</table>
+<h3>4. 模拟cookie对象API</h3>
+<div class="red">
+    注意：<br />
+    1.这只是模拟cookie，所以不能被服务器设置和获取，只能由kst.cookie操作<br />
+    2.个数不限，数据类型不限，整个cookie在IE6/IE7还有128KB限制。<br />
+    3.固定如下属性：path=/，domain=当前域，没有secure属性，因为不通过HTTP传输，更无法通过HTTPS和SSL传输。
+</div>
+<table class="table">
+    <thead>
+    <tr>
+        <th width="15%">名称</th>
+        <th width="35%">参数</th>
+        <th width="15%">返回</th>
+        <th width="35%">描述</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>set(name, value, effectiveTime)</td>
+        <td>name：String cookie名<br />
+            value: 任意类型 cookie值<br />
+            effectiveTime：Number|Date可选，cookie有效期，不指定时，关闭浏览器cookie立即失效。<br />
+            &nbsp;&nbsp;为Number类型时，表示指定有效期时间段（单位：毫秒），当指定为负数、0则删除这个cookie<br />
+            &nbsp;&nbsp;为Date类型时，表示指定时间字符串，当指定为过去时间则删除这个cookie<br />
+        </td>
+        <td>this：Object 模拟cookie对象</td>
+        <td>设置cookie，如果cookie已存在则覆盖原cookie<br />
+            name、value 均需要符合Json属性格式。
+        </td>
+    </tr>
+    <tr>
+        <td>get(name)</td>
+        <td>name：String cookie名</td>
+        <td>cookie值,任意类型</td>
+        <td>获取指定的cookie值，如果cookie名不存在或cookie值已过期，返回undefined</td>
+    </tr>
+    <tr>
+        <td>remove(name)</td>
+        <td>name：String cookie名</td>
+        <td>this：Object 模拟cookie对象</td>
+        <td>删除指定的cookie，支持链式调用。</td>
+    </tr>
+    </tbody>
+</table>
+</div>
+<p>&nbsp;</p>
+<div class="footer">By Jason.wong / kasslun@gmail.com</div>
+</body>
+</html>

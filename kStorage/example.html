@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>例子-本地存储框架kstorage</title>
+    <link rel="stylesheet" href="../stylesheets/prettify.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
+    <style>
+    #v{background: none repeat scroll 0 0 #FFF1E5;
+        background: #222;
+        min-height:30px;
+        color:#fff;
+        *height : 30px;
+        padding: 10px;
+        font-family: consolas;
+        color:#ffff00;
+        margin-top: 1em;
+    }
+    #v span{color:#666;}
+    .console{
+        background: #222;
+        min-height:100px;
+        color:#fff;
+        *height : 100px;
+        padding: 10px;
+        font-family: consolas;
+        color:#ffff00;
+    }
+    </style>
+</head>
+<body>
+<div class="header">
+    <div class="main">
+        <h1 class="logo">kStorage</h1>
+        <ul class="nav">
+            <li><a href="index.html">首页</a></li>
+            <li><a target="_blank" href="https://github.com/kasslun/kStorage">项目&下载</a></li>
+            <li><a href="api.html">API文档</a></li>
+            <li><a href="use.html">快速入门</a></li>
+            <li><a href="extend.html">扩展</a></li>
+            <li><a class="checked" href="example.html">例子</a></li>
+            <li><a target="_blank" href="kStorageViewer/">查看工具</a></li>
+        </ul>
+    </div>
+</div>
+<div class="banner">
+    <div class="banner-text">兼容IE6+和所有支持localStorage功能的浏览器</div>
+    <a class="banner-project banner-button" target="_blank" href="https://github.com/kasslun/kStorage">Github中查看</a>
+    <a class="banner-download banner-button" href="https://github.com/kasslun/kStorage/archive/master.zip">下载源文件</a>
+</div>
+<div class="content main">
+    <h3>1.本地存储值</h3>
+    在下面输入一些内容，然后刷新页面。<br/>
+    <input type="text" size="20" id="ipt" maxlength="50"/>
+    <div id="v"><span>暂无保存值</span></div>
+    <h3>2.模拟cookie</h3>
+    <p>输出：undefined表示没有值；您可以重启浏览器后查看输出。</p>
+    <div id="console" class="console">
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>操作</th>
+            <th>代码</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><button id="b1">设置a={"v":null}，关闭浏览器后过期</button></td>
+            <td>
+<pre class="prettyprint lang-js">
+kst.cookie.set("a", {"v":null});
+</pre>
+            </td>
+        </tr>
+        <tr>
+            <td><button id="b2">设置b=1，5秒后过期</button></td>
+            <td>
+<pre class="prettyprint lang-js">
+kst.cookie.set("b", 1, 5 * 1000);
+</pre>
+            </td>
+        </tr>
+        <tr>
+            <td><button id="b3">设置c=true，2018-10-1过期</button></td>
+            <td>
+<pre class="prettyprint lang-js">
+var t = new Date(2018, 10 - 1, 1);
+kst.cookie.set("c", true, t);
+</pre>
+            </td>
+        </tr>
+        <tr>
+            <td><button id="b4">删除a</button></td>
+            <td>
+<pre class="prettyprint lang-js">
+kst.cookie.remove("a");
+</pre>
+            </td>
+        </tr>
+        <tr>
+            <td><button id="b5">删除c</button></td>
+            <td>
+<pre class="prettyprint lang-js">
+kst.cookie.remove("c");
+</pre>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<p>&nbsp;</p>
+<div class="footer">By Jason.wong / kasslun@gmail.com</div>
+<script type="text/javascript" src="kStorage.full.min.js"></script>
+<script type="text/javascript">
+    //保存值
+    var $ = function (id) {return document.getElementById(id)},
+        saveValue = kst.use("saveValue"),
+        ipt = $("ipt"),
+        v = $("v");
+    ipt.value = "";
+    if (saveValue.get("value") !== undefined) {
+        v.innerHTML = "<span>您保存的值：</span>" + saveValue.get("value");
+    }
+    ipt.onkeyup = function () {
+        v.innerHTML = "<span>您保存的值：</span>" + ipt.value;
+        saveValue.set("value", ipt.value)
+    }
+</script>
+<script type="text/javascript">
+    //模拟cookie
+    var cookie = kst.cookie,
+            ify = kst._tool.stringifyJSON;
+    $("b1").onclick = function () {
+        cookie.set("a", {"v":null});
+    };
+    $("b2").onclick = function () {
+        cookie.set("b", 1, 5 * 1000);
+    };
+    $("b3").onclick = function () {
+        cookie.set("c", true, new Date(2018, 10 - 1, 1));
+    };
+    $("b4").onclick = function () {
+        cookie.remove("a");
+    };
+    $("b5").onclick = function () {
+        cookie.remove("c");
+    };
+    function console() {
+        var str = "a = " + ify(cookie.get("a")) +
+                "<br />b = " + cookie.get("b") +
+                "<br />c = " + cookie.get("c");
+        $("console").innerHTML = str;
+    }
+    setInterval(console, 100);
+</script>
+<script src="../javascripts/run_prettify.js" type="text/javascript"></script>
+</body>
+</html>

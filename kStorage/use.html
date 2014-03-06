@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>快速入门-本地存储框架kstorage</title>
+    <link rel="stylesheet" href="../stylesheets/prettify.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
+</head>
+<body>
+<div class="header">
+    <div class="main">
+        <h1 class="logo">kStorage</h1>
+        <ul class="nav">
+            <li><a href="index.html">首页</a></li>
+            <li><a target="_blank" href="https://github.com/kasslun/kStorage">项目&下载</a></li>
+            <li><a href="api.html">API文档</a></li>
+            <li><a class="checked" href="use.html">快速入门</a></li>
+            <li><a href="extend.html">扩展</a></li>
+            <li><a href="example.html">例子</a></li>
+            <li><a target="_blank" href="kStorageViewer/">查看工具</a></li>
+        </ul>
+    </div>
+</div>
+<div class="banner">
+    <div class="banner-text">兼容IE6+和所有支持localStorage功能的浏览器</div>
+    <a class="banner-project banner-button" target="_blank" href="https://github.com/kasslun/kStorage">Github中查看</a>
+    <a class="banner-download banner-button" href="https://github.com/kasslun/kStorage/archive/master.zip">下载源文件</a>
+</div>
+<div class="content main">
+    <h2>1.使用要求</h2>
+    <hr/>
+    <h3>1.1.kStorage使用要求</h3>
+    <ol>
+        <li>加载js文件kStorage.min.js（支持IE8+，Firefox，Chrome）或kStorage.full.min.js（支持IE6+，Firefox，Chrome）。</li>
+    </ol>
+    <h3>1.2.IE6，IE7支持的要求</h3>
+    <ol>
+        <li>kStorage.full.min.js以及扩展尽量在body标签内引入。</li>
+        <li>请勿删除载体文件"carrier.html"。</li>
+    </ol>
+    <h3>1.3.代码示例</h3>
+<pre class="prettyprint lang-js">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        ...
+        ...
+        &lt;script src="kStorage.min.js" type="text/javascript" charset="utf-8" &gt;&lt;/script&gt;
+        &lt;script type="text/javascript" &gt;
+            ...<span>//本地存储相关代码</span>
+        &lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+    <h2>2.cst对象用法</h2>
+    <hr/>
+    <h3>2.1.查看存储数据myStorage是否存在</h3>
+<pre class="prettyprint lang-js">
+if (kst.exists("myStorage")) {
+    ... <span>//存在操作</span>
+} else {
+    ... <span>//不存在操作</span>
+}
+</pre>
+    <h3>2.2.删除myStorage数据</h3>
+<pre class="prettyprint lang-js">
+kst.destroy("myStorage");
+</pre>
+    <h3>2.3.加载myStorage数据，以便操作</h3>
+<pre class="prettyprint lang-js">
+<span>//使用myStorage，如果myStorage数据存在则加载，如果不存在则创建一个空数据</span>
+var myStorage = kst.use("myStorage");
+<span>//设置以个值</span>
+myStorage.set("print", "hello, world!");
+</pre>
+
+    <h2>3.数据对象用法</h2>
+    <hr/>
+    <h3>3.1.设置值，获取值，删除值。</h3>
+<pre class="prettyprint lang-js">
+<span>//使用myStorage数据。</span>
+var myStorage = kst.use("myStorage");
+<span>//设置多个值</span>
+myStorage.set({
+    "print": "hello, world!",
+    "name": "Jason"
+});
+<span>//获取一个值</span>
+myStorage.get("name");
+<span>//删除一个值</span>
+myStorage.remove("name");
+</pre>
+    <h3>3.2.获取值个数，清除所有值。</h3>
+<pre class="prettyprint lang-js">
+if(myStorage.count() > 0) {
+    myStorage.clear();
+}
+</pre>
+    <h3>3.3.操作过期时间。</h3>
+<pre class="prettyprint lang-js">
+<span>//10天不使用清除数据。</span>
+myStorage.setMaxAge(10);
+<span>//让浏览器关闭后清除数据。</span>
+if(myStorage.getMaxAge() > 0) {
+    myStorage.setMaxAge(0);
+}
+</pre>
+
+    <h2>4.模拟cookie用法</h2>
+    <hr/>
+    <h3>4.1.设置，获取cookie值。</h3>
+<pre class="prettyprint lang-js">
+var cookie = kst.cookie;
+<span>//类session的cookie（浏览器关闭后清除）。</span>
+cookie.set("a", {"x" : null});
+<span>//10秒后过期。</span>
+cookie.set("b", true, 10000);
+<span>//2015年1月1日过期。</span>
+cookie.set("b", true, new Date(2015, 0, 1));
+<span>//获取cookie。</span>
+cookie.get("a");
+cookie.get("b");
+</pre>
+    <h3>4.2.删除cookie值。</h3>
+<pre class="prettyprint lang-js">
+var cookie = kst.cookie;
+cookie.remove("a");
+<span>//设置过去时间来删除</span>
+cookie.set("b", true, -1);
+cookie.set("c", true, new Date(2010, 10, 1));
+<span>//设置值为undefined删除</span>
+cookie.set("d");
+cookie.set("e", undefiend);
+</pre>
+</div>
+<p>&nbsp;</p>
+<div class="footer">By Jason.wong / kasslun@gmail.com</div>
+<script src="../javascripts/run_prettify.js" type="text/javascript"></script>
+</body>
+</html>
