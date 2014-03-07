@@ -1,3 +1,4 @@
 kasslun.github.com
 ==================
-kasslun.github.io
+本地存储框架
+http://kasslun.github.io/kStorage(http://kasslun.github.io/kStorage)
