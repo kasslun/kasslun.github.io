@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>combox</title>
+    <link rel="stylesheet" href="../lib/combox.min.css"/>
+    <script type="text/javascript" src="jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../lib/combox.min.js"></script>
+</head>
+<body style="font-size:12px">
+<span id="p"></span>
+<span id="p1"></span>
+<script type="text/javascript">
+    var provinceData = [
+        {"id": "p1", "text":"江西"},
+        {"id": "p2", "text":"广东"},
+        {"id": "p3", "text":"湖南"},
+        {"id": "p4", "text":"福建"}
+    ];
+    var cityData = {
+        "p1": [
+            {"id": "c1", "text":"吉安"},
+            {"id": "c2", "text":"南昌"},
+            {"id": "c3", "text":"九江"},
+            {"id": "c4", "text":"庐山"}
+        ],
+        "p2" :[
+            {"id": "c5", "text": "广州"},
+            {"id": "c6", "text": "清远"},
+            {"id": "c7", "text": "珠海"},
+            {"id": "c8", "text": "湛江"}
+        ],
+        "p3" :[
+            {"id": "c9", "text": "长沙"},
+            {"id": "c10", "text": "永州"},
+            {"id": "c11", "text": "常德"},
+            {"id": "c12", "text": "益阳"}
+        ],
+        "p4" :[
+            {"id": "c13", "text": "厦门"},
+            {"id": "c14", "text": "福州"},
+            {"id": "c15", "text": "晋江"},
+            {"id": "c16", "text": "泉州"}
+        ]
+    };
+    function select_callBack(reCord){
+        if(p1.setDatasource) {
+            p1.setDatasource(cityData[reCord.id]);
+        }
+    }
+    var p = $("#p").combox({
+        mode: "Single",
+        emptyText: "选择省",
+        name: "a",
+        valueField: "id",
+        onChange: select_callBack,
+        datasource: provinceData
+    });
+    var p1 = $("#p1").combox({
+        mode: "Multi",
+        emptyText: "选择市",
+        valueField: "id",
+        datasource: []
+    });
+</script>
+</body>
+</html>

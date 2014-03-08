@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>combox</title>
+    <link rel="stylesheet" href="../lib/combox.min.css"/>
+    <script type="text/javascript" src="jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../lib/combox.min.js"></script>
+</head>
+<body>
+<span id="p"></span>
+<script type="text/javascript">
+    function getData (obj) {
+        setTimeout(function () {//模拟Ajax，DWR
+            obj.setDatasource([
+                {id:'item1',text:'选项1'},
+                {id:'item2',text:'选项2'},
+                {id:'item3',text:'选项3'},
+                {id:'item4',text:'选项4'},
+                {id:'item5',text:'选项5'},
+                {id:'item6',text:'选项6'},
+                {id:'item7',text:'选项7'},
+                {id:'item8',text:'选项8'}
+            ]);
+        }, 500)
+    }
+    var p = $("#p").combox({
+        mode: "Single",
+        name: "a",
+        valueField: "id",
+        datasource: getData
+    });
+</script>
+</body>
+</html>
