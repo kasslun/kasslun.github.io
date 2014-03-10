@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>Tree 例子</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+	<script type="text/javascript">
+
+		var data = [{ title:"湖北", key:"k01"},
+		            { title:"湖南", key:"k02"},
+		            { title:"江西", key:"k03"},
+					{ title:"广东", key:"k04", isFolder:true,
+							children:[{ title:"东莞", key:"k0401"},
+							          { title:"广州", key:"k0402"},
+									  { title:"深圳", key:"k0403", isFolder:false, tooltip:"Welcome ！",
+									   			children:[{ title:"南山", key:"k040301"},
+									   			          { title:"宝安", key:"k040302"}]}]}];
+
+		function click(node, event){
+			alert("点击的标题为：" + node.getData("title"));
+		}
+
+	</script>
+</head>
+<body>
+    <p>
+        Tree组件 点击isFolder=true的节点激活并展开
+    </p>
+    <div id="tree" uitype="Tree"  click_folder_mode="3" children="data"></div>
+	<script type="text/javascript">
+		comtop.UI.scan();
+	</script>
+</body>
+</html>

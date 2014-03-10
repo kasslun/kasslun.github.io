@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>tree演示例子</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css">
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js"></script>
+<link rel="stylesheet" href="../css/tabexample.css"> 
+</head>
+
+<body>
+
+<div id="demo-container">
+
+<ul id="simple-menu">
+    <li><a  href="index.html" target="_self" class="current">自定义图标</a></li>
+    <li><a   href="tree_dyntData.html" target="_self">动态数据生成tree</a></li>
+    <li><a   href="tree_lazyload.html" target="_self">节点动态加载(Lazyload)</a></li>
+
+    <li><a   href="tree_checkbox.html" target="_self">带Checkbox</a></li>
+    <li><a   href="tree_radio.html" target="_self">带Radio</a></li>
+    <li><a   href="init_activate.html" target="_self">创建组件后默认激活指定项</a></li>
+    <li><a   href="tree_move.html" target="_self">节点移动</a></li>
+    <li><a   href="tree_disable.html" target="_self">禁用/恢复节点</a></li>
+</ul>
+</div> 
+
+            <div id="dt1" > </div>
+
+        <script type="text/javascript">
+            window.onload = function() { }
+                var data = [
+                         
+                        {   title: "设备类别结构", 
+                            key: "k2", 
+							expand:true,
+                            isFolder: true, 
+                           hideCheckbox: true, 
+                            icon: "001.png", 
+                            children: [
+                                {title: "无形资产",
+								 key: "k2-1",
+								 isFolder:true,
+								 icon: "002.png",								
+								expand:true,children:[{
+								title:"土地使用权",
+								 hideCheckbox: true, 
+								icon: "002.png"
+								},{
+								title:"软件",
+								icon: "002.png"
+								},{
+								title:"专利权",
+								icon: "002.png"
+								},{
+								title:"非专利技术",
+								 hideCheckbox: true, 
+								icon: "003.png"
+								},{
+								title:"其它",
+								icon: "003.png"
+								}] },
+                                {title: "有形资产",								
+								icon: "003.png" ,
+								 key: "k2-2" ,isFolder:true,children:[{title:"hello"}]}
+                            ]
+                        }, 
+                        {   title: "输电线路", 
+                            key: "k3",
+							expand:true, 
+							 icon: "001.png",
+                             hideCheckbox: true, 
+							isFolder:true,
+							children:[{title:"架空线路", 
+							 hideCheckbox: true, 
+							 icon: "003.png" },{title:"电缆线路",
+							 icon: "003.png"}]
+                        }
+                    ];
+
+                var tree = cui("#dt1").tree({ 
+                    children: data,	
+					checkbox:true,	
+					keyboard:false,			 
+                     on_select: function(flag, node) {
+                       //  alert("select_handler");
+                   
+                     },
+					 on_expand:function(flag,node){
+					    //   alert(flag);  
+					 
+					 }, 
+                     on_click: function(node, event) {
+                     // alert("you clicked :"+node.getData("title"));
+					          
+                       
+                     }
+                });
+           
+        </script>
+
+
+
+
+</body>
+</html>

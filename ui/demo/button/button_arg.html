@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>button</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <style type="text/css">
+        body{font-size: 12px;}
+    </style>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+</head>
+<body>
+参数是1：<span uitype="button" label="按钮1" mark="1" on_click="clickHandler"></span><br /><br />
+参数是2：<span uitype="button" label="按钮2" mark="2" on_click="clickHandler"></span><br /><br />
+参数是3：<span uitype="button" label="按钮3" mark="3" on_click="clickHandler"></span><br /><br />
+参数是4：<span uitype="button" label="按钮4" mark="4" on_click="clickHandler"></span>
+<script type="text/javascript">
+    function clickHandler (event, obj, arg) {
+        alert("参数是:" + arg);
+    }
+    comtop.UI.scan();
+</script>
+</body>
+</html>

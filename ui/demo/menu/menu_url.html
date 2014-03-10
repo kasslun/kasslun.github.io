@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Menu Demos</title>
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+    <style type="text/css">
+        #menu{width: 200px; height: 30px; text-align: center; line-height: 30px; color: #fff; background-color: #ff6600;}
+    </style>
+</head>
+<body>
+
+<div id="menu"  uitype="Menu" trigger="mouseover" datasource="datasource" type="button" on_click="clickItem">菜单跳转样例</div>
+
+<script type="text/javascript">
+    var datasource =[
+        {id:'item41',label:'百度',url:"http://www.baidu.com/"},
+        {id:'item42',label:'腾讯',url:"http://www.qq.com/"},
+        {id:'item43',label:'新浪',url:"http://www.sina.com.cn/"},
+        {id:'item44',label:'网易',url:"http://www.163.com/"},
+        {id:'item45',label:'youku',url:"http://www.youku.com/"},
+        {id:'item46',label:'土豆',url:"http://www.tudou.com/"},
+        {id:'item47',label:'Google',url:"http://www.google.com.hk/"}
+    ];
+
+    function clickItem(item){
+
+        window.location.href= item.url;
+    }
+    comtop.UI.scan();
+</script>
+</body>
+</html>

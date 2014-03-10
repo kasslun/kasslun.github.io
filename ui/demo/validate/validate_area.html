@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>validate</title>
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+    <style type="text/css">
+        body,div,span,dl,dt,dd{padding:0;margin:0;font-size: 12px;}
+        .formWrap{padding:15px;}
+        .formItem{*zoom: 1;}
+        .formItem:before,
+        .formItem:after{display: table;line-height: 0;content: "";}
+        .formItem:after{clear: both;}
+        .formItem dt, .formItem dd{display: inline-block;_display:inline;_zoom:1;}
+        .formItem dt{width:100px;height:25px;text-align:right;}
+        .formItem dd{}
+    </style>
+</head>
+<body>
+<h4>三、分块/自定义校验</h4>
+<div id="form_info" class="formWrap">
+    <dl class="formItem">
+        <dt>姓名：</dt>
+        <dd>
+            <span id="userName" uitype="Input" name="userName" databind="formData.userName" validate="姓名不能为空"></span>
+        </dd>
+    </dl>
+    <dl class="formItem">
+        <dt>出生年月日：</dt>
+        <dd>
+        <span id="userBirth" uitype="Calender" name="userBirth" maxdate="+0d" emptytext="填写您的出生年月日"
+              databind="formData.userBirth" validate="出生年月日不能为空"></span>
+        </dd>
+    </dl>
+</div>
+<div id="form_other" class="formWrap">
+    <dl class="formItem">
+        <dt>兴趣：</dt>
+        <dd>
+            <div id="userInterest" uitype="CheckboxGroup" name="userInterest"
+                 databind="formData.userInterest" validate="兴趣爱好不能为空">
+                <input type="checkbox" name="userInterest" value="0"/> 足球
+                <input type="checkbox" name="userInterest" value="1"/> 篮球
+                <input type="checkbox" name="userInterest" value="2"/> 兵乓球
+                <input type="checkbox" name="userInterest" value="3"/> 羽毛球
+            </div>
+        </dd>
+    </dl>
+    <dl class="formItem">
+        <dt>自我评价：</dt>
+        <dd>
+        <span id="userMark" uitype="Textarea" name="userMark" width="200"
+              databind="formData.userMark" validate="评价不能为空" emptytext="填写自我评价"></span>
+        </dd>
+    </dl>
+</div>
+<div class="formWrap">
+    <dl class="formItem">
+        <dt></dt>
+        <dd>
+            <span id="validAll" uitype="Button" label="验证整个表单" on_click="validAllFun"></span>
+            <span id="btnReset" uitype="Button" label="清空表单" on_click="resetForm"></span>
+        </dd>
+    </dl>
+    <dl class="formItem">
+        <dt></dt>
+        <dd>
+            <span id="validArea" uitype="Button" label="验证表单指定区域" on_click="validAreaFun"></span>
+            <span id="unValidArea" uitype="Button" label="不验证表单指定区域" on_click="unValidAreaFun"></span>
+            <span id="validCustom" uitype="Button" label="验证表单指定元素" on_click="validCustomFun"></span>
+            <span id="unValidCustom" uitype="Button" label="不验证表单指定元素" on_click="unValidCustomFun"></span>
+        </dd>
+    </dl>
+</div>
+
+
+<script type="text/javascript">
+    //创建空的表单数据
+    var formData = {};
+    /**
+     * 验证整个表单，并返回验证信息
+     */
+    function validAllFun(){
+        var valid = window.validater.validAllElement();
+        /*
+        valid[0]//验证不通过的信息
+        valid[1]//验证通过的信息
+        valid[2]//根据这个判断表单验证是否通过
+        */
+    }
+    /**
+     * 验证表单指定部分，并返回验证信息
+     */
+    function validAreaFun(){
+        var valid = window.validater.validElement('AREA', '#form_other');
+        /*
+         valid[0]//验证不通过的信息
+         valid[1]//验证通过的信息
+         valid[2]//根据这个判断表单验证是否通过
+         */
+    }
+    /**
+     * 除了form_other内的都验证，并返回验证信息
+     */
+    function unValidAreaFun(){
+        var valid = window.validater.validElement('AREA', '#form_other', false);
+        /*
+         valid[0]//验证不通过的信息
+         valid[1]//验证通过的信息
+         valid[2]//根据这个判断表单验证是否通过
+         */
+    }
+    /**
+     * 验证表单指定元素userName，userMark 并返回验证信息
+     */
+    function validCustomFun(){
+        var valid = window.validater.validElement('CUSTOM', ['userName', 'userMark']);
+        /*
+         valid[0]//验证不通过的信息
+         valid[1]//验证通过的信息
+         valid[2]//根据这个判断表单验证是否通过
+         */
+    }
+    /**
+     * 除了 userName，userMark，都验证，并返回验证信息
+     */
+    function unValidCustomFun(){
+        var valid = window.validater.validElement('CUSTOM', ['userName', 'userMark'], false);
+        /*
+         valid[0]//验证不通过的信息
+         valid[1]//验证通过的信息
+         valid[2]//根据这个判断表单验证是否通过
+         */
+    }
+    /**
+     * 清空表单
+     */
+    function resetForm(){
+        cui(formData).databind().setEmpty();
+    }
+    comtop.UI.scan();
+</script>
+</body>
+</html>

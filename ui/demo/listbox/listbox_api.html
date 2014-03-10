@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>UI ListBox Demos</title>
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css" />
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+    <style type="text/css">
+        .demo_container{ height: 300px;}
+        .demo_container>div{
+            float:left; width:150px; text-align: center;
+        }
+        .demo_container .button_container{ width:350px;}
+    </style>
+</head>
+<body>
+<div class="demo_container">
+    <div>
+        <span id="testListBoxLeft" uitype="ListBox"
+              value_field="code" label_field="name" width="100px"  multi="true"
+              on_dbclick="onDbClick" on_remove="onRemove"
+              datasource="obtainData" ></span>
+    </div>
+    <div class="button_container">
+        <p>
+            <span uitype='button' label="选中所有" on_click='selectAll'  ></span>
+            <span uitype='button' label="取消选中" on_click='cancelAll' ></span>
+            <span uitype='button' label="添加一行" on_click='addRows'   ></span>
+            <span uitype='button' label="删除第二行" on_click='deleteRow'  ></span>
+        </p>
+        <p>
+            <span uitype='button' label="移位第0行至第5行" on_click='move'  ></span>
+            <span uitype='button' label="获取选中值" on_click='getValue'  ></span>
+            <span uitype='button' label="获取显示值" on_click='getText'  ></span>
+            <span uitype='button' label="上移" on_click='moveUp'   ></span>
+        </p>
+        <p>
+            <span uitype='button' label="下移" on_click='moveDown'  ></span>
+            <span uitype='button' label="获取第二行" on_click='getRow' ></span>
+            <span uitype='button' label="设置值" on_click='setValue'  ></span>
+            <span uitype='button' label="获取选中记录" on_click='getRecord' ></span>
+        </p>
+    </div>
+</div>
+<script type="text/javascript">
+
+    var dataArray = [];
+    for(var i=0;i<=9; i++)
+        dataArray.push({ code: i + '', name: '选择 ' + i ,filterName:'Boss ' + i});
+
+    var appendDataArray = [];
+    for(var i=0;i<=12; i++){
+        appendDataArray.push({ code: i + '1', name: i + '  雇员',filterName:'Boss ' + i});
+    }
+
+    comtop.UI.scan();   //扫描
+
+    var left = cui('#testListBoxLeft');
+
+
+    function obtainData(obj,params){
+        obj.setDatasource(dataArray);
+    }
+
+    function cancelAll(){
+        left.cancelSelected();
+    }
+    function selectAll(){
+        left.selectAllRows();
+    }
+    function addRows(){
+        left.addRows(appendDataArray);
+    }
+    function deleteRow(){
+        left.removeRow(1);//主键1
+    }
+    function move(){
+        left.moveRow(0,5);
+    }
+    function getValue(){
+        alert(left.getValue());
+    }
+    function getText(){
+        alert(left.getText());
+    }
+    function setValue(){
+        left.setValue('0');
+    }
+    function moveUp(){
+        left.moveUp();
+    }
+
+    function moveDown(){
+        left.moveDown();
+    }
+    function getRow(){
+        var record = left.getRow(1);
+        if(record){
+            alert(record.code + "," + record.name);
+        }
+    }
+    function getRecord(){
+        var objRecord = left.getSelectedRows();
+        var result = "";
+        for(var i=0,j=objRecord.length; i < j; i++){
+            result = result + "code:" + objRecord[i].code + ",name:" + objRecord[i].name + " ";
+        }
+        if(result){
+            alert(result);
+        }
+    }
+    function onDbClick(reocrd){
+        var resultRecord ;
+        resultRecord = left.removeRow(reocrd.code);
+        right.addRows(resultRecord);
+    }
+    function onRemove(result){
+        var strResult = "移除的记录集为： ";
+        for(var i=0,j=result.length; i < j; i++){
+            strResult = strResult + result[i].code + "," + result[i].name + ";";
+        }
+        alert(strResult);
+    }
+</script>
+</body></html> 
+ 

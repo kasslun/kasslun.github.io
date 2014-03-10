@@ -1,0 +1,119 @@
+
+<html>
+<head>
+    <meta charset="gbk">
+    <title>Tab页Demo</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css">
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js"></script>
+    <link rel="stylesheet" href="../css/tabexample.css">  
+</head>
+<body>
+<center><h1>怪异模式</h1></center>
+<div id="demo-container">
+
+<ul id="simple-menu">
+<li><a  href="index.html" target="_self" >W3C STRICT.DTD</a></li>
+<li><a   href="tab_nodoc.html" target="_self" class="current" >怪异模式</a></li>
+<li><a   href="tab_autoresize.html" target="_blank">Tab Auto Resize</a></li>
+
+<li><a   href="tab_scanner.html" target="_self">使用扫描器创建Tab</a></li>
+<li><a   href="tab_api.html" target="_self">Tab API</a></li> 
+
+</ul>
+
+</div>
+
+<h1>1.未设置高度，tab自动适应内部内容的高度</h1>
+<h3>tab页内是html</h3>
+ <div id="demo1_1"></div>
+ <!--<!--<p class="code"><a href="#">+view source</a></p>--> 
+<h3>tab页内是iframe</h3>
+<div id="demo1_2" ></div>
+<!-- <!--<p class="code"><a href="#">+view source</a></p>--> 
+<h1>2.设置了高度，tab内容的高度超出后滚动条在内部</h1>
+<h3>① tab页内是html</h3>
+<div id="demo2_1"  ></div>
+<!--<p class="code">+view source</p>-->
+<h3>② tab页内是iframe</h3>
+<div id="demo2_2"   ></div>
+ 
+ 
+
+
+    <script type="text/javascript">
+	
+
+ 
+         var tab1_1 = cui("#demo1_1").tab({
+            tabs: [{
+                title: "待处理",
+                // html: document.getElementById("in-tab")
+                html: "21213546546"
+            }, {
+                title: "标题2",
+                html: "<div style='height:500px; background-color:green'>hello</div>"
+            }, {
+                title: "标题3",
+                html: "<div style='height:300px; background-color:red'>hello</div>",
+                closeable: false
+            }],
+            closeable: true
+        }); 
+
+        var tab1_2 = cui("#demo1_2").tab({
+            tabs: [{
+                title: "待处理",
+                url:"testTab/h0.html"
+            }, {
+                title: "标题2",
+                url:"testTab/h1.html"
+            }, {
+                title: "标题3",
+                url:"testTab/h2.html" 
+            }] 
+        });
+ 
+ 
+ 
+ 
+ 
+
+         var tab2_1 = cui("#demo2_1").tab({
+            tabs: [ {
+                title: "标题2",
+                html: "<div style='height:500px; background-color:green'>hello</div>"
+            }, {
+                title: "标题3",
+                html: "<div style='height:300px; background-color:red'>hello</div>" 
+            }],
+            closeable: true,
+			height:200
+        });
+		
+	
+	
+	  var tab2_2 = cui("#demo2_2").tab({
+            tabs: [{
+                title: "待处理",
+                url:"testTab/h0.html"
+            }, {
+                title: "标题2",
+                url:"testTab/h1.html"
+            }, {
+                title: "标题3",
+                url:"testTab/h2.html" 
+            }] ,
+            closeable: true,
+			height:200
+        });
+	
+		
+		
+ 
+		
+		
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css" />
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+
+    <title>ListBox</title>
+
+</head>
+
+<body>
+
+
+<p>使用json数组</p>
+<span id="lb1" uitype="ListBox" value_field="id" label_field="text" datasource="data_array"></span><br/><br/>
+
+<p>使用setDataSource方法</p>
+
+<span id="lb2" uitype="ListBox" value_field="id" label_field="text" datasource="getDataByFun"></span>
+
+<script type="text/javascript">
+    var data_array = [];
+    for(var i=1; i<=9; i++){
+        data_array.push({ id:'item'+i, text:'选项'+i, filterName:'Boss '+i});
+    }
+
+    var appendData = [];
+    for(var i=1; i<=6; i++){
+        appendData.push({ id:'item'+i, text:'用户'+i, filterName:'Boss '+i});
+    }
+
+    function getDataByFun(obj, params){
+        obj.setDatasource(appendData);
+    }
+    comtop.UI.scan();
+</script>
+</body>
+</html>
+
+ 

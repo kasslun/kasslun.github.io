@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>CUI组件Grid示例</title>
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <style type="text/css">
+        body{margin:10px; background: #fff;}
+        h2{margin:0; font-size: 12px; height:20px; overflow: hidden;}
+    </style>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+    <!--Demo数据js-->
+    <script type="text/javascript" src="data.js"></script>
+</head>
+<body>
+<div>
+    <table id="grid" uitype="grid" gridwidth="800" gridheight="600"
+           datasource="initData" colmove="true">
+        <thead>
+        <tr>
+            <th rowspan="3" style="width:60px"><input type="checkbox" /></th>
+            <th rowspan="2" colspan="2">学生信息</th>
+            <th colspan="9">考试成绩</th>
+        </tr>
+        <tr>
+            <th colspan="5">文科</th>
+            <th colspan="4">理科</th>
+        </tr>
+        <tr>
+            <th renderStyle="text-align: center;" bindName="info.name" render="a" options="{'url':'#'}">姓名</th>
+            <th renderStyle="text-align: center" bindName="info.class">班级</th>
+            <th renderStyle="text-align: center" bindName="chinese" sort="true">语文</th>
+            <th renderStyle="text-align: center" bindName="english" sort="true">英语</th>
+            <th renderStyle="text-align: center" bindName="politics" sort="true">政治</th>
+            <th renderStyle="text-align: center" bindName="history" sort="true">历史</th>
+            <th renderStyle="text-align: center" bindName="geography" sort="true">地理</th>
+            <th renderStyle="text-align: center" bindName="math" sort="true">数学</th>
+            <th renderStyle="text-align: center" bindName="physics" sort="true">物理</th>
+            <th renderStyle="text-align: center" bindName="organisms" sort="true">生物</th>
+            <th renderStyle="text-align: center" bindName="chemistry" sort="true">化学</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+<script type="text/javascript">
+    function initData (gridObj, query) {
+        gridObj.setDatasource(data.slice((query.pageNo - 1) * query.pageSize, query.pageNo * query.pageSize), 150);
+    }
+    comtop.UI.scan();
+</script>
+</body>
+</html>

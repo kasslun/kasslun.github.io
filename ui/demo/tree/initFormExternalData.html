@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=GBK">
+  <title>Init from external data - Example</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css">
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js"></script>
+  <!-- (Irrelevant source removed.) -->
+
+<script type="text/javascript">
+ var $=comtop.cQuery;
+var tree;
+window.onload=function(){
+   tree= cui("#tree").tree({
+      // In real life we would call a URL on the server like this:
+//          initAjax: {
+//              url: "/getTopLevelNodesAsJson",
+//              data: { mode: "funnyMode" }
+//              },
+      // .. but here we use a local file instead:
+	  autoFocus: false,
+      initAjax: {
+        url: "sample-data1.json"
+        },
+      onActivate: function(node) {
+        $("#echoActive").text(node.data.title);
+      },
+      onDeactivate: function(node) {
+        $("#echoActive").text("-");
+      }
+    });
+  } 
+</script>
+</head>
+
+<body class="example">
+  <h1>Example: Init from Ajax request</h1>
+  <p class="description">
+    This sample initializes the tree from a JSON request.
+  </p>
+
+  <!-- Add a <div> element where the tree should appear: -->
+  <div id="tree">  </div>
+
+  <div>Active node: <span id="echoActive">-</span></div>
+
+  <!-- (Irrelevant source removed.) -->
+</body>
+</html>

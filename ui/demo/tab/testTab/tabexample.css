@@ -1,0 +1,15 @@
+#demo-container{ background-color:#999;padding: 10px 0px 0px 0px;}
+ul#simple-menu{list-style-type:none;width:100%;height:27px;font-family:"Trebuchet MS",Arial,sans-serif;font-size:13px;font-weight:bold;}
+ul#simple-menu li{display:block;float:left;margin:0 0 0 4px;height:27px;}
+ul#simple-menu li.left{margin:0;}
+ul#simple-menu li a{display:block;float:left;color:#fff;;background:#2E4560;line-height:27px;text-decoration:none;padding:0 17px 0 18px;height:27px;}
+ul#simple-menu li a.right{padding-right:19px;}
+ul#simple-menu li a:hover{background:#08c;color:#fff;}
+ul#simple-menu li a.current{color:#2E4560;background:#fff;}
+ul#simple-menu li a.current:hover{color:#2E4560;background:#fff;}
+
+.note{ background-color:yellow; padding:5px;}
+
+.code{ background-color: #D0D0F0;  padding:5px; display:block;}
+/* CSS Document */
+

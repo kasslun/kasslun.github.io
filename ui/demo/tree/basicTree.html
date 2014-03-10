@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Baisc Tree</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css">
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="GBK"></script>
+</head>
+<body>
+<div uitype="Tree" children="data"></div>
+<script type="text/javascript" >
+    var data = [{
+        title: "设备类别结构",
+        key: "k2",
+        expand: true,
+        isFolder: true,
+        children: [{
+            title: "无形资产",
+            key: "k2-1",
+            isFolder: true,
+            expand: true,
+            children: [{
+                title: "土地使用权"
+            }, {
+                title: "软件"
+            }, {
+                title: "专利权"
+            }, {
+                title: "非专利技术"
+            }, {
+                title: "其它"
+            }]
+        }, {
+            title: "有形资产",
+            key: "k2-2"
+        }]
+    }, {
+        title: "输电线路",
+        key: "k3",
+        isFolder: true,
+        children: [{
+            title: "架空线路"
+        }, {
+            title: "电缆线路"
+        }]
+    }];
+
+    comtop.UI.scan();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>html tempalte</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css">
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js"></script>
+		
+<link rel="stylesheet" href="../css/tabexample.css"> 		
+		
+        <script type="text/javascript">
+  window.onload=function(){
+        cui("#tree").dynatree({
+            onActivate: function(node) {
+                alert("You activated " + node);
+            }
+        });
+    } ;
+    </script>
+
+</head>
+
+<body>
+
+<center><h2>使用html模板创建tree</h2></center>
+
+<div id="demo-container">
+
+<ul id="simple-menu">
+<li><a  href="index.html" target="_self" >W3C STRICT.DTD</a></li>
+<li><a   href="tree_nodoc.html" target="_self">怪异模式</a></li> 
+
+<li><a   href="tree_htmltemplate.html" target="_self"  class="current">使用html模板</a></li>
+<li><a   href="tree_scanner.html" target="_self">使用扫描器</a></li>
+
+<li><a   href="tree_lazyload.html" target="_self">Lazyload</a></li>
+ 
+<li><a   href="tree_checkbox.html" target="_self">With Checkbox</a></li> 
+<li><a   href="tree_radio.html" target="_self">Width Radio </a></li>
+
+
+</ul>
+</div>
+
+    <div id="tree">
+        <ul>
+            <li id="key1" title="Look, a tool tip!">item1 with key and tooltip
+            <li id="key2" class="selected">item2: selected on init
+            <li id="key3" class="folder">Folder with some children
+                <ul>
+                    <li id="key3.1">Sub-item 3.1
+                    <li id="key3.2">Sub-item 3.2
+                </ul>
+
+            <li id="key4" class="expanded">Document with some children (expanded on init)
+                <ul>
+                    <li id="key4.1">Sub-item 4.1
+                    <li id="key4.2">Sub-item 4.2
+                </ul>
+
+            <li id="key5" >Lazy folder
+        </ul>
+    </div>
+
+</body>
+</html>

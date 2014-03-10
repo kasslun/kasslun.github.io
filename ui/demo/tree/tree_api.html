@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="GBK">
+        <title>Tree  API</title>
+        <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css">
+        <script type="text/javascript" src="../../ui/js/comtop.ui.min.js"></script>
+        <script type="text/javascript">
+            window.onload = function() {
+                var data = [
+                        {   title: "设备类别结构",  key: "k1" }, 
+                        {   title: "Folder 2", 
+                            key: "k2", 
+                            isFolder: true, 
+                            // icon: false, 
+                            // icon: "somepath/someIcon.gif", 
+                            tooltip: "haha", 
+                            children: [
+                                {title: "无形资产", key: "k2-1" },
+                                {title: "有形资产", key: "k2-2" ,isFolder:true,children:[{title:"hello"}]}
+                            ]
+                        }, 
+                        {   title: "其他", 
+                            key: "k3", 
+                            href:"http://www.baidu.com",
+                            // icon: "somepath/someIcon.gif", 
+                            // icon: false, 
+                            hideCheckbox: true
+                        }
+                    ];
+
+                var tree = cui("#dt1").tree({ 
+                    children: data,					 
+                     on_select: function(flag, node) {
+                         alert("select_handler");
+                   
+                     }, 
+                     on_click: function(node, event) {
+                      alert("you clicked :"+node.getData("title"));
+						/*   console.log(node.getData())*/
+                       
+                     }
+                });
+            }
+        </script>
+    </head>
+    <body>
+ <div >
+       <input type="button" value="getNode" />
+	   
+	   <input type="button" value="getActiveNode" />
+	   
+	   <input type="button" value="getSelectedNodes" />
+	   
+	   <input type="button" value="getRoot" />
+	   
+	   <input type="button" value="selectNode" />
+	   
+	    <input type="button" value="disable" />
+	   <input type="button" value="enable" />
+	   
+	   
+	   
+ </div>
+ <p>&nbsp;</p>
+  <div id="dt1"></div>
+ 
+    </body>
+</html>
+
+
+            

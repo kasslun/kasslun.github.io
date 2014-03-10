@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>CUI组件Grid示例</title>
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <style type="text/css">
+        body{margin:10px; background: #fff;font-size: 12px}
+        h2{margin:0; font-size: 12px; height:20px; overflow: hidden;}
+    </style>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+    <!--Demo数据js-->
+    <script type="text/javascript" src="data.js"></script>
+</head>
+<body>
+<div>
+    主键操作（默认为"ID"）<br />
+    <span uitype="button" on_click="getRowsDataByPK" label="获取主键为2的行数据"></span> getRowsDataByPK(2)
+    <span uitype="button" on_click="selectRowsByPK" label="选中主键为2的行"></span> selectRowsByPK(2)<br /><br />
+    <span uitype="button" on_click="setHighLight" label="高亮主键为3的行"></span> setHighLight(3)
+    <span uitype="button" on_click="getSelectedPrimaryKey" label="获取选择行主键集合"></span> getSelectedPrimaryKey()<br /><br />
+    <table id="grid" uitype="grid" gridwidth="800" gridheight="400" datasource="initData">
+        <thead>
+        <tr>
+            <th><input type="checkbox"/></th>
+            <th renderStyle="text-align: center" bindName="info.name" render="a" options="{'url':'#'}">姓名</th>
+            <th renderStyle="text-align: center" bindName="chinese">语文</th>
+            <th renderStyle="text-align: center" bindName="english">英语</th>
+            <th renderStyle="text-align: center" bindName="politics">政治</th>
+            <th renderStyle="text-align: center" bindName="history">历史</th>
+            <th renderStyle="text-align: center" bindName="geography">地理</th>
+            <th renderStyle="text-align: center" bindName="math">数学</th>
+            <th renderStyle="text-align: center" bindName="physics">物理</th>
+            <th renderStyle="text-align: center" bindName="organisms">生物</th>
+            <th renderStyle="text-align: center" bindName="chemistry">化学</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+<script type="text/javascript">
+    function initData (gridObj, query) {
+        gridObj.setDatasource(data.slice((query.pageNo - 1) * query.pageSize, query.pageNo * query.pageSize), 150);
+
+    }
+    comtop.UI.scan();
+    gridObj = cui("#grid");
+    function getRowsDataByPK () {
+        alert(gridObj.getRowsDataByPK(2))
+    }
+    function selectRowsByPK () {
+        gridObj.selectRowsByPK(2)
+    }
+    function setHighLight () {
+        gridObj.setHighLight(3)
+    }
+    function getSelectedPrimaryKey () {
+        alert(gridObj.getSelectedPrimaryKey());
+    }
+</script>
+</body>
+</html>

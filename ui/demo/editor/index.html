@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="gbk">
+        <title>Editor Demo</title>
+        <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css" charset="gbk">
+        <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+        <script type="text/javascript" src="../../ui/js/comtop.ui.editor.min.js" charset="gbk"></script>
+		<link rel="stylesheet" href="../css/tabexample.css"> 
+		
+        <script type="text/javascript">
+            window.onload = function() {
+                var editor = cui("#ed1").editor({				     
+					min_frame_height:300,
+                    initial_content: "Hello World :) " 
+                });
+            }
+        </script>
+    </head>
+    <body>
+<center><h2>W3C STRICT.DTD</h2></center>
+
+<div id="demo-container">
+
+<ul id="simple-menu">
+<li><a  href="index.html" target="_self" class="current">W3C STRICT.DTD</a></li>
+<li><a   href="editor_nodoc.html" target="_self">怪异模式</a></li> 
+ 
+<li><a   href="editor_scanner.html" target="_self">使用扫描器</a></li>
+ 
+
+<li><a   href="editor_api.html" target="_self">Editor API</a></li> 
+</ul>
+</div>	
+	
+	<p>&nbsp;</p>
+ 
+            <div id="ed1" ></div>
+ 
+    </body>
+</html>

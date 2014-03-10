@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>validate</title>
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+    <style type="text/css">
+        .table{border:1px solid #ccc;border-width:1px 0 0 1px; width:100%;}
+        .table td{padding:2px;border: 1px solid #ccc;border-width: 0 1px 1px 0;background: #fff;}
+        .table .label{text-align: right;background: #1d67a6;color: #fff;width:42px;}
+        .strong{color:red;}
+    </style>
+</head>
+<body >
+<h4>二、动态添加校验</h4>
+<p>1.1待校验的表单,初始状态年龄没有验证</p>
+<table class="table" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td class="label" >例：</td>
+        <td>姓名：<span id="userName" name="userName" uitype="Input" validate="姓名不能为空"></span></td>
+    </tr>
+    <tr>
+        <td class="label">&nbsp;</td>
+        <td>
+            年龄：<span id="age" name="age" uitype="Input"></span>
+        </td>
+    </tr>
+    <tr>
+        <td class="label">&nbsp;</td>
+        <td>
+            <input type="button" value="添加年龄校验" onclick="addValid();"/>
+            <input type="button" value="校验" onclick="submitForm();"/>
+        </td>
+    </tr>
+</table>
+<script type="text/javascript">
+    function addValid(){
+        window.validater.add('age', 'numeric', {
+            oi: true,
+            min: 1,
+            notim: '年龄必须为整数',
+            minm: '年龄必须大于0'
+        });
+        window.validater.add('age', 'required', {
+            m:'年龄不能为空'
+        });
+    }
+    function submitForm(){
+        //验证表单
+        window.validater.validAllElement();
+    }
+    comtop.UI.scan();
+</script>
+</body>
+</html>

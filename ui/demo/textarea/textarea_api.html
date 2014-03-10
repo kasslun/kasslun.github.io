@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>UI textarea Demos</title>
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+    <link rel="stylesheet" href="textarea.css"/>
+</head>
+<body>
+
+<table cellspacing="1" cellpadding="3" style="width:100%" class="table_edit_bg">
+    <tr>
+        <td class="td_title" style="width: 30%">
+            设置width="95%"，height="50px"，value="我的文本域"
+        </td>
+        <td class="td_content" style="width: 70%">
+                <span uitype="Textarea" id="myTextarea" width="95%" height="50px" value="afsass">
+                </span>
+
+        </td>
+    </tr>
+    <tr>
+        <td class="td_content"  colspan="2">
+            <br />
+            <input type="button" value="设值" onclick="setValue()"/>
+            <input type="button" value="取值" onclick="getValue()"/>
+            <input type="button" value="只读" onclick="setReadonly(this)"/>
+            <input type="button" value="设置宽" onclick="setWidth()"/>
+            <input type="button" value="设置最大输入10字节" onclick="setMaxLength()"/>
+        </td>
+    </tr>
+</table>
+<script type="text/javascript">
+    var flag=true;
+    function setValue(){
+        cui("#myTextarea").setValue('给我的文本域设置');
+    }
+    function getValue(){
+        alert(cui("#myTextarea").getValue());
+    }
+    function setReadonly(self){
+        cui("#myTextarea").setReadonly(flag);
+        self.setAttribute("value",flag?"恢复":"只读");
+        flag=!flag;
+
+    }
+    function setWidth() {
+        cui("#myTextarea").setWidth('500px');
+    }
+    function setMaxLength() {
+        cui("#myTextarea").setMaxLength(10);
+    }
+   comtop.UI.scan();
+
+</script>
+
+</body>
+</html>

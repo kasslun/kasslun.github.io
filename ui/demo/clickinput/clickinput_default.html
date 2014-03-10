@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>button</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+    <style type="text/css">
+        body{font-size: 12px;}
+    </style>
+</head>
+<body><br />
+默认<br />
+<span uitype="ClickInput" name="search"></span><br /><br />
+按钮效果<br />
+<span uitype="ClickInput" name="search" icon="find.gif"></span><br /><br />
+只读<br />
+<span uitype="ClickInput" name="search" editable="true" readonly="true" icon="save.gif"></span><br /><br />
+最大字符10<br />
+<span uitype="ClickInput" name="search" editable="true" emptytext="请输入" maxlength="10" icon="find.gif"></span><br /><br />
+默认值<br />
+<span uitype="ClickInput" name="search" editable="true" value="我是默认值" icon="save.gif"></span><br /><br />
+<script type="text/javascript">
+    comtop.UI.scan();
+</script>
+</body>
+</html>

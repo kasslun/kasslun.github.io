@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Baisc Tree</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+</head>
+<body>
+<div id="dt1" uitype="tree" children="data"></div>
+<script type="text/javascript">
+    var data = [{
+        title: "设备类别结构",
+        key: "k2",
+        expand: true,
+        isFolder: true,
+        hideCheckbox: true,
+        icon: "001.png",
+        children: [{
+            title: "无形资产",
+            key: "k2-1",
+            isFolder: true,
+            icon: "002.png",
+            expand: true,
+            children: [{
+                title: "土地使用权",
+                hideCheckbox: true,
+                icon: "002.png"
+            }, {
+                title: "软件",
+                icon: "002.png"
+            }, {
+                title: "专利权",
+                icon: "002.png"
+            }, {
+                title: "非专利技术",
+                hideCheckbox: true,
+                icon: "003.png"
+            }, {
+                title: "其它",
+                icon: "003.png"
+            }]
+        }, {
+            title: "有形资产",
+            icon: "003.png",
+            key: "k2-2",
+            isFolder: true,
+            children: [{
+                title: "hello"
+            }]
+        }]
+    }, {
+        title: "输电线路",
+        key: "k3",
+        expand: true,
+        icon: "001.png",
+        hideCheckbox: true,
+        isFolder: true,
+        children: [{
+            title: "架空线路",
+            hideCheckbox: true,
+            icon: "003.png"
+        }, {
+            title: "电缆线路",
+            icon: "003.png"
+        }]
+    }];
+    comtop.UI.scan();
+</script>
+</body>
+</html>
+
+

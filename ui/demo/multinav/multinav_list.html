@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <title>单级导航</title>
+        <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css" type="text/css" />
+        <script src="../../ui/js/comtop.ui.min.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <h5>单级导航列表，主要用于数据列表</h5>
+    <div style="width:200px; border:1px solid #ccc;font: 12px/25px Arial;">
+        <!--说明:组件占位从这里下面这行开始,外层div不属于组件内容-->
+        <div id="multinav_box" uitype="MultiNav" datasource="menu2"></div>
+        <!--说明:组件占位从这里结束-->
+    </div>
+        <script type="text/javascript">
+            function tip(tips) {
+                alert(tips)
+            }
+
+             var menu = [
+                {
+                    name    : "菜单1 (onclick)",
+                    onclick : "tip('单击')",
+                    href     : "#"
+                },
+                {
+                    name : "菜单2",
+                    href : "#"
+                },
+                {
+                    name : "菜单3 (去买假药)",
+                    href : "http://www.baidu.com",
+                    target : "_blank"
+                },
+                {
+                    name : "菜单4",
+                    href : "#"
+                },
+                {
+                    name : "菜单5 (ondblclick)",
+                    ondblclick : "tip('双击')",
+                    href : "#"
+                },
+                {
+                    name : "菜单6(onmouseout)",
+                    onmouseout : 'tip("out")',
+                    href : "#"
+                },
+                {
+                    name : "菜单7",
+                    href : "#"
+                },
+                {
+                    name : "菜单8",
+                    href : "#"
+                },
+                {
+                    name : "菜单9 (onmouseover)",
+                    href : "#",
+                    bind : {
+                        on_mouseover : tip
+                    }
+                },
+                {
+                    name : "菜单10",
+                    href : "#"
+                },
+                {
+                    name : "菜单11",
+                    href : "#"
+                },
+                {
+                    name : "菜单12",
+                    href : "#"
+                },
+                {
+                    name : "菜单13",
+                    href : "#"
+                },
+                {
+                    name : "菜单14",
+                    href : "#"
+                },
+                {
+                    name : "菜单15",
+                    href : "#"
+                },
+                {
+                    name : "菜单16",
+                    href : "#"
+                }
+            ]
+            var menu2 = [
+            ];
+            comtop.UI.scan();
+            cui('#multinav_box').setDatasource(menu);
+        </script>
+    </body>
+</html>

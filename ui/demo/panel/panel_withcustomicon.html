@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>custom icon</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+    <style type="text/css">
+        .customIcon{ background: url(web_icon_015.gif) 0 0 no-repeat;}
+    </style>
+</head>
+<body>
+
+<div  uitype="panel" header_title="我是标题" html="html" id="panel"></div>
+
+<script type="text/javascript">
+    var html="<div style='height:200px;'>我是内容</div>";
+    comtop.UI.scan();
+    cui("#panel").addIcon({className:"customIcon",callback:fn});
+    function fn(){
+        alert("custom icon");
+    }
+</script>
+</body>
+</html>
+
+

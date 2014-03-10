@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="gbk">
+    <title>Panel页Demo</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css">
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js"></script>
+     <link rel="stylesheet" href="../css/tabexample.css">
+</head>
+<body>
+<div id="demo-container">
+    <ul id="simple-menu">
+        <li><a href="index.html" target="_self">JS创建Panel</a></li>
+        <li><a href="panel_scanner.html" target="_self" class="current">使用扫描器创建Panel</a></li>
+        <!--<li><a href="panel_nodoc.html" target="_self">怪异模式</a></li>-->
+        <li><a href="panel_autoresize.html" target="_blank">Panel满屏设置</a></li>
+        <li><a href="panel_api.html" target="_self">Panel API</a></li>
+    </ul>
+</div>
+
+<h1>使用扫描器创建panel</h1>
+<h3>panel页内是html</h3>
+
+<div uitype="Panel" header_title="标题3" html="panelHTMLData"></div>
+ 
+<h3>panel页内是iframe</h3>
+
+<div id="demo1_2" uitype="Panel" height="200" width="200" header_title="待处理" url="testPanel/h1.html"></div>
+
+<script type="text/javascript">
+	var panelHTMLData = '<div style="height:300px; background-color:red">hello</div>';
+	comtop.UI.scan();
+</script>
+
+
+</body>
+</html>

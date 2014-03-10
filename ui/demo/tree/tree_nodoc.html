@@ -1,0 +1,76 @@
+ 
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>tree演示例子</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css">
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js"></script>
+<link rel="stylesheet" href="../css/tabexample.css"> 
+</head>
+
+<body>
+<center><h2>怪异模式</h2></center>
+<div id="demo-container">
+
+<ul id="simple-menu">
+    <li><a  href="index.html" target="_self">标准模式</a></li>
+    <li><a   href="tree_nodoc.html" target="_self" class="current">怪异模式</a></li>
+
+    <!--<li><a   href="tree_htmltemplate.html" target="_self">使用html模板</a></li>-->
+    <li><a   href="tree_scanner.html" target="_self">扫描器创建tree</a></li>
+    <li><a   href="tree_dyntData.html" target="_self">动态数据生成tree</a></li>
+    <li><a   href="tree_lazyload.html" target="_self">tree节点动态加载(Lazyload)</a></li>
+
+    <li><a   href="tree_checkbox.html" target="_self">带Checkbox</a></li>
+    <li><a   href="tree_radio.html" target="_self">带Radio</a></li>
+
+
+</ul>
+</div>
+
+            <div id="dt1"></div>
+
+        <script type="text/javascript">
+            window.onload = function() { }
+                var data = [
+                        {   title: "设备类别结构",  key: "k1" }, 
+                        {   title: "Folder 2", 
+                            key: "k2", 
+                            isFolder: true, 
+                            // icon: false, 
+                            // icon: "somepath/someIcon.gif", 
+                            tooltip: "haha", 
+                            children: [
+                                {title: "无形资产", key: "k2-1" },
+                                {title: "有形资产", key: "k2-2" ,isFolder:true,children:[{title:"hello"}]}
+                            ]
+                        }, 
+                        {   title: "其他", 
+                            key: "k3", 
+                            href:"http://www.baidu.com",
+                            // icon: "somepath/someIcon.gif", 
+                            // icon: false, 
+                            hideCheckbox: true
+                        }
+                    ];
+
+                var tree = cui("#dt1").tree({ 
+                    children: data,					 
+                     on_select: function(flag, node) {
+                         alert("select_handler");
+                   
+                     }, 
+                     on_click: function(node, event) {
+                      alert("you clicked :"+node.getData("title"));
+						/*   console.log(node.getData())*/
+                       
+                     }
+                });
+           
+        </script>
+
+
+
+
+</body>
+</html>

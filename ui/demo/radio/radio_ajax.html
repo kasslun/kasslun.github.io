@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>RadioGroup</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+</head>
+<body>
+<span uitype="RadioGroup" name="ball" value="3" radio_list="ajaxData"></span>
+<script type="text/javascript">
+    function ajaxData(obj) {
+        var data;
+        setTimeout(function () { //这里为模拟ajax/dwr
+            data = [
+                { value : '0',
+                    text : '篮球' },
+                { value : '1',
+                    text : '乒乓球'},
+                { value : '2',
+                    text : '足球' },
+                { value : '3',
+                    text : '冰球'},
+                { value : '4',
+                    text : '桌球' },
+                { value : '5',
+                    text : '羽毛球'
+                }];
+            obj.setDatasource(data);
+        }, 500)
+    }
+    comtop.UI.scan();
+</script>
+</body>
+</html>

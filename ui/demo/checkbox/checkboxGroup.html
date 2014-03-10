@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=GBK" />
+        <title>checkboxGroup组件使用示例</title>
+        <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+
+
+        <link type="text/css" rel="stylesheet" href="../../api/doc/doc_css/shCore.css"/>
+        <link type="text/css" rel="stylesheet" href="../../api/doc/doc_css/shThemeDefault.css"/>
+        <link rel="stylesheet" href="../../api/doc/doc_css/doc.css" type="text/css"/>
+
+
+        <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+        <script type="text/javascript" src="../../api/doc/doc_js/shCore.js"></script>
+        <script type="text/javascript" src="../../api/doc/doc_js/shBrushJScript.js"></script>
+        <script type="text/javascript" src="../../api/doc/doc_js/shBrushXml.js"></script>
+        <script type="text/javascript" src="../../api/doc/doc_js/doc.js"></script>
+		
+		<script >
+		
+		window.onload = function() {
+			comtop.UI.scan();
+			function initData (obj) {
+				var data = [{
+					text: '足球',
+					value: '0'
+				},{
+					text: '篮球',
+					value: '1'
+				},{
+					text: '兵乓球',
+					value: '2',
+					readonly : "readonly"
+				},{
+					text: '羽毛球',
+					value: '3'
+				}]
+				obj.setDatasource( data );
+			}
+			var a = cui('#checkboxGroup').checkboxGroup({
+				name: 'like',
+				checkbox_list: initData,
+				direction: '',
+				value: [0,1,2],
+				readonly: false,
+				on_change: function(value){
+					alert('value change to ' + value);
+				}
+			});
+		};
+		
+		</script>
+ 
+    </head>
+<body>
+
+	<div style="padding: 10px">
+
+		<h3>checkboxGroup组件使用示例</h3>
+
+		<h4>例一、设置border属性，让checkboxGroup出现边框</h4>
+		
+		<p>1. html代码</p>
+			<pre class="brush: xml;">
+				<div id="mycheckboxGroup" uiType="checkboxGroup" name="like" border="true" value="0">
+					<input type="checkbox" name="like" value="0" readonly="readonly" > 足球
+					<input type="checkbox" name="like" value="1" readonly="readonly" > 篮球
+					<input type="checkbox" name="like" value="2" > 兵乓球
+					<input type="checkbox" name="like" value="3" > 羽毛球
+				</div>
+			</pre>
+		
+		<p>2. 效果</p>
+			性别：<div id="mycheckboxGroup1" uiType="checkboxGroup" name="like" border="true">
+					<input type="checkbox" name="like" value="0" readonly="readonly" > 足球
+					<input type="checkbox" name="like" value="1" readonly="readonly" > 篮球
+					<input type="checkbox" name="like" value="2" > 兵乓球
+					<input type="checkbox" name="like" value="3" > 羽毛球
+				</div>
+		
+		<h4>例二、设置direction属性，让checkboxGroup纵向排列</h4>
+		
+		<p>1. html代码</p>
+			<pre class="brush: xml;">
+				<div id="mycheckboxGroup" uiType="checkboxGroup" name="like" direction="vertical">
+					<input type="checkbox" name="like" value="0" > 足球
+					<input type="checkbox" name="like" value="1" > 篮球
+					<input type="checkbox" name="like" value="2" > 兵乓球
+					<input type="checkbox" name="like" value="3" > 羽毛球
+				</div>
+			</pre>
+		
+		<p>2. 效果</p>
+		
+			性别：<div id="mycheckboxGroup2" uiType="checkboxGroup" name="like" direction="vertical">
+					<input type="checkbox" name="like" value="0" > 足球
+					<input type="checkbox" name="like" value="1" > 篮球
+					<input type="checkbox" name="like" value="2" > 兵乓球
+					<input type="checkbox" name="like" value="3" > 羽毛球
+				</div>
+		
+		<h4>例三、设置checkbox的color属性，让checkbox被选中时，以color的颜色显示，如果不设置该属性，默认选中时为黑色高亮显示</h4>
+		
+		<p>1. html代码</p>
+			<pre class="brush: xml;">
+				<div id="mycheckboxGroup" uiType="checkboxGroup" name="like" >
+					<input type="checkbox" name="like" value="0" color="red"> 足球
+					<input type="checkbox" name="like" value="1" > 篮球
+					<input type="checkbox" name="like" value="2" > 兵乓球
+					<input type="checkbox" name="like" value="3" > 羽毛球
+				</div>
+			</pre>
+		
+		<p>2. 效果</p>
+		
+			性别：<div id="mycheckboxGroup3" uiType="checkboxGroup" name="like" >
+					<input type="checkbox" name="like" value="0" color="red"> 足球
+					<input type="checkbox" name="like" value="1" > 篮球
+					<input type="checkbox" name="like" value="2" > 兵乓球
+					<input type="checkbox" name="like" value="3" > 羽毛球
+				</div>
+		
+		
+		<h4>例四、JS方式使用方法</h4>
+
+		<p>1. 在页面上添加一个DIV</p>
+
+		<pre class="brush: xml;">
+			<div id="checkboxGroup"></div>
+		</pre>
+		<p>2. JS动态创建checkboxGroup</p>
+		<pre class="brush: js;">
+			function initData (obj) {
+				var data = [{
+					text: '足球',
+					value: '0'
+				},{
+					text: '篮球',
+					value: '1'
+				},{
+					text: '兵乓球',
+					value: '2',
+					readonly : "readonly"
+				},{
+					text: '羽毛球',
+					value: '3'
+				}]
+				obj.setDatasource( data );
+			}
+			var a = cui('#checkboxGroup').checkboxGroup({
+				name: 'like',
+				checkbox_list: initData,
+				direction: '',
+				value: [0,1,2],
+				readonly: false,
+				on_change: function(value){
+					alert('value change to ' + value);
+				}
+			});
+		</pre>
+		
+		<p>3. 效果</p>
+		<div id="checkboxGroup"></div>
+		
+	</div>
+
+</body>
+</html>

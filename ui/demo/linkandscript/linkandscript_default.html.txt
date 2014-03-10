@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<%@ taglib uri="http://www.szcomtop.com/cui" prefix="cui"%>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>link and script Demos</title>
+    <cui:link href="/cui/themes/default/css/comtop.ui.min.css" />
+    <cui:script src="/top/js/jquery.js" />
+</head>
+<body>
+
+</body>
+</html>
+
+

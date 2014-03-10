@@ -1,0 +1,31 @@
+.table_edit_bg {
+    background-color: #a3a3a3
+}
+.table_edit_bg td{
+    font-size: 12px;
+}
+.td_title {
+    font-size: 12px;
+    border-left-color: #b0c4de;
+    border-bottom-color: #b0c4de;
+    border-top-color: #b0c4de;
+    line-height: 1.6;
+    font-family: verdana;
+    border-collapse: separate;
+    background-color:#cad4ee;
+    border-right-color: #b0c4de;
+    empty-cells: show
+}
+.td_content {
+    font-size: 12px;
+    border-left-color: #b0c4de;
+    border-bottom-color: #b0c4de;
+    color: #000000;
+    word-break: break-all;
+    border-top-color: #b0c4de;
+    line-height: 1.6;
+    font-family: verdana;
+    border-collapse: separate;
+    background-color: #edecec;
+    border-right-color: #b0c4de
+}

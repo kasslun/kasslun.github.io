@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>button</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+    <style type="text/css">
+        body{font-size: 12px;}
+    </style>
+</head>
+<body><br />
+change事件<br />
+<span uitype="ClickInput" width="200px" name="search" editable="true" icon="save.gif" on_change="tip"></span><br /><br />
+focus事件<br />
+<span uitype="ClickInput" width="200px" name="search" editable="true" icon="save.gif" on_focus="focusEvent"></span><br /><br />
+blur事件<br />
+<span uitype="ClickInput" width="200px" name="search" editable="true" icon="save.gif" on_blur="msg"></span><br /><br />
+keyup事件<br />
+<span uitype="ClickInput" width="200px" name="search" editable="true" icon="save.gif" on_keyup="msg"></span><br /><br />
+图标click事件/以及方法调用<br />
+<span uitype="ClickInput" width="500px" id="c" name="search" editable="true" on_iconclick="tip" icon="find.gif"></span><br /><br />
+<span uitype="button" on_click="setWidth" label="设置宽度"></span>
+<span uitype="button" on_click="setMaxLength" label="设置最大输入5个字"></span>
+<span uitype="button" on_click="setreadonly" label="启用/禁用只读"></span>
+<span uitype="button" on_click="seteditable" label="启用/禁用可编辑"></span>
+<script type="text/javascript">
+    function tip(event, obj) {
+        alert("输入的内容是：" + obj.getValue());
+    }
+    function focusEvent(){
+        // console.log("focus");
+    }
+    function msg() {
+        alert("事件触发")
+    }
+    comtop.UI.scan();
+    //方法
+    var obj = cui("#c");
+    function setWidth () {
+        obj.setWidth(200);
+    }
+    function setMaxLength () {
+        obj.setMaxLength(5);
+    }
+    readonly = false;
+    function setreadonly() {
+        obj.setReadonly(readonly = !readonly)
+    }
+    editable = true;
+    function seteditable() {
+        obj.setEditAble(editable = !editable)
+    }
+</script>
+</body>
+</html>

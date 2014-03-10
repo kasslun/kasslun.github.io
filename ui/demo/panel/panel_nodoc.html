@@ -1,0 +1,105 @@
+ 
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="gbk">
+    <title>Panel页Demo</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css">
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js"></script>
+
+  <link rel="stylesheet" href="../css/tabexample.css"> 
+	  
+</head>
+<body>
+
+<center><h1>怪异模式</h1></center>
+
+
+<div id="demo-container">
+
+<ul id="simple-menu">
+<li><a  href="index.html" target="_self" >W3C STRICT.DTD</a></li>
+<li><a   href="panel_nodoc.html" target="_self" class="current">怪异模式</a></li>
+<li><a   href="panel_autoresize.html" target="_blank">Panel Auto Resize</a></li>
+
+<li><a   href="panel_scanner.html" target="_self">使用扫描器创建Panel</a></li>
+<li><a   href="panel_api.html" target="_self">Panel API</a></li> 
+</ul>
+
+</div>
+
+
+
+
+<h1>1.未设置高度，panel自动适应内部内容的高度</h1>
+<h3>panel页内是html</h3>
+ <div id="demo1_1"></div>
+  <!--<p class="code"><a href="#">+view source</a></p>-->
+<h3>panel页内是iframe</h3>
+<div id="demo1_2" ></div>
+ <!--<p class="code"><a href="#">+view source</a></p>-->
+<h1>2.设置了高度，panel内容的高度超出后滚动条在内部</h1>
+<p class="note"> 注意当panel页内容小于设定的高度时，panel页会自动填充到设定的高度</p>
+
+
+
+<h3>① panel页内是html</h3>
+<div id="demo2_1"  ></div>
+ <!--<p class="code"><a href="#">+view source</a></p>-->
+<h3>② panel页内是iframe</h3>
+<div id="demo2_2"  ></div>
+
+
+ 
+ 
+
+    <script type="text/javascript">
+	
+ 
+ 
+         var panel1_1 = cui("#demo1_1").panel({
+                title: "标题3",
+                 html: "<div style='height:300px; background-color:red'>hello</div>" 
+                
+            
+        });
+ 
+
+        var panel1_2 = cui("#demo1_2").panel({
+ 
+                title: "标题3",
+                url:"testPanel/h2.html" 
+          
+        });
+ 
+ 
+ 
+ 
+ 
+
+         var panel2_1 = cui("#demo2_1").panel({
+ 				height:200,
+                title: "标题3",
+                html: "<div style='height:300px; background-color:red'>hello</div>" 
+ 
+        });
+		
+	
+	
+	  var panel2_2 = cui("#demo2_2").panel({
+ 				height:200,
+                title: "标题3",
+                url:"testPanel/h2.html" 
+ 
+        });
+	
+		
+		
+ 
+  
+		
+		
+    </script>
+
+
+</body>
+</html>

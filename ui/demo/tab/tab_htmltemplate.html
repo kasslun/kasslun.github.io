@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="gbk">
+    <title>Tab页Demo</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css">
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js"></script>
+     <link rel="stylesheet" href="../css/tabexample.css">  
+</head>
+<body>
+
+<center><h1>使用html模板创建Tab页</h1></center>
+
+
+<div id="demo-container">
+
+<ul id="simple-menu">
+<li><a  href="index.html" target="_self" >W3C STRICT.DTD</a></li>
+<li><a   href="tab_nodoc.html" target="_self">怪异模式</a></li>
+<li><a   href="tab_autoresize.html" target="_blank">Tab Auto Resize</a></li>
+<li><a   href="tab_htmltemplate.html" target="_self" class="current" >使用html模板创建Tab</a></li>
+<li><a   href="tab_scanner.html" target="_self">使用扫描器创建Tab</a></li>
+<li><a   href="tab_api.html" target="_self">Tab API</a></li> 
+</ul>
+
+</div>
+
+
+
+
+<h1>使用html模板创建Tab页</h1>
+
+
+
+<h3>tab页内是html</h3>
+<div id="demo1_1" >
+
+
+	<div class="cui-tab">
+		<ul class="cui-tab-nav">
+			<li class="cui-active">
+			  <span class="cui-tab-title">标题1</span>
+			  <span class="cui-tab-close"></span>
+			  </li>
+			<li><span class="cui-tab-title">标题2</span></li>
+			<li><span class="cui-tab-title">标题3</span><span class="cui-tab-close"></span></li>
+		</ul>
+		<div class="cui-tab-content">
+			<div  >内容1</div>
+			<div >内容2</div>
+			<div >内容3</div>
+		</div>
+	</div>
+
+
+</div>
+
+ 
+ 
+<h3>tab页内是iframe</h3>
+<div id="demo1_2" >
+	<div class="cui-tab">
+		<ul class="cui-tab-nav">
+			<li class="cui-active">
+			  <span class="cui-tab-title">标题1</span>
+			  <span class="cui-tab-close"></span>
+			  </li>
+			<li><span class="cui-tab-title">标题2</span></li>
+			<li><span class="cui-tab-title">标题3</span><span class="cui-tab-close"></span></li>
+		</ul>
+		<div class="cui-tab-content">
+			<iframe frameborder="0" style="height: 300px;" src="testTab/h0.html"></iframe>
+			<iframe frameborder="0" style="height: 300px;" src="testTab/h1.html"></iframe>
+			<iframe frameborder="0" style="height: 300px;" src="testTab/h2.html"></iframe>
+		</div>
+	</div>
+
+</div>
+
+<!-- <p class="code"><a href="#">+view source</a></p>-->
+
+ 
+
+<script type="text/javascript"> 
+ window.onload=function(){ 
+  var tab1_1 = cui("#demo1_1").tab();  
+  cui("#demo1_2").tab();  
+  
+ }    
+ </script> 
+</body>
+</html>

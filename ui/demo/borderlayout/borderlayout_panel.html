@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>边框布局demo</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+    <style type="text/css">
+        body{background: #ccc}
+    </style>
+</head>
+<body>
+<div uitype="Borderlayout" id="border" is_root="true" gap="5px">
+    <div position="top" height="100" resizable="true"></div>
+    <div position="left" width="200" resizable="true" collapsable="true" show_expand_icon="true"></div>
+    <div position="center">
+        <div uitype="panel" height="100%" header_title="我是panel"></div>
+    </div>
+</div>
+<script type="text/javascript" id="do_not_show">
+    if (window.parent.setFullscreen) {
+        window.parent.setFullscreen();
+    }
+</script>
+<script type="text/javascript">
+    comtop.UI.scan();
+</script>
+</body>
+</html>

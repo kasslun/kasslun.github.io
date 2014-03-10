@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>validate</title>
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js"></script>
+    <style type="text/css">
+        .table{
+            border:1px solid #ccc;
+            border-width:1px 0 0 1px;
+            background: #fff;
+            width:100%;
+        }
+        .table td{padding:2px;border: 1px solid #ccc;border-width: 0 1px 1px 0;
+            vertical-align: middle;
+            height: 30px;}
+        .table .label{text-align: right;background: #1d67a6;color: #fff;width:42px;}
+        .strong{color:red;}
+    </style>
+</head>
+<body>
+<h4>一、自定义校验校验</h4>
+<p>1.1待校验的表单,自定义验证学号必须大于10000</p>
+<table class="table" border="0" cellpadding="0" cellspacing="0" >
+    <tr>
+        <td class="label" >例：</td>
+        <td>学号：<span id="stNO"  uitype="Input" validate="stNOValidate"></span></td>
+    </tr>
+    <tr>
+        <td class="label">&nbsp;</td>
+        <td>
+            地址：<span id="address" uitype="Input" validate="地址不能为空"></span>
+        </td>
+    </tr>
+    <tr>
+        <td class="label">&nbsp;</td>
+        <td>
+            <span uitype="button" label="提交" on_click="submitForm"></span>
+        </td>
+    </tr>
+</table>
+<script type="text/javascript">
+    var stNOValidate=[{
+        type: 'required',
+        rule: {
+            m: '学号不能为空'
+        }
+    },{
+        type: 'custom',
+        rule: {
+            against:'ruleFun',
+            m:'输入的学号必须大于10000'
+        }
+    }];
+
+    function ruleFun(num){
+       return num>10000;
+    }
+
+    function submitForm(){
+        //验证表单
+        window.validater.validAllElement();
+       // do something
+
+    }
+    comtop.UI.scan();
+</script>
+</body>
+</html>

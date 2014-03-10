@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=GBK">
+  <title>lzay load data - Example</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css">
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js"></script>
+  <!-- (Irrelevant source removed.) -->
+
+<script type="text/javascript">
+ 
+window.onload=function(){
+
+    var data=[
+	{"title": "Item 1"},
+	{"title": "Folder 2", "isFolder": true, "key": "folder2", "expand": true,
+		"children": [
+			{"title": "Sub-item 2.1",
+				"children": [
+							{"title": "Sub-item 2.1.1",
+								"children": [
+                                            {"title": "Sub-item 2.1.1.1"},
+                                            {"title": "Sub-item 2.1.2.2"},
+                                            {"title": "Sub-item 2.1.1.3"},
+                                            {"title": "Sub-item 2.1.2.4"}
+										]
+								},
+                            {"title": "Sub-item 2.1.2"},
+                            {"title": "Sub-item 2.1.3"},
+                            {"title": "Sub-item 2.1.4"}
+						]
+				},
+            {"title": "Sub-item 2.2"},
+            {"title": "Sub-item 2.3 (lazy)","isFolder": true, "isLazy": true }
+		]
+	},
+ 
+    {"title": "Lazy Folder 4", "isFolder": true, "isLazy": true, "key": "folder4" },
+    {"title": "Item 5"}
+];
+
+  var  tree= cui("#tree").tree({         
+         children:data, 
+
+		 on_lazy_read: function(node){ 
+		    /* 此处加载数据，可以使用默认的ajax，或者自定义加载方法
+			 * 数据加载完成后使用node.addChild方法添加节点，并设置status为ok
+			*/
+		     node.addChild({title:"hi,i am erick"});
+		     node.setLazyNodeStatus(node.ok);
+		 }
+    });
+  }  
+  
+</script>
+</head>
+
+<body class="example">
+ 
+
+  <!-- Add a <div> element where the tree should appear: -->
+  <div id="tree">  </div>
+ 
+</body>
+</html>

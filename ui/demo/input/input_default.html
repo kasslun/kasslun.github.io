@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>UI Input Demos</title>
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="GBK"></script>
+    <link rel="stylesheet" href="inputdemo.css"/>
+
+
+</head>
+<body>
+<div class="button_container">
+
+    <span uitype="button" label="设值" on_click="setValue"></span>
+    <span uitype="button" label="取值" on_click="getValue"></span>
+    <span uitype="button" label="只读" on_click="setReadonly"></span>
+    <span uitype="button" label="设置宽" on_click="setWidth"></span>
+    <span uitype="button" label="设置最大输入字节" on_click="setMaxLength"></span>
+
+</div>
+<table cellspacing="0" cellpadding="0"  class="table_edit_bg">
+    <tr>
+        <td class="td_title">
+            设置 value="我的输入框"
+        </td>
+        <td class="td_content">
+            <span uitype="Input" id="myInput" value="我的输入框"></span>
+        </td>
+
+    </tr>
+    <tr>
+        <td class="td_title">
+            设置readonly="true"
+        </td>
+        <td class="td_content">
+            <span uitype="Input" id="myInput2" readonly="true"></span>
+        </td>
+
+    </tr>
+    <tr>
+        <td class="td_title">
+            设置mask="Datetimes"
+        </td>
+        <td class="td_content">
+            <span uitype="Input" id="myInput4" emptytext="请填写时间" mask="Datetimes"></span>
+        </td>
+    </tr>
+    <tr>
+        <td class="td_title">
+            设置mask="custom"，maskoptions="{'model': '(9999)-99999999'}"
+        </td>
+        <td class="td_content">
+            <span uitype="Input" id="myInput6" mask="custom" maskoptions="{'model': '(9999)-99999999'}"></span>
+        </td>
+
+    </tr>
+    <tr>
+        <td class="td_title">
+            设置change="on_change"事件，定义change方法
+        </td>
+        <td class="td_content">
+            <span uitype="Input" id="myInput8" on_change="change"></span>
+        </td>
+
+    </tr>
+    <tr>
+        <td class="td_title">
+            设置on_blur="blur"事件，定义blur方法
+        </td>
+        <td class="td_content">
+            <span uitype="Input" id="myInput10" on_blur="blur"></span>
+        </td>
+
+    </tr>
+    <tr>
+        <td class="td_title">
+            设置on_keydown="keydown"事件，定义keydown方法
+        </td>
+        <td class="td_content">
+            <span uitype="Input" id="myInput12" on_keydown="keydown"></span>
+        </td>
+
+    </tr>
+
+
+    <tr>
+
+        <td class="td_title">
+            设置emptytext="请选择人员"，maxlength="20"
+        </td>
+        <td class="td_content">
+            <span uitype="Input" id="myInput1" emptytext="请选择人员" maxlength="20"></span>
+        </td>
+    </tr>
+    <tr>
+
+        <td class="td_title">
+            设置type="password"
+        </td>
+        <td class="td_content">
+            <span uitype="Input" id="myInput3" type="password"></span>
+        </td>
+    </tr>
+    <tr>
+
+        <td class="td_title">
+            设置mask="Money"
+        </td>
+        <td class="td_content">
+            <span uitype="Input" id="myInput5" mask="Money"></span>
+        </td>
+    </tr>
+    <tr>
+
+        <td class="td_title">
+            设置mask="custom"，maskoptions="{'model': '9999-1m-td 2h:59', 'placeholder':'*'}"
+        </td>
+        <td class="td_content">
+            <span uitype="Input" id="myInput7" mask="custom"
+                  maskoptions="{'model': '9999-1m-td 2h:59', 'placeholder':'*'}"></span>
+        </td>
+    </tr>
+    <tr>
+
+        <td class="td_title">
+            设置on_focus="focus"事件，定义focus方法
+        </td>
+        <td class="td_content">
+            <span uitype="Input" id="myInput9" on_focus="focus"></span>
+        </td>
+    </tr>
+    <tr>
+
+        <td class="td_title">
+            设置on_keyup="keyup"事件，定义keyup方法
+        </td>
+        <td class="td_content">
+            <span uitype="Input" id="myInput11" on_keyup="keyup"></span>
+        </td>
+    </tr>
+
+</table>
+
+<script type="text/javascript">
+    function change() {
+        alert("值改变事件");
+    }
+
+    function blur() {
+        alert("blur事件");
+    }
+
+    function focus() {
+        // console.log("focus事件");
+    }
+
+    function keyup() {
+        alert("keyup事件");
+    }
+
+    function keydown() {
+        alert("keydown事件");
+    }
+    var i = 0;
+
+    function setValue() {
+        cui("#myInput").setValue('我的文本框');
+    }
+    function getValue() {
+        alert(cui("#myInput").getValue());
+    }
+    function setReadonly() {
+        cui("#myInput").setReadonly(i++ % 2 == 0 ? true : false);
+    }
+    function setWidth() {
+        cui("#myInput").setWidth('300px');
+    }
+    function setMaxLength() {
+        cui("#myInput").setMaxLength(10);
+    }
+    comtop.UI.scan();
+</script>
+<script type="text/javascript" id="do_not_show">
+    if (window.parent !== window) {
+        window.parent.setFullscreen();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>CUI Tip Demos</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="GBK"></script>
+    <style type="text/css">
+        body{ font:14px/1.5 arial,sans-serif,"宋体";}
+        #ctip-sample-position { width: 350px;padding-left:100px; }
+        .ctip-s-item {
+            display: inline-block; *zoom: 1; *display: inline; margin: 5px 0 0 5px;
+            width: 100px; height: 30px;line-height: 30px; background: #4B6FD3;
+        }
+        .left_side{ float: left; width:250px;}
+        .right_side{ margin-left: 250px;}
+    </style>
+</head>
+<body>
+<div class="left_side">
+    <p>例子1：<a href="#" id="ctip-sample1" tip="目前该会议室正空闲，下午2点有会议" >会议室四</a>
+    </p>
+
+    <p>例子2：<a href="#" id="ctip-sample2" tip="tip组件支持<b style='color: red'>html</b>哦">tip的内容支持html</a></p>
+
+    <p>例子3：<a href="#" id="ctip-sample3">在js里指定tip的内容</a></p>
+
+    <p>例子4：<a id="ctip-sample4" href="#"  tip="通过点击触发，一般需要同时配置x参数，否则关不了这个弹出层哦~">点击我看看</a></p>
+
+    <p>例子5： 姓名：<input type="text" id="ctip-sample5" style="width:80px;" tip="请输入姓名，5-20个字符"/></p>
+
+    <p>例子6： <a href="#" id="ctip-sample6"  tip="这里没有关闭按钮哦">不显示关闭按钮</a>
+        <a href="#" id="ctip-sample7"  tip="点击关闭按钮进行关闭">显示关闭按钮</a>
+    </p>
+
+    <p> 例子7：<a href="#" id="ctip-sample8"  tip="有箭头，好像好看点">显示箭头</a>
+        <a href="#" id="ctip-sample9"  tip="没有箭头,不好看">不显示箭头</a>
+    </p>
+
+    <p>例子8：让tip在页面加载后即刻显示，例如新功能提示：
+        <a href="#"  id="ctip-sample10" tip="点击这里可以对个人信息进行设置哦">个人信息</a>
+    </p>
+</div>
+
+<div class="right_side">
+
+    <div id="ctip-sample-position"> <p>例子9：设置显示位置：</p>
+        <div class="ctip-s-item" id="ctip-lt" tip="我出现左上角了">左上角(lt)</div>
+        <div class="ctip-s-item" id="ctip-t" tip="我出现在上面了">上面(t)</div>
+        <div class="ctip-s-item" id="ctip-rt" tip="我出现在右上角了">右上角(rt)</div>
+        <div class="ctip-s-item" id="ctip-l" tip="我出现在左边了">左边(l)</div>
+        <div class="ctip-s-item">&nbsp;</div>
+        <div class="ctip-s-item" id="ctip-r" tip="我出现在右边了">右边(r)</div>
+        <div class="ctip-s-item" id="ctip-lb" tip="我出现在左下角了">左下角(lb)</div>
+        <div class="ctip-s-item" id="ctip-b" tip="我出现在下面了">下面(b)</div>
+        <div class="ctip-s-item" id="ctip-rb" tip="我出现在右下角了">右下角(rb)</div>
+    </div>
+
+</div>
+
+
+
+
+
+<script type="text/javascript">
+    cui.tip('#ctip-sample1');
+    cui.tip('#ctip-sample2', {
+        content: 'tip组件支持<b style="color: red">html</b>哦'
+    });
+    cui.tip('#ctip-sample3', {
+        content: '可以在js里直接指定tip的内容，用法：cui.tip("#id", {content: "hello"})'
+    });
+    cui.tip('#ctip-sample4', {trigger: 'click', x: true});
+    cui.tip('#ctip-sample5', {trigger: 'focus', position: 'r'});
+
+    cui.tip('#ctip-sample6', {x: false});
+    cui.tip('#ctip-sample7', {x: true});
+
+
+    cui.tip('#ctip-sample8', {pointee: true});
+    cui.tip('#ctip-sample9', {pointee: false});
+
+    //tip位置参数
+    cui.tip('#ctip-lt', {position: 'lt'});
+    cui.tip('#ctip-t', {position: 't'});
+    cui.tip('#ctip-rt', {position: 'rt'});
+    cui.tip('#ctip-l', {position: 'l'});
+    cui.tip('#ctip-r', {position: 'r'});
+    cui.tip('#ctip-lb', {position: 'lb'});
+    cui.tip('#ctip-b', {position: 'b'});
+    cui.tip('#ctip-rb', {position: 'rb'});
+    cui.tip('#ctip-sample10', {trigger: 'onload', position: 'r', x: true});
+</script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="GBK">
+    <title>Baisc Tab</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css">
+    <link rel="stylesheet" href="../common_files/demoCommon.css">
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+    <script type="text/javascript" src="../common_files/demoCommon.js"></script>
+</head>
+<body>
+<!--<div class="titleContainer">
+	<h3>基本例子</h3>
+</div>	-->
+<div class="demoContainer">
+    <div id="dt1"></div>
+</div>
+<script type="text/javascript" id="sourceCode">
+    cui("#dt1").tab({
+        tabs:[ {
+            title: "标题2",
+            html: "<div style='height:300px; background-color:#2489C5'>hello</div>"
+        },{
+            title: "待处理",
+            html: "21213546546"
+        }, {
+            title: "标题3",
+            html: "<div style='height:300px; background-color:#E48632'>hello</div>"
+        }],
+        height:200
+    });
+</script>
+
+<script>
+    // setDemoPanelSize(300);
+</script>
+</body>
+</html>
+
+
+            

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="GBK">
+    <title>Tree</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css">
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js"></script>
+    <link rel="stylesheet" href="../css/tabexample.css">
+</head>
+<body>
+
+    <div id="demo-container">
+        <ul id="simple-menu">
+            <li><a  href="index.html" target="_self">自定义图标</a></li>
+            <li><a   href="tree_dyntData.html" target="_self">动态数据生成tree</a></li>
+            <li><a   href="tree_lazyload.html" target="_self">节点动态加载(Lazyload)</a></li>
+
+            <li><a   href="tree_checkbox.html" target="_self">带Checkbox</a></li>
+            <li><a   href="tree_radio.html" target="_self">带Radio</a></li>
+            <li><a   href="init_activate.html" target="_self" class="current">创建组件后默认激活指定项</a></li>
+            <li><a   href="tree_move.html" target="_self">节点移动</a></li>
+            <li><a   href="tree_disable.html" target="_self">禁用/恢复节点</a></li>
+        </ul>
+    </div>
+        <div class="main">
+           <div id="dt1" uitype="tree" children="data" on_post_init="onTreeComplate" on_activate="onTreeActivate"></div>
+        </div>
+        <script type="text/javascript">
+            var data = [{title:"测试",key:"12",activate:true},
+                {   title: "设备类别结构",  key: "k1" },
+                {   title: "Folder 2",
+                    key: "k2",
+                    isFolder: true,
+                    tooltip: "haha",
+                    children: [
+                        {title: "无形资产", key: "k2-1" },
+                        {title: "有形资产", key: "k2-2" ,isFolder:true,children:[{title:"hello"}]}
+                    ]
+                },
+                {   title: "其他",
+                    key: "k3",
+                    href:"http://www.baidu.com",
+                    hideCheckbox: true
+                }
+            ];
+
+            function onTreeComplate(){
+                this.reactivate();
+            }
+            function onTreeActivate(){
+                alert('组件完成加载后，执行了on_activate');
+            }
+
+            comtop.UI.scan();
+			cui('#dt1').getNode('k2-1').focus();
+        </script>
+    </body>
+</html>
+
+
+            

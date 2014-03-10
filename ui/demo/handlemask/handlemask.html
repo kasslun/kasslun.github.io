@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=gbk"/>
+    <title>handlemask使用例子</title>
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+
+
+    <link type="text/css" rel="stylesheet" href="../../api/doc/doc_css/shCore.css"/>
+    <link type="text/css" rel="stylesheet" href="../../api/doc/doc_css/shThemeDefault.css"/>
+    <link rel="stylesheet" href="../../api/doc/doc_css/doc.css" type="text/css"/>
+
+
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+    <script type="text/javascript" src="../../api/doc/doc_js/shCore.js"></script>
+    <script type="text/javascript" src="../../api/doc/doc_js/shBrushJScript.js"></script>
+    <script type="text/javascript" src="../../api/doc/doc_js/shBrushXml.js"></script>
+    <script type="text/javascript" src="../../api/doc/doc_js/doc.js"></script>
+
+
+    <style type="text/css">
+        .custom_hmstyle{
+            padding: 5px 10px 5px 24px;
+            height:16px;
+            line-height: 16px;
+            width:20px;
+            text-align: right;
+            border:1px solid #ccc;
+            background: #fff url(../../ui/themes/default/images/grid/loading.gif) 5px 50% no-repeat;
+        }
+    </style>
+</head>
+<body style="padding:10px;">
+<h3>例子列表：</h3>
+<ul>
+    <li><a href="#ex1">自定义的加载进度</a></li>
+</ul>
+
+
+<h4 id="ex1">一、自定义的加载进度</h4>
+<span uitype="Button" label="打开进度条" on_click="processHandle"></span>
+<pre class="brush: js;">
+    //自定义handleMask显示内容
+    cui.handleMask({
+        html: '<div class="custom_hmstyle"><span id="process">0%</span></div>'
+    });
+
+    var process = 0,
+        intervalTime = null;
+    //开始计算进度，这是一个模拟方法，原理是根据情况变更百分比
+    function processHandle(){
+        cui.handleMask.show();
+        intervalTime = setInterval(function(){
+            process ++;
+            document.getElementById('process').innerHTML = process + '%';
+            if(process === 100){
+                cui.handleMask.hide();
+                clearInterval(intervalTime);
+            }
+        }, 100);
+    }
+</pre>
+
+
+
+
+<script type="text/javascript">
+    //自定义handleMask显示内容
+    cui.handleMask({
+        html: '<div class="custom_hmstyle"><span id="process">0%</span></div>'
+    });
+
+    var process = 0,
+        intervalTime = null;
+    //开始计算进度，这是一个模拟方法，原理是根据情况变更百分比
+    function processHandle(){
+        cui.handleMask.show();
+        intervalTime = setInterval(function(){
+            process ++;
+            document.getElementById('process').innerHTML = process + '%';
+            if(process === 100){
+                cui.handleMask.hide();
+                clearInterval(intervalTime);
+            }
+        }, 100);
+    }
+
+    //扫描创建按钮
+    comtop.UI.scan();
+</script>
+</body>
+</html>

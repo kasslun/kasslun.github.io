@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Menu Demos</title>
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+    <style type="text/css">
+        #menu{width: 200px; height: 30px; text-align: center; line-height: 30px; color: #fff; background-color: #ff6600;}
+    </style>
+</head>
+<body>
+<div>
+
+    <span uitype="Button" id="showMenu" label="显示菜单" on_click="show"></span>
+    <span uitype="Button" id="setLabel" label="设置菜单项名字" on_click="setLabel"></span>
+    <span uitype="Button" id="resetLabel"  label="还原菜单项名字" on_click="resetLabel"></span>
+    <span uitype="Button" id="disable" label="禁用菜单" on_click="disable"></span>
+    <span uitype="Button" id="enable" label="启用菜单" on_click="enable"></span>
+    <span uitype="Button" id="hideMenu" label="隐藏菜单" on_click="hide"></span>
+
+</div>
+<br/>
+ <div id="menu"  uitype="Menu" trigger="click" datasource="datasource.itemsData1" type="button">菜单样例</div>
+
+
+<script type="text/javascript">
+    var datasource = {
+        itemsData1 :
+                [
+                    {id:'item1',label:'选项1',disabled:false,
+                        items:[
+                            {id:'item21',label:'选项21'},
+                            {id:'item22',label:'选项22'},
+                            {id:'item23',label:'选项23',
+                                items:[
+                                    {id:'item121',label:'选项121'},
+                                    {id:'item122',label:'选项122'},
+                                    {id:'item123',label:'选项123'},
+                                    {id:'item124',label:'选项124'}
+                                ]
+                            },
+                            {id:'item25',label:'选项25'},
+                            {id:'item26',label:'选项26'},
+                            {id:'item27',label:'选项27'},
+                            {id:'item28',label:'选项28'},
+                            {id:'item29',label:'选项29'}
+                        ]},
+                    {id:'item2',label:'选项2'},
+                    {id:'item3',label:'选项3'},
+                    {id:'item4',label:'选项4',
+                        items:[
+                            {id:'item41',label:'选项41'},
+                            {id:'item42',label:'选项42'},
+                            {id:'item43',label:'选项43'},
+                            {id:'item44',label:'选项44'},
+                            {id:'item45',label:'选项45'},
+                            {id:'item46',label:'选项46'},
+                            {id:'item47',label:'选项47'},
+                        ]
+                    }
+                ]
+    }
+    function setLabel(){
+        cui("#menu").setLabel('item1','设置菜单名');
+    }
+    function resetLabel(){
+        cui("#menu").setLabel('item1','选项1');
+    }
+    function show(){
+        cui("#menu").show();
+    }
+    function hide(){
+        cui("#menu").hide();
+    }
+    function disable(){
+        cui("#menu").disable('item1',true);
+    }
+    function enable(){
+        cui("#menu").disable('item1',false);
+    }
+    comtop.UI.scan();
+</script>
+</body>
+</html>

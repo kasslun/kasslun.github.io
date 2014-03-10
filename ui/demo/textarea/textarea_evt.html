@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>UI textarea Demos</title>
+
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+    <link rel="stylesheet" href="textarea.css"/>
+</head>
+<body>
+<table cellspacing="1" cellpadding="3" style="width:100%" class="table_edit_bg">
+    <tr>
+        <td class="td_title" style="width: 30%">
+            设置on_change="change"事件，定义change方法
+        </td>
+        <td class="td_content" style="width: 70%">
+                    <span uitype="Textarea" id="myTextarea5" on_change="change" width="95%" height="50px">
+                    </span>
+        </td>
+    </tr>
+    <tr>
+        <td class="td_title" style="width: 30%">
+            设置on_focus="focus"事件，定义focus方法
+        </td>
+        <td class="td_content" style="width: 70%">
+                    <span uitype="Textarea" id="myTextarea6" on_focus="focus" width="95%" height="50px">
+                    </span>
+        </td>
+    </tr>
+    <tr>
+        <td class="td_title" style="width: 30%">
+            设置on_blur="blur"事件，定义blur方法
+        </td>
+        <td class="td_content" style="width: 70%">
+                    <span uitype="Textarea" id="myTextarea9" on_blur="blur" width="95%" height="50px">
+                    </span>
+        </td>
+    </tr>
+    <tr>
+        <td class="td_title" style="width: 30%">
+            设置on_keyup="keyup"事件，定义keyup方法
+        </td>
+        <td class="td_content" style="width: 70%">
+                    <span uitype="Textarea" id="myTextarea7" on_keyup="keyup" width="95%" height="50px">
+                    </span>
+        </td>
+    </tr>
+    <tr>
+        <td class="td_title" style="width: 30%">
+            设置on_keydown="keydown"事件，定义keydown方法
+        </td>
+        <td class="td_content" style="width: 70%">
+                    <span uitype="Textarea" id="myTextarea8" on_keydown="keydown" width="95%" height="50px">
+                    </span>
+        </td>
+    </tr>
+</table>
+
+
+<script type="text/javascript">
+    function change() {
+        alert("值改变事件");
+    }
+
+    function blur() {
+        alert("blur事件");
+    }
+
+    function focus() {
+      //  console.lgo("focus事件");
+    }
+    function keyup() {
+        alert("keyup事件");
+    }
+    function keydown() {
+        alert("keydown事件");
+    }
+    comtop.UI.scan();
+</script>
+
+</body>
+</html>

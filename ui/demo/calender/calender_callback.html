@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>calender使用例子</title>
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+  <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="GBK"></script>
+
+    <style type="text/css">
+        .table{border:1px solid #ccc;border-width:1px 0 0 1px;width:100%;}
+        .table td{padding:2px;border: 1px solid #ccc;border-width: 0 1px 1px 0;background: #fff;}
+        .table .label{text-align: right;background: #1d67a6;color: #fff;width:42px;}
+        .strong{color:red;}
+    </style>
+</head>
+<body >
+
+
+<h4 id="on_changeMark">回调设置</h4>
+<p>1、选择日期后回调（单日期）</p>
+		<pre class="brush: xml;">
+        &lt;span id="calender24" uitype="Calender" on_change="calCallBack"&gt;&lt;/span&gt;
+        function calCallBack(date){
+            alert('返回的值是个数组：' + date);
+        }
+		</pre>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0" >
+    <tr>
+        <td class="label" >例：</td>
+        <td><span id="calender24" uitype="Calender" on_change="calCallBack"></span></td>
+    </tr>
+</table>
+<script type="text/javascript">
+    function calCallBack(date){
+        alert('返回的值是个数组：' + date);
+    }
+</script>
+
+<p>2、选择日期后回调（范围）</p>
+		<pre class="brush: xml;">
+        &lt;span id="calender26" uitype="Calender" isrange="true" on_change="calCallBack2"&gt;&lt;/span&gt;
+        function calCallBack2(date, date1){
+            alert('date：' + date + '\n' + 'date1：' + date1);
+        }
+		</pre>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0" >
+    <tr>
+        <td class="label" >例：</td>
+        <td><span id="calender26" uitype="Calender" isrange="true" on_change="calCallBack2"></span></td>
+    </tr>
+</table>
+<script type="text/javascript">
+    function calCallBack2(date, date1){
+        alert('date：' + date + '\n' + 'date1：' + date1);
+    }
+</script>
+
+<script type="text/javascript">
+    comtop.UI.scan();
+</script>
+</body>
+</html>

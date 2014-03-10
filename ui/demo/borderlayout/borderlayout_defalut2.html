@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>边框布局demo</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+    <style type="text/css">
+        body{background: #ccc}
+    </style>
+</head>
+<body>
+<div uitype="Borderlayout" id="border" is_root="true" gap="5px">
+    <div position="top" height="100" resizable="true" is_header="true"
+         header_content="top" collapsable="true" show_expand_icon="true"></div>
+    <div position="left" width="100" resizable="true" is_header="true"
+         header_content="left" collapsable="true" show_expand_icon="true"></div>
+    <div position="center" is_header="true" header_content="center"></div>
+    <div position="right" width="100" resizable="true" is_header="true"
+         header_content="right" collapsable="true" show_expand_icon="true"></div>
+    <div position="bottom" height="100" resizable="true" is_header="true"
+         header_content="<span style='color:red'>bottom</span>" collapsable="true" show_expand_icon="true"></div>
+</div>
+<script type="text/javascript">
+    comtop.UI.scan();
+</script>
+</body>
+</html>

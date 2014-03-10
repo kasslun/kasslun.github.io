@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>CUI组件Grid示例</title>
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <style type="text/css">
+        body{margin:10px; background: #fff; font-size: 12px; width:800px; line-height: 30px;}
+        .st{padding:10px; border:1px solid #ccc; background: #eee;}
+    </style>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+    <!--Demo数据js-->
+    <script type="text/javascript" src="data.js"></script>
+</head>
+<body>
+注意此页代码是拿分页组件做的演示，Grid的中表现一样。<br />
+pagination_model为'pagination'
+<div class="st"><div uitype="Pagination" tpls="{'pagination':'pagination'}" cls="pagination" count="1000" pagesize="50" pagesize_list="[20, 50, 100]"></div></div>
+
+pagination_model为'pagination_min_1'
+<div class="st" style="width: 500px"><div uitype="Pagination" tpls="{'pagination':'pagination_min_1'}" cls="pagination_min_1" count="1000" pagesize="20" pagesize_list="[20, 50, 100]"></div></div>
+
+pagination_model为'pagination_min_2'
+<div class="st" style="width: 150px"><div uitype="Pagination" tpls="{'pagination':'pagination_min_2'}" cls="pagination_min_2" count="1000" pagesize="50" pagesize_list="[20, 50, 100]"></div></div>
+
+pagination_model为'pagination_min_3'
+<div class="st" style="width: 250px"><div uitype="Pagination" tpls="{'pagination':'pagination_min_3'}" cls="pagination_min_3" count="1000" pagesize="50" pagesize_list="[20, 50, 100]"></div></div>
+
+pagination_model为'pagination_min_4'
+<div class="st" style="width: 400px"><div uitype="Pagination" tpls="{'pagination':'pagination_min_4'}" cls="pagination_min_4" count="1000" pagesize="50" pagesize_list="[20, 50, 100]"></div></div>
+
+<script type="text/javascript">
+    comtop.UI.scan();
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+ <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="gbk">
+    <title>Tab页Demo</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css">
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js"></script>
+ 
+    <style type="text/css">
+
+
+ 
+    </style>
+</head>
+<body>
+
+
+
+<div id="demo1_2" ></div>
+    <script type="text/javascript"> 
+        var tab1_2 = cui("#demo1_2").tab({
+            tabs: [{
+                title: "待处理",
+                url:"testTab/h0.html"
+            }, {
+                title: "标题2",
+                url:"testTab/h1.html"
+            }, {
+                title: "标题3",
+                url:"testTab/h2.html" 
+            }],
+            fill_height : true
+        });
+ 
+	comtop.cQuery(tab1_2.getContent(0)).on("load",function(){alert(0);});
+    </script>
+
+
+</body>
+</html>

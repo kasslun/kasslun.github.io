@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=gbk"/>
+    <title>validate</title>
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+
+
+    <link type="text/css" rel="stylesheet" href="../../api/doc/doc_css/shCore.css"/>
+    <link type="text/css" rel="stylesheet" href="../../api/doc/doc_css/shThemeDefault.css"/>
+    <link rel="stylesheet" href="../../api/doc/doc_css/doc.css" type="text/css"/>
+
+
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+    <script type="text/javascript" src="../../api/doc/doc_js/shCore.js"></script>
+    <script type="text/javascript" src="../../api/doc/doc_js/shBrushJScript.js"></script>
+    <script type="text/javascript" src="../../api/doc/doc_js/shBrushXml.js"></script>
+    <script type="text/javascript" src="../../api/doc/doc_js/doc.js"></script>
+
+    <style type="text/css">
+        .table{border:1px solid #ccc;border-width:1px 0 0 1px;}
+        .table td{padding:2px;border: 1px solid #ccc;border-width: 0 1px 1px 0;background: #fff;}
+        .table .label{text-align: right;background: #1d67a6;color: #fff;}
+        .strong{color:red;}
+    </style>
+</head>
+<body style="padding:10px 20px;">
+<h4>一、取消/恢复某组件的校验</h4>
+        <p>1.1待校验的表单</p>
+		<pre class="brush: xml;">
+        &lt;span id="userName" name="userName" uitype="Input" validate="姓名不能为空">&lt;/span>
+        &lt;span id="address" name="address" uitype="Input" validate="地址不能为空">&lt;/span>
+		</pre>
+        <p>1.2校验function</p>
+        <pre class="brush: js;">
+        function submitForm(isDisValid){
+            if(isDisValid){
+                //取消address的验证
+                window.validater.disValid('address', true);
+            }else{
+                //恢复address的验证
+                window.validater.disValid('address', false);
+            }
+            //验证表单
+            window.validater.validAllElement();
+        }
+		</pre>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0" style="width:100%;">
+    <tr>
+        <td class="label" style="width:42px;">例：</td>
+        <td>姓名：<span id="userName" name="userName" uitype="Input" validate="姓名不能为空"></span></td>
+    </tr>
+    <tr>
+        <td class="label">&nbsp;</td>
+        <td>
+            地址：<span id="address" name="address" uitype="Input" validate="地址不能为空"></span>
+        </td>
+    </tr>
+    <tr>
+        <td class="label">&nbsp;</td>
+        <td>
+            <input type="button" value="取消地址校验" onclick="submitForm(true);"/>
+            <input type="button" value="恢复地址校验" onclick="submitForm(false);"/>
+        </td>
+    </tr>
+</table>
+<script type="text/javascript">
+    function submitForm(isDisValid){
+        if(isDisValid){
+            //取消address的验证
+            window.validater.disValid('address', true);
+        }else{
+            //恢复address的验证
+            window.validater.disValid('address', false);
+        }
+        //验证表单
+        window.validater.validAllElement();
+    }
+</script>
+<script type="text/javascript">
+    comtop.UI.scan();
+</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>RadioGroup</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+</head>
+<body>
+<span uitype="RadioGroup" id="c" name="ball" value="1">
+        <input type="radio" value="0" text="篮球" />
+        <input type="radio" value="1" text="乒乓球" />
+        <input type="radio" value="2" text="足球" />
+        <input type="radio" value="3" text="冰球" />
+        <input type="radio" value="4" text="桌球" />
+        <input type="radio" value="5" text="羽毛球" />
+    </span><br /><br />
+<span uitype="button" on_click="check" label="选中第三个"></span>
+<span uitype="button" on_click="getvalue" label="获取值"></span>
+<span uitype="button" on_click="gettext" label="获取选中的内容"></span>
+<span uitype="button" on_click="setreadonly" label="后两个设置为只读"></span>
+<span uitype="button" on_click="isreadonly" label="最后一个是否只读"></span>
+<span uitype="button" on_click="cancelreadonly" label="后两个取消只读"></span>
+<br /><br />
+<span uitype="button" on_click="change" label="动态改变数据"></span>
+<script type="text/javascript">
+    comtop.UI.scan();
+    var c = cui("#c");
+    function check() {
+        c.setValue("2");
+    }
+    function getvalue() {
+        alert(c.getValue());
+    }
+    function gettext() {
+        alert(c.getText());
+    }
+    function setreadonly() {
+        c.setReadonly(true, ['4','5'])
+    }
+    function isreadonly() {
+        alert(c.isReadonly('5'))
+    }
+    function cancelreadonly() {
+        c.setReadonly(false, ['4','5'])
+    }
+    function change () {
+        c.setDatasource([
+            { value: "0", text: "自行车" },
+            { value: "1", text: "摩托车" },
+            { value: "2", text: "拖拉机" },
+            { value: "3", text: "人力车" },
+            { value: "4", text: "出租车" },
+            { value: "5", text: "泥头车" }
+            ]
+        )
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>CUI组件Grid示例</title>
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <style type="text/css">
+        body{margin:10px; background: #fff;}
+        h2{margin:0; font-size: 12px; height:20px; overflow: hidden;}
+    </style>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+    <!--Demo数据js-->
+    <script type="text/javascript" src="data.js"></script>
+</head>
+<body>
+<h2>功能：1000行*20列，分页，宽高resize，多行表头，固定表头，固定列，奇偶行背景，内容超出截取，排序，隐藏列，多选，单元格样式渲染，调整列宽，链接渲染……</h2>
+<div>
+    <table id="grid1">
+        <thead>
+        <tr>
+            <th rowspan="3" style="width:60px"><input type="checkbox" /></th>
+            <th rowspan="3" renderStyle="text-align: center" bindName="1" style="width:60px">#</th>
+            <th rowspan="2" colspan="4">学生信息</th>
+            <th colspan="14">考试成绩</th>
+        </tr>
+        <tr>
+            <th colspan="5">文科</th>
+            <th colspan="4">理科</th>
+            <th colspan="3">音体美</th>
+            <th colspan="2">其他</th>
+        </tr>
+        <tr>
+            <th renderStyle="text-align: center;" bindName="info.name" render="a" options="{'url':'#'}">姓名</th>
+            <th renderStyle="text-align: center;" bindName="info.studentnumber" >学号</th>
+            <th renderStyle="text-align: center" bindName="info.class">班级</th>
+            <th renderStyle="text-align: center" bindName="info.age">年龄</th>
+            <th renderStyle="text-align: center" bindName="chinese" sort="true">语文</th>
+            <th renderStyle="text-align: center" bindName="english" sort="true">英语</th>
+            <th renderStyle="text-align: center" bindName="politics" sort="true">政治</th>
+            <th renderStyle="text-align: center" bindName="history" sort="true">历史</th>
+            <th renderStyle="text-align: center" bindName="geography" sort="true">地理</th>
+            <th renderStyle="text-align: center" bindName="math" sort="true">数学</th>
+            <th renderStyle="text-align: center" bindName="physics" sort="true">物理</th>
+            <th renderStyle="text-align: center" bindName="organisms" sort="true">生物</th>
+            <th renderStyle="text-align: center" bindName="chemistry" sort="true">化学</th>
+            <th renderStyle="text-align: center" bindName="te" sort="true">体育</th>
+            <th renderStyle="text-align: center" bindName="music" sort="true">音乐</th>
+            <th renderStyle="text-align: center" bindName="art" sort="true">美术</th>
+            <th renderStyle="text-align: center" bindName="compute" sort="true">计算机</th>
+            <th renderStyle="text-align: center" bindName="mandarin" sort="true">普通话口语</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+<script type="text/javascript">
+    function sort (bindName, sortType) {
+        data.sort(function (a, b) {
+            if (sortType === "ASC") {
+                return a[bindName] - b[bindName];
+            }
+            return b[bindName] - a[bindName];
+        })
+    }
+    function initData (gridObj, query) {
+        var sortName = query.sortName,
+                sortType = query.sortType;
+        if (sortName[0]) {
+            sort(sortName[0], sortType[0]);
+        }
+        gridObj.setDatasource(data.slice((query.pageNo - 1) * query.pageSize, query.pageNo * query.pageSize), 1500);
+    }
+    function getBodyWidth () {
+        return (document.documentElement.clientWidth || document.body.clientWidth) - 20;
+    }
+    function getBodyHeight () {
+        return (document.documentElement.clientHeight || document.body.clientHeight) - 45;
+    }
+    function goodAndBad (rowData, bindName) {
+        var value = rowData[bindName];
+        if (bindName !== "info.age" && typeof value === "number") {
+            if (value === 0) {
+                return "background:#e5bbff;";
+            }
+        }
+    }
+
+    cui("#grid1").grid({
+        datasource : initData,
+        gridheight: "800px",
+        tablewidth : "2500px",
+        adaptive : false,
+        fixcolumnnumber : 2,
+        pagesize_list : [500, 1000, 1500],
+        pagesize : 1000,
+        resizewidth : getBodyWidth,
+        resizeheight : getBodyHeight,
+        colstylerender:goodAndBad,
+        oddevenrow : true
+    });
+</script>
+</body>
+</html>

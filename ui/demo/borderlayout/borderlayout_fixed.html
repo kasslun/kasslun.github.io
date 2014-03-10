@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>边框布局demo</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+    <style type="text/css">
+        body{background: #ccc}
+    </style>
+</head>
+<body>
+<div uitype="Borderlayout" id="border" is_root="true" fixed="fixed" gap="5px">
+    <div position="top" resizable="true" is_header="true"
+         header_content="top" collapsable="true" show_expand_icon="true"></div>
+    <div position="left"  resizable="true" is_header="true"
+         header_content="left" collapsable="true" show_expand_icon="true"></div>
+    <div position="center" is_header="true" header_content="center" width="200" height="200">center面板宽高固定<br />其他面板自适应</div>
+    <div position="right" resizable="true" is_header="true"
+         header_content="right" collapsable="true" show_expand_icon="true"></div>
+    <div position="bottom" resizable="true" is_header="true"
+         header_content="<span style='color:red'>bottom</span>" collapsable="true" show_expand_icon="true"></div>
+</div>
+<script type="text/javascript" id="do_not_show">
+    if (window.parent.setFullscreen) {
+        window.parent.setFullscreen();
+    }
+</script>
+<script type="text/javascript">
+    var fixed = {
+        //高度固定情况
+        top :false,     //表示top面板高度是否固定
+        middle: true,   //表示left,center,right高度是否固定
+        bottom: false,  //表示bottom面板高度是否固定
+        //宽度固定情况
+        left: false,    //表示left面板宽度是否固定
+        center: true,  //表示center面板宽度是否固定
+        right: false    //表示right面板宽度是否固定
+    };
+    comtop.UI.scan();
+</script>
+</body>
+</html>

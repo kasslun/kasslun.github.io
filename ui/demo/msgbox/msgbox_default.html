@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>UI msgbox Demos</title>
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+    <link rel="stylesheet" href="demo.css"/>
+    <style type="text/css">
+        .table {
+            width:100%;
+            border:solid 1px #ccc;
+            border-collapse: collapse;
+        }
+    </style>
+
+</head>
+<body>
+<table  cellpadding="0" cellspacing="0" class="table">
+    <tr>
+        <td width="270">cui.alert(msg)方法</td>
+        <td>
+            <input type="button" value="提示框" onclick="cui.alert('你的会话时间已过期，请重新登录',function(){alert('消息框被关闭');});">
+        </td>
+    </tr>
+    <tr>
+        <td>cui.warn(msg)方法</td>
+        <td>
+            <input type="button" value="警告框" onclick="cui.warn('你没有修改该项目的权限！',function() {alert('警告窗关闭！');});">
+        </td>
+    </tr>
+    <tr>
+        <td>cui.success(msg)方法</td>
+        <td><input type="button" value="操作成功提示框" onclick="cui.success('个人信息设置成功！');"></td>
+    </tr>
+    <tr>
+        <td>cui.error(msg)方法</td>
+        <td><input type="button" value="操作失败提示框" onclick="cui.error('个人信息修改失败！');"></td>
+    </tr>
+    <tr>
+        <td>cui.message(msg, 'alert')方法</td>
+        <td><input type="button" value="冒泡提示框(alert)" onclick="cui.message('个人信息被修改！', 'alert');"></td>
+    </tr>
+    <tr>
+        <td>cui.message(msg, 'warn')方法</td>
+        <td><input type="button" value="冒泡提示框(warn)" onclick="cui.message('个人信息被修改！', 'warn');"></td>
+    </tr>
+    <tr>
+        <td>cui.message(msg, 'success')方法</td>
+        <td><input type="button" value="冒泡提示框(success)" onclick="cui.message('个人信息修改成功！', 'success');"></td>
+    </tr>
+    <tr>
+        <td>cui.message(msg, 'error')方法</td>
+        <td><input type="button" value="冒泡提示框(error)" onclick="cui.message('个人信息修改失败！', 'error');"></td>
+    </tr>
+    <tr>
+        <td>cui.confirm(msg, options)方法1</td>
+        <td><input type="button" value="操作确认提示框" onclick="confirmModify();"></td>
+    </tr>
+    <tr>
+        <td>cui.confirm(msg, options)方法2</td>
+        <td><input type="button" value="自定义确认提示框的按钮" onclick="confirmSave();"></td>
+    </tr>
+    <tr>
+        <td>cui.confirm(msg, options)方法3</td>
+        <td><input type="button" value="自定义消息框的标题以及宽度" onclick="customMsgBox();"></td>
+    </tr>
+</table>
+<script type="text/javascript">
+    function confirmModify() {
+        cui.confirm('确认要修改你的个人信息吗？', {
+            onYes: function () {
+                cui.success('个人信息已保存成功');
+            },
+            onNo: function () {
+            }
+        });
+    }
+    function confirmSave() {
+        cui.confirm('确认要保存对该单据的修改吗？', {
+            buttons: [
+                {
+                    name: '保存',
+                    handler: function () {
+                        cui.success('保存成功');
+                    }
+                },
+                {
+                    name: ' 不保存',
+                    handler: function () {
+                    }
+                }
+            ]
+        });
+    }
+    function customMsgBox() {
+        cui.alert('消息框的标题以及宽度都是可以自定义的哦，高度是自适应的', null, {
+            title: '请大家注意',
+            width: 400
+        })
+
+    }
+</script>
+</body>
+</html>

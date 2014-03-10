@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>UI ListBox Demos</title>
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css" />
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+    <style type="text/css">
+        .demo_container{ height: 300px;}
+        .demo_container>div{
+            float:left; width:150px; text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="demo_container">
+    <div>
+        <span id="testListBoxLeft" uitype="ListBox"
+              value_field="code" label_field="name" width="100"  multi="true"
+              datasource="obtainData" ></span>
+    </div>
+    <div>
+        <p><span uitype="button" label="全部右移" on_click="rightAllMove" ></span></p>
+        <p><span uitype="button" label="选中右移"  on_click="rightChooseMove" ></span></p>
+        <p><span uitype="button" label="选中左移"   on_click="leftChooseMove" ></span></p>
+        <p><span uitype="button" label="全部左移"   on_click="leftAllMove" ></span></p>
+    </div>
+    <div>
+        <span id="testListBoxRight" uitype="ListBox"
+              value_field="code" label_field="name"
+              width="100"  multi="true" ></span>
+    </div>
+</div>
+<script type="text/javascript">
+    var dataArray = [];
+    for(var i=0;i<=9; i++)
+        dataArray.push({ code: i + '', name: '选择 ' + i ,filterName:'Boss ' + i});
+
+    var appendDataArray = [];
+    for(var i=0;i<=12; i++){
+        appendDataArray.push({ code: i + '1', name: i + '  雇员',filterName:'Boss ' + i});
+    }
+
+    comtop.UI.scan();   //扫描
+
+    var left = cui('#testListBoxLeft');
+    var right = cui('#testListBoxRight');
+
+
+    function obtainData(obj,params){
+        obj.setDatasource(dataArray);
+    }
+
+    function rightAllMove(){
+        right.addRows(left.removeAllRows());
+    }
+    function rightChooseMove(){
+        right.addRows(left.removeSelectedRows());
+    }
+    function leftChooseMove(){
+        left.addRows(right.removeSelectedRows());
+    }
+    function leftAllMove(){
+        var resultRecord  = right.removeAllRows();
+        left.addRows(resultRecord);
+    }
+
+</script>
+</body></html> 
+ 

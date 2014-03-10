@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>ListBox</title>
+    <link rel="stylesheet" type="text/css" href="../../../ui/themes/default/css/comtop.ui.min.css" />
+    <script type="text/javascript" src="../../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+
+</head>
+
+<body>
+  	<p>双击选项数据</p>
+	<span id="lb1" uitype="ListBox" value_field="id" label_field="text" multi="false" datasource="data_array" on_dbclick ="dbclick"></span>
+    <script type="text/javascript">
+        var data_array = [];
+        for(var i=1; i<=9; i++){
+            data_array.push({ id:'item'+i, text:'选项'+i, filterName:'Boss '+i});
+        }
+        comtop.UI.scan();   //扫描
+        function dbclick(array){
+            alert("双击的列表项为：" + array.id +'，'+ array.text);
+        }
+    </script>
+</body>
+</html>

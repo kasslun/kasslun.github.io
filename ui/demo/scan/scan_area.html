@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>scan demos</title>
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="GBK"></script>
+    <style type="text/css">
+        #dd,#d1{  padding: 8px;  margin-bottom: 10px;}
+        #dd{border: solid 1px #ff6600;}
+        #d1{ border: solid 1px #00008B;}
+        .mt10{margin-top: 10px;}
+        .red{ color: red;}
+    </style>
+</head>
+<body>
+
+<div id="dd">   <p >扫描此区域内的组件</p>
+    <div class="mt10">
+        日期：<span id="cal1" uitype="Calender" validate="日期不能为空"  databind="data.myDate"></span>
+    </div>
+    <div class="mt10">
+        姓名：<span id="userName"  uitype="Input" databind="data.myName" validate="validateRulesUserName" tip="" default_text="文本框示例" empty_text="请输入值"></span>
+    </div>
+</div>
+
+<div id="d1"> <p class="red">此区域内的组件未被扫描</p>
+    <div class="mt10">
+        地址：<span id="userAddress1" uitype="Input"  databind="data.myAddress" tip="只能输入100个字符" validate="地址不能为空" default_text="文本框示例" empty_text="请输入值" blur="inputBlur"></span>
+    </div>
+    <div class="mt10">
+        邮箱：<span id="userEmail1" uitype="Input" databind="data.myEmail" validate="validateRulesEmail" tip="邮箱格式一定要带@" default_text="文本框示例" empty_text="请输入值" blur="inputBlur"></span>（validate判断两点1、是否为空；2、邮箱格式）
+    </div>
+</div>
+<script type="text/javascript">
+    //绑定数据
+    var data = {
+        myName: 'comtop @ name',
+        myAddress: '光明顶教主办公室林总',
+        myEmail: 'ddd@dddddd.com',
+        myDate: '2012-12-17',
+        myDate1: [new Date(),new Date()]
+    };
+
+    var validateRulesUserName=[{'type':'required', 'rule':{'m': '请填写姓名！'}}];
+    var validateRulesEmail=[{'type':'required', 'rule':{'m': '请填写邮箱地址！'}},{'type':'email', 'rule':{'m':'邮箱不正确'}}];
+    //扫描
+
+    comtop.UI.scan(document.getElementById("dd"));
+</script>
+</body>
+</html>

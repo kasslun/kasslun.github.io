@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>ListBox</title>
+    <link rel="stylesheet" type="text/css" href="../../../ui/themes/default/css/comtop.ui.min.css" />
+    <script type="text/javascript" src="../../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+
+</head>
+
+<body>
+
+	<span id="lb1" uitype="ListBox" value_field="id" label_field="text" multi="true" datasource="data_array" on_remove="remove"></span><br/><br/>
+
+    <p>选中点击remove按钮将触发on_remove事件</p>
+	<span uitype="Button" label="remove" on_click="move"></span>
+    <script type="text/javascript">
+        var data_array = [];
+        for(var i=1; i<=9; i++){
+            data_array.push({ id:'item'+i, text:'选项'+i, filterName:'Boss '+i});
+        }
+        function move(){
+            cui('#lb1').removeSelectedRows();
+        }
+        function remove(array){
+            var result = '';
+            for(var i=0; i < array.length; i++){
+                result = result + array[i].id + ", " + array[i].text + ";\n";
+            }
+            alert("触发on_remove事件，移动的列表项为：\n" + result);
+        }
+        comtop.UI.scan();   //扫描
+    </script>
+</body>
+</html>

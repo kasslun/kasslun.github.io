@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>button</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+</head>
+<body>
+<span uitype="button" label="我是菜单" menu="menudata"></span>
+<script type="text/javascript">
+    var menudata = {
+        datasource: [
+            {id:'item1',label:'选项1'},
+            {id:'item2',label:'选项2'},
+            {id:'item3',label:'选项3',
+                items:[
+                    {id:'item4',label:'选项4'},
+                    {id:'item5',label:'选项5'},
+                    {id:'item6',label:'选项6'}
+                ]
+            }
+        ]
+    };
+    comtop.UI.scan();
+</script>
+</body>
+</html>

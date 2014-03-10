@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>边框布局demo</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+    <style type="text/css">
+        body{background: #ccc}
+    </style>
+</head>
+<body>
+<div uitype="Borderlayout" id="border" is_root="true" gap="5px">
+    <div position="left" width="200" resizable="true" collapsable="true" show_expand_icon="true" gap="4px"></div>
+    <div position="center" gap="4px 4px 4px 0">
+        <div uitype="tab" tabs="tabs" fill_height="true"></div>
+    </div>
+</div>
+<script type="text/javascript" id="do_not_show">
+    if (window.parent.setFullscreen) {
+        window.parent.setFullscreen();
+    }
+</script>
+<script type="text/javascript">
+    var tabs = [ {
+        title: "标题2",
+        html: "<div>hello</div>"
+    },{
+        title: "待处理",
+        html: "21213546546"
+    }, {
+        title: "标题3",
+        html: "<div>hello</div>"
+    }];
+    comtop.UI.scan();
+</script>
+</body>
+</html>

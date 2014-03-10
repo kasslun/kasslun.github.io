@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>表单例子演示</title>
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="GBK"></script>
+    <style type="text/css">
+      .formWrap .marb5{margin-bottom: 5px;}
+    </style>
+</head>
+<body>
+
+<div class="formWrap">
+    <div class="marb5">
+        <span uitype="button" label="生成表单" on_click="generateForm"></span>
+        <span uitype="button" label="提交表单" on_click="submitForm"></span>
+        <span uitype="button" label="清空表单" on_click="resetForm"></span>
+
+    </div>
+    
+    <div id="customForm">
+
+    </div>
+
+</div>
+<script type="text/javascript">
+    //JS代码
+    var data = {
+        name: '我叫洛东少',
+        age: 28,
+        job: 'JS工程师',
+        address: '南山区某某路',
+        time: '2012-08-26',
+        sex: 0
+    };
+    comtop.UI.scan();
+    function generateForm(){
+        cui('#customForm').customform({
+            columnCount:1,
+            datasource: [
+                {
+                    uitype: 'Input',
+                    label: '名字：',
+                    required: true, //必填项
+                    databind: 'data.name',
+                    validate: '不能为空',
+                    tip: '名字要用中文'//这提示用于使用说明
+                },
+                {
+                    uitype: 'Input',
+                    label: '年龄：',
+                    required: true,
+                    databind: 'data.age',
+                    validate: [{type:"required",rule:{m:"年龄不能为空"}},{ type:'numeric',rule:{notnm:'年龄必须是数字'}}],
+                    tip: '填写你的真实年龄'//这提示用于使用说明
+                },
+                {
+                    uitype: 'Input',
+                    label: '工作：',
+                    required: true,
+                    databind: 'data.job',
+                    validate: '工作不能为空',
+                    tip: '填写你现在的工作'//这提示用于使用说明
+                },
+                {
+                    uitype: 'Input',
+                    label: '地址：',
+                    databind: 'data.address'
+                },
+                {
+                    uitype: 'Calender',
+                    label: '入职时间：',
+                    required: true,
+                    databind: 'data.time',
+                    validate: '入职时间不能为空',
+                    tip: '选择你的入职时间'//这提示用于使用说明
+                },
+                {
+                    uitype: 'RadioGroup',
+                    label: '性别：',
+                    required: true,
+                    name:'sex',
+                    databind: 'data.sex',
+                    radio_list: [
+                        {
+                            text: '男',
+                            value: '0'
+                        },
+                        {
+                            text: '女',
+                            value: '1'
+                        }
+                    ],
+                    validate: '性别不能为空',
+                    tip: '选一个性别吧'//这提示用于使用说明
+                }
+            ]
+        });
+    }
+   /**
+     * 提交表单
+     */
+    function submitForm(){
+        //检测表单，并把结果赋给validMap
+        var validMap = window.validater.validAllElement();
+
+        //判断检测结果
+        if(validMap[2]){
+            alert('检测通过');
+            //检测通过后，获取表单数据保存到data当中
+            var formata = cui(data).databind().getValue();
+
+            //TODO 提交数据到后端处理，这里省略不写
+        }
+    }
+
+    /**
+     * 清空表单
+     */
+    function resetForm(){
+        cui(data).databind().setEmpty();
+    }
+</script>
+</body>
+</html>

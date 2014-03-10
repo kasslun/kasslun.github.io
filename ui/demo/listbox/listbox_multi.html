@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>UI ListBox Demos</title>
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css" />
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+    <style type="text/css">
+        .demo_container{ height: 300px;}
+        .demo_container>div{
+            float:left; width:150px; text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="demo_container">
+    <div>
+        <span id="testListBoxLeft" uitype="ListBox"
+              value_field="code" label_field="name" width="100"  multi="true"
+              datasource="obtainData" ></span>
+    </div>
+</div>
+<script type="text/javascript">
+    var dataArray = [];
+    for(var i=0;i<=9; i++)
+        dataArray.push({ code: i + '', name: '选择 ' + i ,filterName:'Boss ' + i});
+
+    var appendDataArray = [];
+    for(var i=0;i<=12; i++){
+        appendDataArray.push({ code: i + '1', name: i + '  雇员',filterName:'Boss ' + i});
+    }
+
+
+
+    function obtainData(obj,params){
+        obj.setDatasource(dataArray);
+    }
+    comtop.UI.scan();   //扫描
+</script>
+</body></html> 
+ 

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+    <title>简单边框布局API说明</title>
+    <script type="text/javascript">
+        /**
+         * 以下是组件api测试方法
+         */
+        function changeHeight(){
+            cui("#border").setHeight(500);
+        }
+        function changeWidth(){
+            cui("#border").setWidth(500);
+        }
+        function changeURL(){
+            cui("#border").setContentURL("center","http://www.sina.com");
+        }
+        function collapseTop(){
+            cui("#border").setCollapse("top",true);
+        }
+        function expendTop(){
+            cui("#border").setCollapse("top",false);
+        }
+        function collapseLeft(){
+            cui("#border").setCollapse("left",true);
+        }
+        function collapseRight(){
+            cui("#border").setCollapse("right",true);
+        }
+        function getTopState(){
+            var data = cui("#border").getCollapseState("top");
+            var collapsed = data.collapsed;
+            var contentHeight = data.contentHeight;
+            var contentWidth = data.contentWidth;
+            alert("是否折叠："+ collapsed +";内部高度：" + contentHeight +";内部宽度："+ contentWidth);
+        }
+        function setLeftGap(){
+            cui("#border").setGap("10px 10px 10px 10px");
+        }
+        function setLeftTittle(){
+            cui("#border").setTittle("left","I Love Comtop");
+        }
+        function setRightUnCollapsable(){
+            cui("#border").setCollapsable("right",false);
+        }
+        function setRightCollapsable(){
+            cui("#border").setCollapsable("right",true);
+        }
+    </script>
+    <style type="text/css">
+        body{
+            font-size: 12px;
+            background-color:#ddd;
+        }
+        li{
+            list-style-type:none;
+        }
+        ul{
+            padding-left:15px;
+            padding-right:5px;
+            margin: 0;
+        }
+    </style>
+</head>
+<body >
+<div uitype="Borderlayout"  id="border" gap="5px" is_root="true">
+    <div id="topMain" position="top" height="100" collapsable="true" show_expand_icon="false">
+    </div>
+    <div id="leftMain" position="left" width="200" resizable="true" max_size="300" min_size="50"
+         collapsable="true" show_expand_icon="true"  is_header="true" header_content="&nbsp;&nbsp;API测试" >
+        <span label = "设置整体高度" uitype="button" on_click= "changeHeight"></span>
+        <br /><br />
+        <span label = "设置整体宽度" uitype="button" on_click= "changeWidth"></span>
+        <br /><br />
+        <span label = "改变中部url" uitype="button" on_click= "changeURL"></span>
+        <br /><br />
+        <span label = "收缩上部" uitype="button" on_click= "collapseTop"></span>
+        <br /><br />
+        <span label = "展开上部" uitype="button" on_click= "expendTop"></span>
+        <br /><br />
+        <span label = "收缩左部" uitype="button" on_click= "collapseLeft"></span>
+        <br /><br />
+        <span label = "收缩右部" uitype="button" on_click= "collapseRight"></span>
+        <br /><br />
+        <span label = "获取上部状态" uitype="button" on_click= "getTopState"></span>
+        <br /><br />
+        <span label = "设置margin为10px" uitype="button" on_click= "setLeftGap"></span>
+        <br /><br />
+        <span label = "设置左侧标题" uitype="button" on_click= "setLeftTittle"></span>
+        <br /><br />
+        <span label = "设置右部不可以收缩" uitype="button" on_click= "setRightUnCollapsable"></span>
+        <br /><br />
+        <span label = "设置右部可以收缩" uitype="button" on_click= "setRightCollapsable"></span>
+    </div>
+    <div id="centerMain" position="center" url=""  ></div>
+    <div id="rightMain" position="right" width="200" resizable="true" min_size="130" max_size="300" split_size="5"
+         collapsable="true" show_expand_icon="true">
+    </div>
+    <div id="bottomMain" position="bottom" height="100" split_size="5" ></div>
+</div>
+<script type="text/javascript" id="do_not_show">
+    if (window.parent.setFullscreen) {
+        window.parent.setFullscreen();
+    }
+</script>
+<script type="text/javascript">
+    comtop.UI.scan();
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>MsgBox例子</title>
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="GBK"></script>
+    <style type="text/css">
+         .table{width:100%;}
+        .table .label{width:42px;}
+    </style>
+</head>
+<body >
+<h4>一、自定义msgbox弹出位置</h4>
+<table class="table" border="0" cellpadding="0" cellspacing="0" >
+    <tr>
+        <td class="label" >例：</td>
+        <td>
+            <input type="button" value="Alert" onclick="openAlert()"/>
+            <input type="button" value="Message" onclick="openMessage()"/>
+            <input type="button" value="Confirm" onclick="openConfirm()"/>
+        </td>
+    </tr>
+</table>
+<script type="text/javascript">
+    /**
+     * 自定义alert的位置
+     */
+    function openAlert(){
+        cui.alert('自定义了位置', null, {
+            position:'custom',
+            customPos: {left: 20, top: 20}
+        });
+    }
+    /**
+     * 自定义message的位置
+     */
+    function openMessage(){
+        cui.message('自定义了位置', 'success', {
+            position:'custom',
+            customPos: {left: 20, top: 20}
+        });
+    }
+    /**
+     * 自定义confirm的位置
+     */
+    function openConfirm(){
+        cui.confirm('自定义了位置', {
+            position:'custom',
+            customPos: {left: 20, top: 20},
+            onYes: function(){
+                alert('接受了');
+            },
+            onNo: function(){
+                alert('不接受');
+            }
+        });
+    }
+</script>
+</body>
+</html>

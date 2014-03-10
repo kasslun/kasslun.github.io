@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Menu Demos</title>
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+    <style type="text/css">
+        .demo{margin: 0;padding:0;}
+        .demo:after{display: block;content:"";clear: both;line-height: 0;visibility: hidden; }
+        ul.demo>li{list-style: none; float: left;}
+        ul.demo>li>a {
+            display: block;
+            color: #FFF;
+            float: left;
+            padding: 5px 5px;
+            text-decoration: none;
+            background-color: #2489C5;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<ul class="demo">
+    <li><a href="#"  uitype="Menu" trigger="click" datasource="datasource.itemsData1">菜单样例点击触发</a></li>
+    <li><a href="#"  uitype="Menu" trigger="mouseover" datasource="datasource.itemsData2">移过时候显示</a></li>
+    <li><a href="#"  uitype="Menu" trigger="mouseover" datasource="getData">传入同步方法获得数据</a></li>
+    <li><a href="#" id="menu1" uitype="Menu" trigger="mouseover" datasource="setDatasource">传入异步方法获得数据</a></li>
+</ul>
+
+<script type="text/javascript">
+    var datasource = {
+        itemsData1 :
+                [
+                    {id:'item1',label:'选项1',disabled:false,
+                        items:[
+                            {id:'item21',label:'选项21'},
+                            {id:'item22',label:'选项22'},
+                            {id:'item23',label:'选项23',
+                                items:[
+                                    {id:'item121',label:'选项121'},
+                                    {id:'item122',label:'选项122'},
+                                    {id:'item123',label:'选项123'},
+                                    {id:'item124',label:'选项124'}
+                                ]
+                            },
+                            {id:'item25',label:'选项25'},
+                            {id:'item26',label:'选项26'},
+                            {id:'item27',label:'选项27'},
+                            {id:'item28',label:'选项28'},
+                            {id:'item29',label:'选项29'}
+                        ]},
+                    {id:'item2',label:'选项2'},
+                    {id:'item3',label:'选项3'},
+                    {id:'item4',label:'选项4',
+                        items:[
+                            {id:'item41',label:'选项41'},
+                            {id:'item42',label:'选项42'},
+                            {id:'item43',label:'选项43'},
+                            {id:'item44',label:'选项44'},
+                            {id:'item45',label:'选项45'},
+                            {id:'item46',label:'选项46'},
+                            {id:'item47',label:'选项47'}
+                        ]
+                    }
+                ],
+        itemsData2:
+                [
+                    {id:'item5',label:'选项5',disabled:false},
+                    {id:'item6',label:'选项6'},
+                    {id:'item7',label:'选项7'},
+                    {id:'item8',label:'选项8'}
+                ],
+        itemsData3:
+                [
+                    {id:'item9',label:'选项9',disabled:false},
+                    {id:'item10',label:'选项10'},
+                    {id:'item11',label:'选项11'},
+                    {id:'item12',label:'选项12'}
+                ],
+        itemsData4:
+                [
+                    {id:'item13',label:'选项13',disabled:false},
+                    {id:'item14',label:'选项14'},
+                    {id:'item15',label:'选项15'}
+                ]
+    }
+
+    function getData(){
+        return datasource.itemsData3;
+    }
+    function setDatasource(){
+        //dwr调用或者ajax调用获得数据
+        cui("#menu1").setDatasource(datasource.itemsData4);
+    }
+    comtop.UI.scan();
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>CUI组件Grid示例</title>
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <style type="text/css">
+        body{margin:10px; background: #fff; font-size: 12px;}
+        h2{margin:0; font-size: 12px; height:20px; overflow: hidden;}
+        .new_select_rows{background: #a6e22e;}
+    </style>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+    <!--Demo数据js-->
+    <script type="text/javascript" src="data.js"></script>
+</head>
+<body>
+<div>
+    本页设置，最大同时2列排序。且有5个列支持排序 <span uitype="button" on_click="getSrotStatus" label="获取排序当前状态"></span>
+    <table id="grid" uitype="grid" gridwidth="800" gridheight="400" datasource="initData" selectedrowclass="new_select_rows" sortstyle="1">
+        <thead>
+        <tr>
+            <th><input type="checkbox"/></th>
+            <th renderStyle="text-align: center" bindName="info.name" render="a" options="{'url':'#'}">姓名</th>
+            <th renderStyle="text-align: center" bindName="chinese" sort="true">语文</th>
+            <th renderStyle="text-align: center" bindName="english" sort="true">英语</th>
+            <th renderStyle="text-align: center" bindName="politics" sort="true">政治</th>
+            <th renderStyle="text-align: center" bindName="history" sort="true">历史</th>
+            <th renderStyle="text-align: center" bindName="geography" sort="true">地理</th>
+            <th renderStyle="text-align: center" bindName="math">数学</th>
+            <th renderStyle="text-align: center" bindName="physics">物理</th>
+            <th renderStyle="text-align: center" bindName="organisms">生物</th>
+            <th renderStyle="text-align: center" bindName="chemistry">化学</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+<script type="text/javascript">
+    function sort (bindName, sortType) {
+        data.sort(function (a, b) {
+            if (sortType === "ASC") {
+                return a[bindName] - b[bindName];
+            }
+            return b[bindName] - a[bindName];
+        })
+    }
+    function initData (gridObj, query) {
+        var sortName = query.sortName,
+            sortType = query.sortType;
+        if (sortName[0]) {
+            sort(sortName[0], sortType[0]);
+        }
+        gridObj.setDatasource(data.slice((query.pageNo - 1) * query.pageSize, query.pageNo * query.pageSize), 150);
+    }
+    function getSrotStatus () {
+        var query = cui("#grid").getQuery();
+        alert("排序列名有：" + query.sortName + "\n" + "排序分别是：" + query.sortType);
+    }
+    comtop.UI.scan();
+</script>
+</body>
+</html>

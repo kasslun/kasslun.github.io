@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>ListBox</title>
+    <link rel="stylesheet" type="text/css" href="../../../ui/themes/default/css/comtop.ui.min.css" />
+    <script type="text/javascript" src="../../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+
+</head>
+
+<body>
+
+  	<p>单选时的on_select_change事件</p>
+	<span id="lb1" uitype="ListBox" value_field="id" label_field="text" multi ="false" datasource="data_array" on_select_change="selectSingle"></span><br/><br/>
+	
+	<p>多选时的on_select_change事件</p>
+	<span id="lb2" uitype="ListBox" value_field="id" label_field="text" multi ="true"  datasource="data_array" on_select_change="selectMulti"></span>
+
+    <script type="text/javascript">
+        var data_array = [];
+        for(var i=1; i<=9; i++){
+            data_array.push({ id:'item'+i, text:'选项'+i, filterName:'Boss '+i});
+        }
+
+        //单选的情况
+        function selectSingle(array){
+            alert("选择的列表项为：" + array.id+', '+array.text+';');
+        }
+        //多选的情况
+        function selectMulti(array){
+            var result = '';
+            for(var i=0; i < array.length; i++){
+                result = result + array[i].id + ", " + array[i].text + ";\n";
+            }
+            alert("选择的列表项为：\n" + result);
+        }
+        comtop.UI.scan();   //扫描
+    </script>
+</body>
+</html>

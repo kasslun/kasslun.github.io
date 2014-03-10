@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>calender使用例子</title>
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+  <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="GBK"></script>
+
+    <style type="text/css">
+        .table{border:1px solid #ccc;border-width:1px 0 0 1px;width:100%;}
+        .table td{padding:2px;border: 1px solid #ccc;border-width: 0 1px 1px 0;background: #fff;}
+        .table .label{text-align: right;background: #1d67a6;color: #fff;width:42px;}
+        .strong{color:red;}
+    </style>
+</head>
+<body >
+
+<h4>常用配置项</h4>
+
+<p>1、宽度设置，width的值可为数字或百分比如："200px"或"50%"</p>
+		<pre class="brush: xml;">
+        &lt;span id="calender11" uitype="Calender" width="300px" &gt;&lt;/span&gt;
+		</pre>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0" >
+    <tr>
+        <td class="label" >例：</td>
+        <td><span id="calender11" uitype="Calender" width="300px"></span></td>
+    </tr>
+</table>
+
+<p>2、可读设置，设置readonly</p>
+		<pre class="brush: xml;">
+        &lt;span id="calender13" uitype="Calender" readonly="true" value="2012-12-21" &gt;&lt;/span&gt;
+		</pre>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0" >
+    <tr>
+        <td class="label" >例：</td>
+        <td><span id="calender13" uitype="Calender" readonly="true" value="2012-12-21"></span></td>
+    </tr>
+</table>
+
+<p>3、文本显示设置，设置textmode</p>
+		<pre class="brush: xml;">
+        &lt;span id="calender14" uitype="Calender" textmode="true" value="2012-12-21"&gt;&lt;/span&gt;
+		</pre>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0" >
+    <tr>
+        <td class="label" >例：</td>
+        <td><span id="calender14" uitype="Calender" textmode="true" value="2012-12-21"></span></td>
+    </tr>
+</table>
+
+<p>4、触发方式设置，设置trigger，值可为"click"/"mouseover"</p>
+		<pre class="brush: xml;">
+        &lt;span id="calender12" uitype="Calender" trigger="mouseover" &gt;&lt;/span&gt;
+		</pre>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0" >
+    <tr>
+        <td class="label" >例：</td>
+        <td><span id="calender12" uitype="Calender" trigger="mouseover"></span></td>
+    </tr>
+</table>
+
+<p>5、使用确定按钮，设置okbtn，当okbtn == true，点选日期需要点击确定按钮后才能输出至输入框</p>
+		<pre class="brush: xml;">
+        &lt;span id="calender15" uitype="Calender" okbtn="true"&gt;&lt;/span&gt;
+		</pre>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0" >
+    <tr>
+        <td class="label" >例：</td>
+        <td><span id="calender15" uitype="Calender" okbtn="true"></span></td>
+    </tr>
+</table>
+
+<p>6、设置星期天为一周的第一天，设置sunday_first（只对date功能模式有效）</p>
+		<pre class="brush: xml;">
+        &lt;span id="calender16" uitype="Calender" sunday_first="true"&gt;&lt;/span&gt;
+		</pre>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0" >
+    <tr>
+        <td class="label" >例：</td>
+        <td><span id="calender16" uitype="Calender" sunday_first="true"></span></td>
+    </tr>
+</table>
+
+<p>7、设置输入框为空时的提示文字（则placeholder），设置emptytext</p>
+		<pre class="brush: xml;">
+        &lt;span id="calender16" uitype="Calender" emptytext="请选择发工资日期..."&gt;&lt;/span&gt;
+		</pre>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0" >
+    <tr>
+        <td class="label" >例：</td>
+        <td><span id="calender16_1" uitype="Calender" emptytext="请选择发工资日期..."></span></td>
+    </tr>
+</table>
+
+<script type="text/javascript">
+    comtop.UI.scan();
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>calender使用例子</title>
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+  <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="GBK"></script>
+
+    <style type="text/css">
+        .table{border:1px solid #ccc;border-width:1px 0 0 1px;width:100%;}
+        .table td{padding:2px;border: 1px solid #ccc;border-width: 0 1px 1px 0;background: #fff;}
+        .table .label{text-align: right;background: #1d67a6;color: #fff;width:42px;}
+        .strong{color:red;}
+    </style>
+</head>
+<body >
+
+<h4 id="formatMark">format格式设置</h4>
+<p>1、自定义输出输入格式</p>
+		<pre class="brush: xml;">
+        &lt;span id="calender19" uitype="Calender" format="yyyy年MM月dd日" &gt;&lt;/span&gt;
+		</pre>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0" >
+    <tr>
+        <td class="label" >例：</td>
+        <td><span id="calender19" uitype="Calender" format="yyyy年MM月dd日"></span></td>
+    </tr>
+</table>
+
+<p>2、自定义输出输入格式</p>
+		<pre class="brush: xml;">
+        &lt;span id="calender20" uitype="Calender" model="all" format="{'year':'yyyy年', 'month':'yyyy年MM月'}" &gt;&lt;/span&gt;
+		</pre>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0" >
+    <tr>
+        <td class="label" >例：</td>
+        <td><span id="calender20" uitype="Calender" model="all" format="{'year':'yyyy年', 'month':'yyyy年MM月'}"></span></td>
+    </tr>
+</table>
+
+
+<script type="text/javascript">
+    comtop.UI.scan();
+</script>
+</body>
+</html>

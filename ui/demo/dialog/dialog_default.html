@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>dialog</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+    <style type="text/css">
+        body{font-size: 12px;}
+        .d {display: none;text-align: center; line-height: 100px;}
+    </style>
+</head>
+<body>
+<div id="con" class="d">内容</div>
+<div id="nom" class="d">内容</div>
+<div id="rb" class="d">内容</div>
+<div id="nodr" class="d">内容</div>
+<div id="btn" class="d">内容</div>
+<div id="close" class="d">内容</div>
+<div id="beforeclose" class="d">内容</div>
+<div id="ifm" class="d"></div>
+<div id="resizeDialog" class="d">
+    <span uitype="Button" label="将窗口设置宽为200px，高为100px" on_click="resize"></span>
+</div>
+<span uitype="button" label="默认" on_click="dft"></span>
+<span uitype="button" label="非模态" on_click="nom"></span>
+<span uitype="button" label="右下角" on_click="rb"></span>
+<span uitype="button" label="不可拖动" on_click="nodr"></span>
+<span uitype="button" label="带按钮" on_click="btn"></span>
+<span uitype="button" label="关闭回调" on_click="close"></span>
+<span uitype="button" label="关闭前回调" on_click="beforeclose"></span><br /><br />
+<span uitype="button" label="加载163，重载163邮箱" on_click="ifm"></span>
+<span uitype="Button" label="设置窗口尺寸" on_click="dialogSize"></span>
+<script type="text/javascript">
+    comtop.UI.scan();//扫描按钮
+    //默认
+    function dft() {
+        cui("#con").dialog({
+            title : "标题"
+        }).show();
+    }
+    //非模态
+    function nom() {
+        cui("#nom").dialog({
+            title : "标题",
+            modal: false
+        }).show();
+    }
+    //右下角
+    function rb() {
+        cui("#rb").dialog({
+            title : "标题",
+            left: "100%",
+            top: "100%"
+        }).show();
+    }
+    //不可拖动
+    function nodr() {
+        cui("#nodr").dialog({
+            title : "标题",
+            draggable: false
+        }).show();
+    }
+    //带按钮
+    function btn() {
+        cui("#btn").dialog({
+            title : "标题",
+            buttons : [
+                {
+                    name : '保存',
+                    handler : function() {alert('保存')}
+                }, {
+                    name : '取消',
+                    handler : function() {alert('取消')}
+                }
+            ]
+        }).show();
+    }
+    //关闭回调
+    function close() {
+        cui("#close").dialog({
+            title : "标题",
+            onClose: function () {
+                alert("关闭确认")
+            }
+        }).show();
+    }
+    //关闭前回调
+    function beforeclose() {
+        cui("#beforeclose").dialog({
+            title : "标题",
+            beforeClose: function () {
+                alert("关闭确认")
+            }
+        }).show();
+    }
+    //iframe
+    var obj_ifm;
+    function ifm() {
+        if (obj_ifm) {//重载
+            obj_ifm.show().reload("http://mail.163.com");
+            return;
+        }
+        obj_ifm = cui("#ifm").dialog({
+            title : "网易",
+            src : "http://www.163.com",
+            width : 400,
+            height : 300
+        }).show();
+
+    }
+    function dialogSize(){
+        cui('#resizeDialog').dialog({
+            width:500,
+            height:200
+        }).show();
+    }
+    function resize(){
+        cui('#resizeDialog').setSize({
+            width: 200,
+            height: 100
+        });
+    }
+</script>
+</body>
+</html>

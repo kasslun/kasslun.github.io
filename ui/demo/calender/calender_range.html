@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>calender使用例子</title>
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+  <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="GBK"></script>
+
+    <style type="text/css">
+        .table{border:1px solid #ccc;border-width:1px 0 0 1px;width:100%;}
+        .table td{padding:2px;border: 1px solid #ccc;border-width: 0 1px 1px 0;background: #fff;}
+        .table .label{text-align: right;background: #1d67a6;color: #fff;width:42px;}
+        .strong{color:red;}
+    </style>
+</head>
+<body >
+<h4>单输入框日期范围选取</h4>
+
+<p>1、日期范围，设置isrange</p>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0" >
+    <tr>
+        <td class="label" >例：</td>
+        <td><span id="calender6" uitype="Calender" isrange="true"></span></td>
+    </tr>
+</table>
+
+<p>2、打开多面板，设置panel，面板数量没有限制，出于性能和实用考虑，数量建议限于2~3个</p>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0" >
+    <tr>
+        <td class="label" >例：</td>
+        <td><span id="calender7" uitype="Calender" isrange="true" panel="3"></span></td>
+    </tr>
+</table>
+
+<p>3、日期范围（其它功能模式，如季度）</p>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0" >
+    <tr>
+        <td class="label" >例：</td>
+        <td><span id="calender8" uitype="Calender" model="quarter" isrange="true" panel="2"></span></td>
+    </tr>
+</table>
+
+<h4 id="dateRange">日期范围限制（只支持date模式）</h4>
+
+<p>1、设置最小，最大可选范围（通过日期设置限制,mindate="2012-10-22" maxdate="2013-02-11"）</p>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0" >
+    <tr>
+        <td class="label" >例：</td>
+        <td><span id="calender70" uitype="Calender" mindate="2012-10-22" maxdate="2013-02-11"></span></td>
+    </tr>
+</table>
+
+<p>2、设置最小，最大可选范围（通过表达式设置限制）</p>
+		<pre class="brush: xml;">
+        //如果最小最大日期不是静态的，而是根据当前日期变化而变化，那么可以使用表达式设置范围
+        //假如要设置最小日期为三天前，最大日期为下一个月的今天的前两天
+        &lt;span id="calender71" uitype="Calender" mindate="-3d" maxdate="+1M,-2d"&gt;&lt;/span&gt;
+		</pre>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0" >
+    <tr>
+        <td class="label" >例：</td>
+        <td><span id="calender71"  uitype="Calender" mindate="-3d" maxdate="+1M,-2d"></span></td>
+    </tr>
+</table>
+
+<p>3、设置最小，最大可选范围（通过表达式设置限制，更为复杂的）</p>
+		<pre class="brush: xml;">
+        &lt;span id="calender72" uitype="Calender" mindate="-2y,+2M,-3d" maxdate="+3y,+1M,-2d"&gt;&lt;/span&gt;
+		</pre>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0" >
+    <tr>
+        <td class="label" >例：</td>
+        <td><span id="calender72"  uitype="Calender" mindate="-2y,+2M,-3d" maxdate="+3y,+1M,-2d"></span></td>
+    </tr>
+</table>
+
+<p>4、设置最小，最大可选范围（通过另外一个日期输入框限制，多用于两个日期间的相互限制，比如起始日期）<strong style="color:blue">&lt;常用的例子&gt;</strong></p>
+		<pre class="brush: xml;">
+        &lt;span id="calender73" uitype="Calender" maxdate="#calender74"&gt;&lt;/span&gt;
+        &lt;span id="calender74" uitype="Calender" mindate="#calender73"&gt;&lt;/span&gt;
+		</pre>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0" >
+    <tr>
+        <td class="label" >例：</td>
+        <td>开始日期：<span id="calender73"  uitype="Calender" maxdate="#calender74"></span></td>
+    </tr>
+    <tr>
+        <td class="label" >例：</td>
+        <td>结束日期：<span id="calender74"  uitype="Calender" mindate="#calender73"></span></td>
+    </tr>
+</table>
+
+<p>5、设置最小，最大可选范围（不包括当天）<strong style="color:blue">&lt;常用的例子&gt;</strong></p>
+		<pre class="brush: xml;">
+        //比如最小日期为2012-06-16，但不包含2012-06-16当天
+        &lt;span id="calender75" uitype="Calender" value="2012-06-27" mindate="2012-06-16" nocurrent="true" &gt;&lt;/span&gt;
+		</pre>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0" >
+    <tr>
+        <td class="label" >例：</td>
+        <td><span id="calender75"  uitype="Calender" value="2012-06-27" mindate="2012-06-16" nocurrent="true"></span></td>
+    </tr>
+</table>
+
+<p>6、<strong style="color:#f60;">设置最小，最大可选范围（最小日期为今天）</strong><strong style="color:blue">&lt;常用的例子&gt;</strong></p>
+		<pre class="brush: xml;">
+        &lt;span id="calender76" uitype="Calender" mindate="+0d" &gt;&lt;/span&gt;
+		</pre>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0" >
+    <tr>
+        <td class="label" >例：</td>
+        <td><span id="calender76"  uitype="Calender"  mindate="+0d"></span></td>
+    </tr>
+</table>
+
+
+<script type="text/javascript">
+    comtop.UI.scan();
+</script>
+</body>
+</html>

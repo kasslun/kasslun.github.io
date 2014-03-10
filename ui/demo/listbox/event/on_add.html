@@ -1,0 +1,48 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="../../../ui/themes/default/css/comtop.ui.min.css" />
+<script type="text/javascript" src="../../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+<title>ListBox</title>
+</head>
+
+<body>
+
+
+
+<span id="lb1" uitype="ListBox" value_field="id" label_field="text" multi="true" datasource="data_array"></span><br/>
+
+
+
+<p>下面的Listbox绑定了on_add事件,选中上面的点击add按钮进行添加</p>
+<p>
+    <span uitype="Button" label="add" on_click="move"></span>
+</p>
+<div id="lb2" uitype="ListBox" value_field="id" label_field="text" multi="true" datasource="data" on_add="add"></div>
+<script type="text/javascript">
+    var data = [];
+    var data_array = [];
+    for(var i=1; i<=9; i++){
+        data_array.push({ id:'item'+i, text:'选项'+i, filterName:'Boss '+i});
+    }
+
+    var lb1,lb2;
+
+    function move(){
+        lb2.addRows(lb1.removeSelectedRows());
+    }
+
+    function add(array){
+        var result = '';
+        for(var i=0; i < array.length; i++){
+            result = result + array[i].id + ", " + array[i].text + ";\n";
+        }
+        alert("触发on_add事件，移动的列表项为：\n" + result);
+    }
+    comtop.UI.scan();   //扫描
+    lb1 = cui('#lb1');
+    lb2 = cui('#lb2');
+</script>
+</body>
+</html>

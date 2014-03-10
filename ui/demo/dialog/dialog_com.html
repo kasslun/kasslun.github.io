@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>dialog</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+    <style type="text/css">
+        .d {display: none; font-size: 12px;}
+        #customform{padding:5px;}
+    </style>
+</head>
+<body>
+<div class="d" id="tree"><div uitype="tree" children="data"></div></div>
+<div class="d" id="form"><div id="customform"></div></div>
+
+<span uitype="button" label="嵌套Tree组件" on_click="tree"></span>
+<span uitype="button" label="嵌套表单" on_click="form"></span>
+<script type="text/javascript" id="do_not_show">
+    if (window.parent.setFullscreen) {
+        window.parent.setFullscreen();
+    }
+</script>
+<script type="text/javascript">
+    //tree数据
+    var data = [{
+        title: "设备类别结构",
+        key: "k2",
+        expand: true,
+        isFolder: true,
+        children: [{
+            title: "无形资产",
+            key: "k2-1",
+            isFolder: true,
+            expand: true,
+            children: [{
+                title: "土地使用权"
+            }, {
+                title: "软件"
+            }, {
+                title: "专利权"
+            }]
+        }, {
+            title: "有形资产",
+            key: "k2-2"
+        }]
+    }, {
+        title: "输电线路",
+        key: "k3",
+        isFolder: true,
+        children: [{
+            title: "架空线路"
+        }, {
+            title: "电缆线路"
+        }]
+    }];
+    comtop.UI.scan();
+    //创建表单
+    cui('#customform').customform({
+        datasource:[
+            {
+                uitype: 'input',
+                label: '姓名',
+                required: true
+            },{
+                uitype: 'input',
+                label: '年龄',
+                required: true
+            },{
+                uitype: 'input',
+                label: '性别',
+                required: true
+            },{
+                uitype: 'input',
+                label: '生日',
+                required: true
+            },
+        ]
+    });
+    //下面是dialog
+    function tree() {
+        cui("#tree").dialog({
+            title:"tree",
+            width:400,
+            height:300
+        }).show();
+    }
+    function form() {
+        cui("#form").dialog({
+            title:"个人信息",
+            width:600,
+            height:66,
+            buttons : [
+                {
+                    name : '保存',
+                    handler : function() {alert('保存')}
+                }, {
+                    name : '取消',
+                    handler : function() {alert('取消')}
+                }
+            ]
+        }).show();
+    }
+</script>
+</body>
+</html>

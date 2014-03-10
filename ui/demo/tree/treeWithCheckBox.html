@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="GBK">
+        <title>treeWithCheckBox</title>
+        <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css">
+        <script type="text/javascript" src="../../ui/js/comtop.ui.min.js"></script>
+        <script type="text/javascript">
+            window.onload = function() {
+                var data = [
+                        {   title: "我不能被选择",  key: "k1",unselectable: true }, 
+                        {   title: "Folder 2", 
+                            key: "k2", 
+                            isFolder: true, 
+                            // icon: false, 
+                            // icon: "somepath/someIcon.gif", 
+                            tooltip: "haha", 
+                            children: [
+                                {title: "无形资产", key: "k2-1" },
+                                {title: "有形资产", key: "k2-2" ,isFolder:true,children:[{title:"hello"}]}
+                            ]
+                        }, 
+                        {   title: "其他", 
+                            key: "k3", 
+                            href:"http://www.baidu.com",
+                            // icon: "somepath/someIcon.gif", 
+                            // icon: false, 
+                            hideCheckbox: true
+                        }
+                    ];
+
+                var tree = cui("#dt1").tree({ 
+                    children: data,
+					checkbox: true,
+					select_mode:3,	//选择模式，参见文档，3为多选级联，默认为1单选				 
+                     on_select: function(flag, node) {
+                        // alert("select_handler");
+                   
+                     }, 
+                     on_click: function(node, event) {
+                       // alert("you clicked :"+node.getData("title"));
+						/*   console.log(node.getData())*/
+                       
+                     }
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <div class="main">
+           <h2>Example 1</h2>
+            <div id="dt1"></div>
+        </div>
+    </body>
+</html>
+
+
+            

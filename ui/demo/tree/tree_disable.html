@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Baisc Tree</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+</head>
+<body>
+<input type="button" value="禁用" onClick="disableNode();"/>
+<input type="button" value="恢复" onClick="enableNode();"/>
+<div id="dt1" uitype="tree" children="data" checkbox="true" checkbox_style="checkbox"></div>
+<script type="text/javascript">
+    var data = [{
+        title: "设备类别结构",
+        key: "k1"
+    }, {
+        title: "Folder 2",
+        key: "k2",
+        isFolder: true,
+        children: [{
+            title: "无形资产",
+            key: "k2-1"
+        }, {
+            title: "有形资产",
+            key: "k2-2",
+            isFolder: true,
+            children: [{
+                title: "hello"
+            }]
+        }]
+    }, {
+        title: "其他",
+        key: "k3",
+        hideCheckbox: true
+    }];
+
+    function disableNode() {
+        var selectNode = cui('#dt1').getSelectedNodes()[0];
+        selectNode && selectNode.disable();
+    }
+
+    function enableNode() {
+        var selectNode = cui('#dt1').getSelectedNodes()[0];
+        selectNode && selectNode.enable();
+    }
+    comtop.UI.scan();
+</script>
+</body>
+</html>
+
+

@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=GBK"/>
+<title>CUI 演示系统</title>
+<link rel="stylesheet" href="../ui/themes/default/css/comtop.ui.min.css"/>
+<link rel="stylesheet" href="common_files/scrollstyle.css"/>
+
+<style type="text/css">
+html, body {
+    margin: 0;
+    height: 100%;
+    font-size: 12px;
+}
+
+.main {
+    height: 100%;
+    overflow: auto;
+    /* background-color: #FFE69F; */
+}
+
+ul#menu, ul#menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+}
+
+ul#menu a {
+    display: block;
+    text-decoration: none;
+}
+
+ul#menu li {
+    border-top: 1px dotted #ccc;
+
+    width: 100%;
+}
+
+ul#menu li a {
+    background: #f5f5f5;
+    color: #000;
+    padding: 0.5em;
+    font-weight: 700;
+}
+
+    /*ul#menu li a:hover {
+      background: #339933;
+    }*/
+
+ul#menu li ul li a {
+    background: #fff;
+    color: #666;
+    padding-left: 20px;
+    font-weight: 100;
+}
+
+ul#menu li ul li a:hover {
+    background: #EAF2FF;
+    border-left: 5px #FF7D20 solid;
+    padding-left: 15px;
+}
+
+ul#menu li ul li a.on {
+    background: #EAF2FF;
+    border-left: 5px #FF7D20 solid;
+    padding-left: 15px;
+}
+
+#menu .componentTitle {
+
+    background: url(common_files/images/accordion.png) 100% -100px no-repeat;
+
+}
+
+#menu .componentTitleiconadd {
+
+    background: url(common_files/images/accordion.png) 100% -50px no-repeat;
+
+}
+
+.ie6tip {
+    height: 100%;
+    background-color: #CCCCCC;
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+    display: none;
+    top: 0px;
+    left: 0px;
+}
+
+.codeTitle {
+    display: inline-block;
+    *zoom: 1;
+    *display: inline;
+    font-weight: 700;
+}
+
+.view_source_button {
+    display: inline-block;
+    *zoom: 1;
+    *display: inline;
+    margin-left: 10px;
+    vertical-align: top;
+}
+
+.textarea_wrap {
+    height: 100%;
+}
+
+textarea {
+    width: 100%;
+    height: 100%;
+    *width: 98%;
+    *height: 600px;
+    resize: none;
+    padding: 0;
+    margin: 0;
+    border: 0;
+
+}
+
+textarea:focus {
+    outline: none;
+}
+
+.CodeMirror {
+    font: 12px/1.5 consolas, "courier new", "\5B8B\4F53";
+    height: auto;
+}
+
+.CodeMirror-scroll {
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+
+.browsernotsupport {
+    border: 1px solid #cd0a0a;
+    background: #b81900 url(common_files/images/ui-bg_diagonals-thick_18_b81900_40x40.png) 50% 50% repeat;
+    color: #ffffff;
+    text-align: center;
+}
+
+#donotcare {
+    color: #FFFFFF
+}
+
+.centerPanelContainerCls {
+    height: 500px;
+    width: 700px;
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    margin-left: -350px;
+}
+
+.collapsible {
+    background: url(common_files/images/accordion.png) 100% -100px no-repeat;
+}
+
+.cui-panel .noneborder {
+    border-right: none;
+    border-left: none;
+}
+
+#center_header {
+    padding-left: 10px;
+}
+
+#center_header a {
+    text-decoration: none;
+}
+
+#center_header a:hover {
+    text-decoration: underline;
+}
+
+#search_header {
+    padding: 4px 0 0px 2px;
+
+}
+
+.click_input_wrap {
+    position: relative;
+    overflow: visible;
+}
+
+.click_input_wrap .click_input_icon {
+    float: none;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.bl_border {
+    background-color: #4CB7EA;
+    overflow: hidden;
+}
+
+.search_header .search_icon {
+    background: url(common_files/images/search.png) 0 2px no-repeat;
+}
+
+.search_header .expand {
+    display: block;
+    width: 20px;
+    height: 21px;
+    position: absolute;
+    top: 0;
+    right: -25px;
+    border: 1px solid #ccc;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.search_header .collapse-all {
+    background: url(common_files/images/accordion.png) -8px -101px no-repeat;
+}
+
+.search_header .expand-all {
+    background: url(common_files/images/accordion.png) -8px -52px no-repeat;
+}
+
+.display_none {
+    display: none;
+}
+
+.display_block {
+    display: block;
+}
+.click_input_box{padding-right: 17px;}
+</style>
+<script type="text/javascript" src="../ui/js/comtop.ui.min.js" charset="GBK"></script>
+<script type="text/javascript">
+    var $ = jQuery = comtop.cQuery;
+</script>
+</head>
+<body>
+
+<div class="main">
+
+<div uitype="Borderlayout" is_root="true" id="mainlayout">
+<div position="left" width="250" class="layoutLeft" id="js_layoutLeft" split_size="2" is_header="true"
+     header_content='<div id="search_header" class="search_header"><span uitype="clickInput"  on_keyup="searchDemo" emptytext="输入组件名进行搜索" width="220" icon="search_icon" editable="true" enterable="true"></span></div>'>
+
+
+<ul id="menu">
+<li>
+    <a href="#" class="componentTitle">Borderlayout组件</a>
+    <ul class="borderlayout">
+        <li><a href="borderlayout/borderlayout_default.html">默认效果</a></li>
+        <li><a href="borderlayout/borderlayout_defalut2.html">常用设置</a></li>
+        <li><a href="borderlayout/borderlayout_tab.html">嵌套Tab</a></li>
+        <li><a href="borderlayout/borderlayout_panel.html">嵌套Panel</a></li>
+        <li><a href="borderlayout/borderlayout_fixed.html">自定义固定(fixed属性)</a></li>
+        <li><a href="borderlayout/borderlayout_method.html">常用方法调用</a></li>
+    </ul>
+</li>
+<li>
+    <a href="#" class="componentTitle">Button组件</a>
+    <ul class="button">
+        <li><a href="button/button_default.html">常见用法</a></li>
+        <li><a href="button/button_menu.html">带menu</a></li>
+        <li><a href="button/button_arg.html">单击事件传参</a></li>
+    </ul>
+</li>
+<li>
+    <a href="#" class="componentTitle">表单</a>
+    <ul class="cuiform">
+        <li><a href="form/form_default.html">常规表单</a></li>
+        <li><a href="form/form_edit.html">编辑表单</a></li>
+        <li><a href="form/form_dyna.html">动态表单</a></li>
+    </ul>
+</li>
+<li>
+    <a href="#" class="componentTitle">Calender组件</a>
+    <ul class="calender">
+        <li><a href="calender/calender_defaultsettings.html">默认设置</a></li>
+        <li><a href="calender/calender_default.html">常用的六种功能模式</a></li>
+        <li><a href="calender/calender_initvalue.html">设置初始值</a></li>
+        <li><a href="calender/calender_format.html">格式设置</a></li>
+        <li><a href="calender/calender_range.html">日期范围设置</a></li>
+        <li><a href="calender/calender_othersettings.html">其它常用设置</a></li>
+        <li><a href="calender/calender_callback.html">回调</a></li>
+        <li><a href="calender/calender_api.html">API</a></li>
+    </ul>
+</li>
+<li>
+    <a href="#" class="componentTitle">CheckboxGroup组件</a>
+    <ul class="checkboxgroup">
+        <li><a href="checkbox/checkbox_default.html">默认设置</a></li>
+        <li><a href="checkbox/checkbox_ajax.html">后台数据（模拟）</a></li>
+        <li><a href="checkbox/checkbox_readonly.html">只读属性</a></li>
+        <li><a href="checkbox/checkbox_method.html">常用方法调用</a></li>
+    </ul>
+</li>
+<li>
+    <a href="#" class="componentTitle">ClickInput组件</a>
+    <ul class="clickinput">
+        <li><a href="clickinput/clickinput_default.html">常见用法</a></li>
+        <li><a href="clickinput/clickinput_method.html">常用方法</a></li>
+    </ul>
+</li>
+<li>
+    <a href="#" class="componentTitle">Dialog组件</a>
+    <ul class="dialog1">
+        <li><a href="dialog/dialog_default.html">常见用法</a></li>
+        <li><a href="dialog/dialog_com.html">组件嵌套</a></li>
+    </ul>
+</li>
+<li>
+    <a href="#" class="componentTitle">Databind</a>
+    <ul class="databind">
+        <li><a href="databind/databind_default.html">基本使用</a></li>
+        <li><a href="databind/databind_emptydata.html">清空表单数据</a></li>
+        <li><a href="databind/databind_setnewdata.html">重置表单数据源</a></li>
+    </ul>
+</li>
+<li>
+    <a href="#" class="componentTitle">Editor组件</a>
+    <ul class="editor">
+        <li><a href="editor/editor_default.html">默认设置</a></li>
+        <li><a href="editor/editor_height.html">设置高度</a></li>
+        <li><a href="editor/editor_api.html">API演示</a></li>
+    </ul>
+</li>
+<li>
+    <a href="#" class="componentTitle">Grid组件</a>
+    <ul class="grid">
+        <li><a href="grid/grid_simple.html">简单数据表格</a></li>
+        <li><a href="grid/grid_adaptive.html">列宽不自适应</a></li>
+        <li><a href="grid/grid_auto.html">组件全屏自适应</a></li>
+        <li><a href="grid/grid_colmove.html">列顺序拖曳</a></li>
+        <li><a href="grid/grid_colrender.html">内容和样式渲染</a></li>
+        <li><a href="grid/grid_ellipsis.html">内容换行支持</a></li>
+        <li><a href="grid/grid_fixed.html">固定列</a></li>
+        <li><a href="grid/grid_format.html">格式化金钱和时间</a></li>
+        <li><a href="grid/grid_multith.html">多行表头</a></li>
+        <li><a href="grid/grid_num.html">组件自带序号列</a></li>
+        <li><a href="grid/grid_odd.html">奇偶行背景色</a></li>
+        <li><a href="grid/grid_pagination.html">分页样式集合</a></li>
+        <li><a href="grid/grid_pk.html">主键操作</a></li>
+        <li><a href="grid/grid_single.html">单选</a></li>
+        <li><a href="grid/grid_sort.html">排序操作</a></li>
+        <li><a href="grid/grid_titlerander.html">鼠标提示(title属性)渲染</a></li>
+        <li><a href="grid/gridx3.html">常用方法和回调</a></li>
+        <li><a href="grid/gridx.html">综合示例一</a></li>
+        <li><a href="grid/gridx2.html">综合示例二</a></li>
+    </ul>
+</li>
+
+
+<li>
+    <a href="#" class="componentTitle">Handlemask组件</a>
+    <ul class="handlemask">
+        <li><a href="handlemask/handmask_default.html">基本使用</a></li>
+        <li><a href="handlemask/handmask_processing.html">自定义进度条</a></li>
+    </ul>
+</li>
+<li>
+    <a href="#" class="componentTitle">Input组件</a>
+    <ul class="input">
+        <li><a href="input/input_defaultsetting.html">默认设置</a></li>
+        <li><a href="input/input_default.html">基本用法</a></li>
+        <li><a href="input/input_defaultmask.html">mask基本用法</a></li>
+        <li><a href="input/input_defaultmasksetting.html">配置mask</a></li>
+        <li><a href="input/input_customermask.html">自定义mask</a></li>
+    </ul>
+</li>
+<li>
+    <a href="#" class="componentTitle">Listbox组件</a>
+    <ul class="listboxdemo">
+        <li><a href="listbox/listbox_default.html">基本用法</a></li>
+        <li><a href="listbox/listbox_setdatasource.html">数据源设置</a></li>
+        <li><a href="listbox/listbox_single.html">单选</a></li>
+        <li><a href="listbox/listbox_multi.html">多选</a></li>
+        <li><a href="listbox/event/on_add.html">on_add事件</a></li>
+        <li><a href="listbox/event/on_remove.html">on_remove事件</a></li>
+        <li><a href="listbox/event/on_dbclick.html">on_dbclick事件</a></li>
+        <li><a href="listbox/event/on_select_change.html">on_select_change事件</a></li>
+        <li><a href="listbox/listbox_api.html">API调用</a></li>
+    </ul>
+</li>
+<li>
+    <a href="#" class="componentTitle">MultiNav组件</a>
+    <ul class="multinav">
+        <li><a href="multinav/multinav_list.html">列表结构</a></li>
+        <li><a href="multinav/multinav_tree.html">Tree结构</a></li>
+        <li><a href="multinav/multinav_unfold.html">Tree结构默认选择</a></li>
+        <li><a href="multinav/multinav_method.html">Tree结构方法调用</a></li>
+    </ul>
+</li>
+<li>
+    <a href="#" class="componentTitle">Menu组件</a>
+    <ul class="menu">
+        <li><a href="menu/menu_default.html">基本用法</a></li>
+        <li><a href="menu/menu_api.html">API调用</a></li>
+        <li><a href="menu/menu_url.html">一个url调转的例子</a></li>
+    </ul>
+</li>
+
+<li>
+    <a href="#" class="componentTitle">Msgbox组件</a>
+    <ul class="msgbox">
+        <li><a href="msgbox/msgbox_default.html">基本使用</a></li>
+        <li><a href="msgbox/msgbox_position.html">自定义弹出位置</a></li>
+    </ul>
+</li>
+<li>
+    <a href="#" class="componentTitle">PullDown组件</a>
+    <ul class="PullDown">
+        <li><a href="pulldown/pulldown_single.html">单选</a></li>
+        <li><a href="pulldown/pulldown_multi.html">多选</a></li>
+        <li><a href="pulldown/pulldown_ajax.html">动态/异步数据</a></li>
+        <li><a href="pulldown/pulldown_filter.html">过滤</a></li>
+        <li><a href="pulldown/pulldown_contact.html">联动</a></li>
+    </ul>
+</li>
+
+<li>
+    <a href="#" class="componentTitle">Panel组件</a>
+    <ul class="panel">
+        <li><a href="panel/panel_default.html">基本设置</a></li>
+        <li><a href="panel/panel_iframe.html">内容为iframe</a></li>
+        <li><a href="panel/panel_html.html">内容为HTML</a></li>
+        <li><a href="panel/panel_height.html">设置高度</a></li>
+        <li><a href="panel/panel_fillHeight.html">适应父容器高度</a></li>
+        <li><a href="panel/panel_fullscreen.html">满屏</a></li>
+        <li><a href="panel/panel_withtab.html">panel内放tab页</a></li>
+        <li><a href="panel/panel_withborderlayout.html">panel内使用border layout</a></li>
+        <li><a href="panel/panel_nopadding.html">自定义panel的padding</a></li>
+        <li><a href="panel/panel_boldtitle.html">panel的标题加粗</a></li>
+        <li><a href="panel/panel_withcustomicon.html">给panel自定义一个图标</a></li>
+    </ul>
+</li>
+<li>
+    <a href="#" class="componentTitle">Pagination</a>
+    <ul class="page">
+        <li><a href="pagination/pagination_default.html">基本用法</a></li>
+        <li><a href="pagination/pagination_mode.html">分页样式集合</a></li>
+    </ul>
+</li>
+<li>
+    <a href="#" class="componentTitle">RadioGroup组件</a>
+    <ul class="radiogroup">
+        <li><a href="radio/radio_default.html">默认设置</a></li>
+        <li><a href="radio/radio_ajax.html">后台数据（模拟）</a></li>
+        <li><a href="radio/radio_readonly.html">只读属性</a></li>
+        <li><a href="radio/radio_method.html">常用方法调用</a></li>
+    </ul>
+</li>
+<li>
+    <a href="#" class="componentTitle">Scan</a>
+    <ul class="scan">
+        <li><a href="scan/scan_default.html">基本使用</a></li>
+        <li><a href="scan/scan_area.html">区域扫描</a></li>
+        <li><a href="scan/scan_readonly.html">readonly模式</a></li>
+        <li><a href="scan/scan_textmode.html">文本模式</a></li>
+    </ul>
+</li>
+<li>
+    <a href="#" class="componentTitle">Tree组件</a>
+    <ul class="tree">
+        <li><a href="tree/basicTree.html">默认设置</a></li>
+        <li><a href="tree/tree_radio.html">带Radio</a></li>
+        <li><a href="tree/tree_checkbox.html">带Checkbox</a></li>
+        <li><a href="tree/select_mode2.html">单选</a></li>
+        <li><a href="tree/select_mode3.html">多选</a></li>
+        <li><a href="tree/select_mode4.html">多选级联</a></li>
+        <li><a href="tree/select_mode5.html">多选级联，单向</a></li>
+        <li><a href="tree/deactivateNode.html">取消激活状态</a></li>
+        <li><a href="tree/tree_dyntData.html">动态加载数据</a></li>
+        <li><a href="tree/tree_lazyload.html">动态添加节点</a></li>
+        <li><a href="tree/click_folder_mode3.html">点击时节点只展开</a></li>
+        <li><a href="tree/click_folder_mode4.html">点击时节点激活并展开</a></li>
+        <li><a href="tree/min_expand_level3.html">展开到第二层</a></li>
+        <li><a href="tree/tree_move.html">节点移动</a></li>
+        <li><a href="tree/tree_customicon.html">自定义节点图标</a></li>
+        <li><a href="tree/tree_disable.html">禁用/恢复节点</a></li>
+        <li><a href="tree/tree_expandtonode.html">展开到指定节点</a></li>
+        <li><a href="tree/event/on_click.html">click事件</a></li>
+        <li><a href="tree/event/on_activate.html">activate事件</a></li>
+        <li><a href="tree/event/on_dbl_click.html">dbl_click事件</a></li>
+        <li><a href="tree/event/on_expand.html">expand事件</a></li>
+        <li><a href="tree/event/on_select.html">select事件</a></li>
+        <li><a href="tree/event/on_post_init.html">on_post_init</a></li>
+    </ul>
+</li>
+<li>
+    <a href="#" class="componentTitle">Tab组件</a>
+    <ul class="tab">
+        <li><a href="tab/tab_default.html">默认设置</a></li>
+        <li><a href="tab/tab_dom.html">Tab页内容为html</a></li>
+        <li><a href="tab/tab_iframe.html">Tab页内容为Iframe</a></li>
+        <li><a href="tab/tab_height.html">设置Tab高度</a></li>
+        <li><a href="tab/tab_fillHeight.html">自适应外部容器高度</a></li>
+        <li><a href="tab/tab_fullscreen.html">满屏</a></li>
+        <li><a href="tab/tab_withpanel.html">tab里边放panel</a></li>
+        <li><a href="tab/tab_withborderlayout.html">tab里边放borderlayout</a></li>
+        <li><a href="tab/tab_noborder.html">去掉tab的border</a></li>
+
+    </ul>
+</li>
+
+
+<li><a href="#" class="componentTitle">Tip组件</a>
+    <ul class="tip">
+        <li><a href="tip/tip.html">基本用法</a></li>
+    </ul>
+</li>
+
+<li>
+    <a href="#" class="componentTitle">Textarea组件</a>
+    <ul class="textarea">
+        <li><a href="textarea/textarea_api.html">基本用法</a></li>
+        <li><a href="textarea/textarea_attr.html">设置属性</a></li>
+        <li><a href="textarea/textarea_evt.html">设置事件</a></li>
+    </ul>
+</li>
+
+
+<li>
+    <a href="#" class="componentTitle">Validate</a>
+    <ul class="validate">
+        <li><a href="validate/validate_enable.html">取消/恢复组件校验</a></li>
+        <li><a href="validate/validate_dyna.html">动态添加校验</a></li>
+        <li><a href="validate/validate_area.html">区域验证</a></li>
+        <li><a href="validate/validate_customer.html">自定义验证</a></li>
+    </ul>
+</li>
+</ul>
+
+
+</div>
+
+
+<div position="center" class="layoutCenter" is_header="true" header_content='<div id="center_header"></div>'>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<script type="text/javascript">
+    var codeTitle = "<span class='codeTitle'>代码</span>";
+
+    var param = (function getQueryString() {
+        var result = {}, queryString = location.search.substring(1),
+                re = /([^&=]+)=([^&]*)/g, m;
+        while (m = re.exec(queryString)) {
+            result[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+        }
+        return result;
+    })();
+
+    function setDemoPanelSize(width, height) {
+
+    }
+
+    function setFullscreen() {
+
+    }
+
+
+    function generateCode(value) {
+        var reg = /<script[^>]*id="do_not_show"[^>]*>(\s|\r|\t|\n|.)*?<\/script>/g;
+        $("#textarea_wrap").html('<textarea  id="textareaCode"></textarea>');
+        var textarea = $("#textareaCode").val(value.replace(reg, "").replace(/utf-8/i, "GBK"));
+        var mixedMode = {
+            name: "htmlmixed",
+            scriptTypes: [
+                {matches: /\/x-handlebars-template|\/x-mustache/i,
+                    mode: null},
+                {matches: /(text|application)\/(x-)?vb(a|script)/i,
+                    mode: "vbscript"}
+            ]
+        };
+
+        if (textarea.size() && !comtop.Browser.isIE6) {
+            CodeMirror.fromTextArea(textarea.get(0), {
+                lineNumbers: true,
+                readOnly: true,
+                viewportMargin: Infinity,
+                theme: "eclipse",
+                mode: mixedMode
+            });
+            var codeMirrorSize = $(".CodeMirror-sizer").width();
+            $(".CodeMirror").width(codeMirrorSize);
+            $(".CodeMirror-hscrollbar").hide();
+        }
+        cui.handleMask.hide();
+    }
+
+    function openInNewWindow() {
+        var url = cui("#centerPanel").get("url");
+        window.open(url);
+    }
+    function getCode(href) {
+        href = href.replace("linkandscript_default.html", "linkandscript_default.html.txt");
+        $.get(href, function (text) {
+            text = text.replace(/(<title>.*?<\/title>)/g, "$1\n\t<!--请将cui引入路径替换为您的实际路径-->");
+            generateCode(text);
+        });
+    }
+    $(function () {
+
+        comtop.UI.scan();
+        comtop.UI.scan(document.getElementById("search_header"));
+
+        var aTag = $(".componentTitle");
+        $(".click_input_box", $("#search_header")).css("margin-right", "").after('<a id="expand" href="#" class="expand collapse-all" title="收起全部"></a>');
+        $("#search_header").parent().css("line-height", "");
+        $("#expand").toggle(function () {
+            $(this).addClass("expand-all").attr("title", "展开全部");
+            aTag.addClass("componentTitleiconadd").siblings("ul").hide();
+        }, function () {
+            $(this).removeClass("expand-all").attr("title", "收起全部");
+            aTag.removeClass("componentTitleiconadd").siblings("ul").show();
+        });
+        /*        $(window).on("resize",function(){
+         var h=  $("#js_layoutLeft").height();
+         cui("#layoutLeftPanel").resize(h);
+         });*/
+        cui("#mainlayout").setContentURL("center", "form/form_edit.html");
+        // $('.layoutLeft').jScrollPane();
+        //  cui("#centerPanel").addIcon({className:"new_window",title:"在新窗口中打开",callback:openInNewWindow});
+        if (param.type) {
+            var ul = $("#menu").find("ul." + param.type);
+            if (ul.size()) {
+                var a = ul.find("li:first").find("a").addClass("on"),
+                        url = a.attr("href"),
+                        top = ul.get(0).offsetTop;
+                cui("#mainlayout").setContentURL("center", url);
+                setCenterTitle(a.html());
+                $("#menu").parent().parent().scrollTop(top - 60);
+            }
+        }
+
+        aTag.click(function () {
+            if ($(this).hasClass("componentTitleiconadd")) {
+                $(this).removeClass("componentTitleiconadd").siblings("ul").show(200);
+            }
+            else {
+                $(this).addClass("componentTitleiconadd").siblings("ul").hide(200);
+            }
+        });
+        $("#menu").on("click", function (e) {
+            var el = e.target;
+            if (el.nodeName == "A") {
+                var href = $(el).attr("href");
+                if (href == "#" || href == "") {
+                    return false;
+                }
+                $("#textarea_wrap").hide();
+                $(".bl_iframe_page").show();
+                cui("#mainlayout").setContentURL("center", href);
+                /* var html="<span class='codeTitle'>" + $(el).html() + "</span><a onclick='viewSource(this);' flag='1' class='view_source_button' href='#'>查看源代码</a>";
+
+                 $("#center_header").html(html);  */
+                setCenterTitle($(el).html());
+                $("a", $("#menu")).removeClass("on");
+                $(el).addClass("on");
+                return false;
+
+            }
+
+        });
+
+        $("#donotcare").on("click", function () {
+            $(".ie6tip").slideUp(500);
+        });
+        indexData();
+    });
+    var jsonData = null;
+    function indexData() {
+        var a = $("a.componentTitle");
+        var data = [];
+        a.each(function () {
+            var $that = $(this);
+            data.push({title: $that.html().toLowerCase(), clazz: $that.siblings("ul").attr("class"), index: $that.parent().index()});
+        });
+        jsonData = data;
+    }
+    function setCenterTitle(title) {
+        var html = "<span class='codeTitle'>" + title + "</span>";
+
+        $("#center_header").html(html);
+    }
+    function searchDemo(event, self) {
+        var value = self.getValue(),
+                li = $("#menu").children("li");
+
+        for (var i = 0, len = jsonData.length; i < len; i++) {
+            if (jsonData[i].title.indexOf(value.toLowerCase()) == -1) {
+                li.eq(jsonData[i].index).hide();
+            } else {
+                li.eq(jsonData[i].index).show();
+            }
+        }
+
+
+        //  $("#listitemdiv").removeClass("display_none").html(ul.join(""));
+    }
+</script>
+</body>
+</html>

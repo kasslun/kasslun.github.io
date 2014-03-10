@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>CUI组件Grid示例</title>
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <style type="text/css">
+        body{margin:10px; background: #fff;}
+        h2{margin:0; font-size: 12px; height:20px; overflow: hidden;}
+        a{color:#003399;}
+        a:hover{color:red;}
+        .click{cursor: pointer;}
+    </style>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+    <!--Demo数据js-->
+    <script type="text/javascript" src="data.js"></script>
+</head>
+<body>
+<h2>功能：分页，宽高resize，内容换行，固定表头，初始隐藏列("年龄"列隐藏)，单选，调整列宽，图片渲染，按钮渲染，列拖曳，删除行……</h2>
+<div>
+    <table id="grid1">
+        <thead>
+        <tr>
+            <th rowspan="3">&nbsp;</th>
+            <th rowspan="3" renderStyle="text-align: center" bindName="1">#</th>
+            <th renderStyle="text-align: center;" bindName="info.name" render="a" options="{'url':'#'}">姓名</th>
+            <th renderStyle="text-align: center" bindName="info.class">班级</th>
+            <th renderStyle="text-align: center" bindName="info.age" hide="true">年龄</th>
+            <th renderStyle="text-align: center;" bindName="time" format="yyyy年MM月dd日">考试时间</th>
+            <th renderStyle="text-align: center" bindName="chinese" sort="true">语文</th>
+            <th renderStyle="text-align: center" bindName="english" sort="true">英语</th>
+            <th renderStyle="text-align: center" bindName="politics" sort="true">政治</th>
+            <th renderStyle="text-align: center" bindName="history" sort="true">历史</th>
+            <th renderStyle="text-align: center" bindName="geography" sort="true">地理</th>
+            <th renderStyle="text-align: center" bindName="math" sort="true">数学</th>
+            <th renderStyle="text-align: center" bindName="physics" sort="true">物理</th>
+            <th renderStyle="text-align: center" bindName="organisms" sort="true">生物</th>
+            <th renderStyle="text-align: center" bindName="chemistry" sort="true">化学</th>
+            <th renderStyle="text-align: center" bindName="money" format="money">考试费用</th>
+            <th renderStyle="text-align: center" bindName="pass" render="image" options="imgoptions">是否毕业</th>
+            <th renderStyle="text-align: center" render="button" options="buttonoptions">删除记录</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+<script type="text/javascript">
+    function sort (bindName, sortType) {
+        data.sort(function (a, b) {
+            if (sortType === "ASC") {
+                return a[bindName] - b[bindName];
+            }
+            return b[bindName] - a[bindName];
+        })
+    }
+    function initData (grid_obj, query) {
+        var sortName = query.sortName,
+                sortType = query.sortType;
+        if (sortName[0]) {
+            sort(sortName[0], sortType[0]);
+        }
+        grid_obj.setDatasource(data.slice((query.pageNo - 1) * query.pageSize, query.pageNo * query.pageSize), 150);
+    }
+    function getBodyWidth () {
+        return (document.documentElement.clientWidth || document.body.clientWidth) - 20;
+    }
+    function getBodyHeight () {
+        return (document.documentElement.clientHeight || document.body.clientHeight) - 45;
+    }
+    function goodAndBad (rowData, bindName) {
+        var value = rowData[bindName];
+        if (bindName !== "age" && bindName !== "pass" && typeof value === "number") {
+            if (value === 0) {
+                return "background:#e5bbff;";
+            }
+        }
+    }
+    function changeData (a) {
+        a.pass = a.pass === 1 ? 0 : 1;
+        cui("#grid1").changeData(a);
+    }
+    function removeData (a, b) {
+        cui("#grid1").removeData([b]);
+    }
+    var imgoptions = {
+        'compare' : {'1':'yes.gif', '0' : 'no.gif'},
+        'title' : {'1':'设为未毕业', '0' : '设为已毕业'},
+        'click' : 'changeData',
+        'className' : 'click'
+    };
+    var buttonoptions = {'value' : '删除', 'click' : removeData}
+
+    cui("#grid1").grid({
+        datasource : initData,
+        gridheight: "800px",
+        tablewidth : "2500px",
+        selectrows : "single",
+        ellipsis : false,
+        titleellipsis : false,
+        colmove: true,
+        pagesize_list : [50, 100, 150],
+        pagesize : 100,
+        resizewidth : getBodyWidth,
+        resizeheight : getBodyHeight,
+        colstylerender:goodAndBad,
+        oddevenrow : true
+    });
+</script>
+</body>
+</html>

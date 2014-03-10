@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>calender使用例子</title>
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+  <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="GBK"></script>
+
+    <style type="text/css">
+        .table{border:1px solid #ccc;border-width:1px 0 0 1px; width:100%;}
+        .table td{padding:2px;border: 1px solid #ccc;border-width: 0 1px 1px 0;background: #fff;}
+        .table .label{text-align: right;background: #1d67a6;color: #fff;width:42px;}
+        .strong{color:red;}
+    </style>
+</head>
+<body >
+<h4>常用的六种功能模式</h4>
+<p>1、创建date模式日期组件（默认）</p>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td class="label" >例：</td>
+        <td><span id="calender" name="23232" uitype="Calender"></span></td>
+    </tr>
+</table>
+
+<p>2、创建year模式日期组件</p>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td class="label" >例：</td>
+        <td><span id="calender1" uitype="Calender" model="year"></span></td>
+    </tr>
+</table>
+
+<p>3、创建quarter模式日期组件</p>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td class="label" >例：</td>
+        <td><span id="calender2" uitype="Calender" model="quarter"></span></td>
+    </tr>
+</table>
+
+<p>4、创建month模式日期组件</p>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td class="label" >例：</td>
+        <td><span id="calender3" uitype="Calender" model="month"></span></td>
+    </tr>
+</table>
+
+<p>5、创建week模式日期组件</p>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td class="label" >例：</td>
+        <td><span id="calender4" uitype="Calender" model="week"></span></td>
+    </tr>
+</table>
+
+<p>5、创建all模式日期组件（是以上五种模式的组合）</p>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td class="label" >例：</td>
+        <td><span id="calender5" uitype="Calender" model="all"></span></td>
+    </tr>
+</table>
+
+<p>6、创建date模式日期组件（带时分秒选择），设置format，只要 format带有'h/m/s'三个任意一个，则可启用时分秒选择</p>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td class="label" >例：</td>
+        <td><span id="calender25" uitype="Calender" format="yyyy-MM-dd hh:mm"></span></td>
+    </tr>
+</table>
+
+<script type="text/javascript">
+    comtop.UI.scan();
+</script>
+</body>
+</html>

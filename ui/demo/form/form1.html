@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=GBK" />
+    <title>常规表单例子演示</title>
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+
+
+    <link type="text/css" rel="stylesheet" href="../../api/doc/doc_css/shCore.css"/>
+    <link type="text/css" rel="stylesheet" href="../../api/doc/doc_css/shThemeDefault.css"/>
+    <link rel="stylesheet" href="../../api/doc/doc_css/doc.css" type="text/css"/>
+
+
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js"></script>
+    <script type="text/javascript" src="../../api/doc/doc_js/shCore.js"></script>
+    <script type="text/javascript" src="../../api/doc/doc_js/shBrushJScript.js"></script>
+    <script type="text/javascript" src="../../api/doc/doc_js/shBrushXml.js"></script>
+    <script type="text/javascript" src="../../api/doc/doc_js/doc.js"></script>
+
+    <style type="text/css">
+        body,div,span,dl,dt,dd{padding:0;margin:0;font-size: 12px;}
+        .formWrap{padding:15px;}
+        .formItem{*zoom: 1;}
+        .formItem:before,
+        .formItem:after{display: table;line-height: 0;content: "";}
+        .formItem:after{clear: both;}
+        .formItem dt, .formItem dd{display: inline-block;_display:inline;_zoom:1;}
+        .formItem dt{width:100px;height:25px;text-align:right;}
+        .formItem dd{}
+    </style>
+</head>
+<body style="padding:10px;">
+<h4>常规表单例子演示：</h4>
+<div class="formWrap">
+    <dl class="formItem">
+        <dt>姓名：</dt>
+        <dd>
+            <span id="userName" uitype="Input" name="userName" databind="formData.userName" validate="姓名不能为空"></span>
+        </dd>
+    </dl>
+    <dl class="formItem">
+        <dt>性别：</dt>
+        <dd>
+            <div id="userSex" uitype="RadioGroup" name="userSex" databind="formData.userSex" validate="姓名不能为空">
+                <input type="radio" name="userSex" value="0"/>男
+                <input type="radio" name="userSex" value="1"/>女
+            </div>
+        </dd>
+    </dl>
+    <dl class="formItem">
+        <dt>职业：</dt>
+        <dd>
+        <span id="userJob" uitype="SinglePullDown" name="userJob" value_field="id" label_field="label"
+              datasource="initJobData" databind="formData.userJob" validate="职业不能为空"></span>
+        </dd>
+    </dl>
+    <dl class="formItem">
+        <dt>出生年月日：</dt>
+        <dd>
+        <span id="userBirth" uitype="Calender" name="userBirth" maxdate="+0d" emptytext="填写您的出生年月日"
+              databind="formData.userBirth" validate="出生年月日不能为空"></span>
+        </dd>
+    </dl>
+    <dl class="formItem">
+        <dt>兴趣：</dt>
+        <dd>
+            <div id="userInterest" uitype="CheckboxGroup" name="userInterest"
+                 databind="formData.userInterest" validate="interestValid">
+                <input type="checkbox" name="userInterest" value="0"/> 足球
+                <input type="checkbox" name="userInterest" value="1"/> 篮球
+                <input type="checkbox" name="userInterest" value="2"/> 兵乓球
+                <input type="checkbox" name="userInterest" value="3"/> 羽毛球
+            </div>
+        </dd>
+    </dl>
+    <dl class="formItem">
+        <dt>自我评价：</dt>
+        <dd>
+        <span id="userMark" uitype="Textarea" name="userMark" width="200"
+              databind="formData.userMark" validate="评价不能为空" emptytext="填写自我评价"></span>
+        </dd>
+    </dl>
+    <dl class="formItem">
+        <dt></dt>
+        <dd>
+            <span id="btnSubmit" uitype="Button" label="提交表单" on_click="submitForm"></span>
+            <span id="btnReset" uitype="Button" label="清空表单" on_click="resetForm"></span>
+        </dd>
+    </dl>
+</div>
+<h5>一、表单HTML代码</h5>
+<pre class="brush:xml;">
+&lt;div class="formWrap"&gt;
+    &lt;dl class="formItem"&gt;
+        &lt;dt&gt;姓名：&lt;/dt&gt;
+        &lt;dd&gt;
+            &lt;span id="userName" uitype="Input" name="userName" databind="formData.userName" validate="姓名不能为空"&gt;&lt;/span&gt;
+        &lt;/dd&gt;
+    &lt;/dl&gt;
+    &lt;dl class="formItem"&gt;
+        &lt;dt&gt;性别：&lt;/dt&gt;
+        &lt;dd&gt;
+            &lt;div id="userSex" uitype="RadioGroup" name="userSex" databind="formData.userSex" validate="姓名不能为空"&gt;
+                &lt;input type="radio" name="userSex" value="0"/&gt;男
+                &lt;input type="radio" name="userSex" value="1"/&gt;女
+            &lt;/div&gt;
+        &lt;/dd&gt;
+    &lt;/dl&gt;
+    &lt;dl class="formItem"&gt;
+        &lt;dt&gt;职业：&lt;/dt&gt;
+        &lt;dd&gt;
+        &lt;span id="userJob" uitype="SinglePullDown" name="userJob" value_field="id" label_field="label"
+              datasource="initJobData" databind="formData.userJob" validate="职业不能为空"&gt;&lt;/span&gt;
+        &lt;/dd&gt;
+    &lt;/dl&gt;
+    &lt;dl class="formItem"&gt;
+        &lt;dt&gt;出生年月日：&lt;/dt&gt;
+        &lt;dd&gt;
+        &lt;span id="userBirth" uitype="Calender" name="userBirth" maxdate="+0d" emptytext="填写您的出生年月日"
+              databind="formData.userBirth" validate="出生年月日不能为空"&gt;&lt;/span&gt;
+        &lt;/dd&gt;
+    &lt;/dl&gt;
+    &lt;dl class="formItem"&gt;
+        &lt;dt&gt;兴趣：&lt;/dt&gt;
+        &lt;dd&gt;
+            &lt;div id="userInterest" uitype="CheckboxGroup" name="userInterest"
+                 databind="formData.userInterest" validate="interestValid"&gt;
+                &lt;input type="checkbox" name="userInterest" value="0"/&gt; 足球
+                &lt;input type="checkbox" name="userInterest" value="1"/&gt; 篮球
+                &lt;input type="checkbox" name="userInterest" value="2"/&gt; 兵乓球
+                &lt;input type="checkbox" name="userInterest" value="3"/&gt; 羽毛球
+            &lt;/div&gt;
+        &lt;/dd&gt;
+    &lt;/dl&gt;
+    &lt;dl class="formItem"&gt;
+        &lt;dt&gt;自我评价：&lt;/dt&gt;
+        &lt;dd&gt;
+        &lt;span id="userMark" uitype="Textarea" name="userMark" width="200"
+              databind="formData.userMark" validate="评价不能为空" emptytext="填写自我评价"&gt;&lt;/span&gt;
+        &lt;/dd&gt;
+    &lt;/dl&gt;
+    &lt;dl class="formItem"&gt;
+        &lt;dt&gt;&lt;/dt&gt;
+        &lt;dd&gt;
+            &lt;span id="btnSubmit" uitype="Button" label="提交表单" on_click="submitForm"&gt;&lt;/span&gt;
+            &lt;span id="btnReset" uitype="Button" label="清空表单" on_click="resetForm"&gt;&lt;/span&gt;
+        &lt;/dd&gt;
+    &lt;/dl&gt;
+&lt;/div>
+</pre>
+<h5>二、JS代码</h5>
+<pre class="brush:js;">
+    //声明一个空表单数据对像
+    var formData = {};
+    //“兴趣”检测规则
+    var interestValid = [{
+        type: 'custom',
+        rule: {
+            against: 'checkInterest',
+            m: '至少要选择一项'
+        }
+    }];
+    //扫描创建UI组件
+    comtop.UI.scan();
+
+
+    /**
+     * 兴趣的自定义检测方法
+     * @param value {Array | Null} 组件的value值
+     * @returns {boolean} 检测通过返回true,检测错误返回false
+     */
+    function checkInterest(value){
+        if(value == null || value == ''){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    /**
+     * 职位pulldown数据初始化
+     * @param obj {Object} pulldown实例对象
+     */
+    function initJobData(obj){
+        var data;
+        //TODO 通过dwr或者ajax获取数据，然后执行数据初始化
+        //模拟数据
+        data = [
+            {id:'job1',label:'人民老师'},
+            {id:'job2',label:'会计员'},
+            {id:'job3',label:'建造师'},
+            {id:'job4',label:'专家'}
+        ];
+        obj.setDatasource(data);
+    }
+
+    /**
+     * 提交表单
+     */
+    function submitForm(){
+        //检测表单，并把结果赋给validMap
+        var validMap = window.validater.validAllElement();
+        //判断检测结果
+        if(validMap[2]){
+            alert('检测通过');
+            //检测通过后，获取表单数据保存到data当中
+            var data = cui(formData).databind().getValue();
+            console.log(data);
+            //TODO 提交数据到后端处理，这里省略不写
+        }else{
+            alert('检测不通过');
+        }
+    }
+
+    /**
+     * 清空表单
+     */
+    function resetForm(){
+        cui(formData).databind().setEmpty();
+    }
+</pre>
+
+<script type="text/javascript">
+    //声明一个空表单数据对像
+    var formData = {};
+    //“兴趣”检测规则
+    var interestValid = [{
+        type: 'custom',
+        rule: {
+            against: 'checkInterest',
+            m: '至少要选择一项'
+        }
+    }];
+    //扫描创建UI组件
+    comtop.UI.scan();
+
+
+    /**
+     * 兴趣的自定义检测方法
+     * @param value {Array | Null} 组件的value值
+     * @returns {boolean} 检测通过返回true,检测错误返回false
+     */
+    function checkInterest(value){
+        if(value == null || value == ''){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    /**
+     * 职位pulldown数据初始化
+     * @param obj {Object} pulldown实例对象
+     */
+    function initJobData(obj){
+        var data;
+        //TODO 通过dwr或者ajax获取数据，然后执行数据初始化
+        //模拟数据
+        data = [
+            {id:'job1',label:'人民老师'},
+            {id:'job2',label:'会计员'},
+            {id:'job3',label:'建造师'},
+            {id:'job4',label:'专家'}
+        ];
+        obj.setDatasource(data);
+    }
+
+    /**
+     * 提交表单
+     */
+    function submitForm(){
+        //检测表单，并把结果赋给validMap
+        var validMap = window.validater.validAllElement();
+        //判断检测结果
+        if(validMap[2]){
+            alert('检测通过');
+            //检测通过后，获取表单数据保存到data当中
+            var data = cui(formData).databind().getValue();
+            console.log(data);
+            //TODO 提交数据到后端处理，这里省略不写
+        }else{
+            alert('检测不通过');
+        }
+    }
+
+    /**
+     * 清空表单
+     */
+    function resetForm(){
+        cui(formData).databind().setEmpty();
+    }
+/* window.onload=function(){
+     var fEl = window.frameElement;
+     if(fEl){
+         var h=document.documentElement.scrollHeight;//comtop.cQuery(document).height();//
+          //          console.log(h);
+         fEl.style.height=h+"px";
+     }
+ }*/
+</script>
+</body>
+</html>

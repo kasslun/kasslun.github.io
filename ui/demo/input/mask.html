@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=gbk"/>
+    <title>UI Input maskoptions 自定义匹配更多例子</title>
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+
+
+    <link type="text/css" rel="stylesheet" href="../../api/doc/doc_css/shCore.css"/>
+    <link type="text/css" rel="stylesheet" href="../../api/doc/doc_css/shThemeDefault.css"/>
+    <link rel="stylesheet" href="../../api/doc/doc_css/doc.css" type="text/css"/>
+
+
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+    <script type="text/javascript" src="../../api/doc/doc_js/shCore.js"></script>
+    <script type="text/javascript" src="../../api/doc/doc_js/shBrushJScript.js"></script>
+    <script type="text/javascript" src="../../api/doc/doc_js/shBrushXml.js"></script>
+    <script type="text/javascript" src="../../api/doc/doc_js/doc.js"></script>
+
+    <style type="text/css">
+        .table{border:1px solid #ccc;border-width:1px 0 0 1px;}
+        .table td{padding:2px;border: 1px solid #ccc;border-width: 0 1px 1px 0;background: #fff;}
+        .table .label{text-align: right;background: #1d67a6;color: #fff;}
+        .strong{color:red;}
+    </style>
+</head>
+<body style="padding:10px 20px;">
+<h4>一、Mask系统默认模板使用</h4>
+<p>1、mask="Int"，整数模板</p>
+<pre class="brush: xml;">
+    &lt;span id="input" uitype="Input" mask="Int" &gt;&lt;/span&gt;
+</pre>
+<table class="table" border="0" cellpadding="0" cellspacing="0" style="width:100%;">
+    <tr>
+        <td class="label" style="width:42px;">例：</td>
+        <td><span id="input" uitype="Input" mask="Int"></span></td>
+    </tr>
+</table>
+
+<p>2、mask="Dec"，小数模板</p>
+<pre class="brush: xml;">
+    &lt;span id="input1" uitype="Input" mask="Dec" &gt;&lt;/span&gt;
+</pre>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0" style="width:100%;">
+    <tr>
+        <td class="label" style="width:42px;">例：</td>
+        <td><span id="input1" uitype="Input" mask="Dec"></span></td>
+    </tr>
+</table>
+
+<p>3、mask="Num"，数字模板</p>
+<pre class="brush: xml;">
+    &lt;span id="input2" uitype="Input" mask="Num" &gt;&lt;/span&gt;
+</pre>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0" style="width:100%;">
+    <tr>
+        <td class="label" style="width:42px;">例：</td>
+        <td><span id="input2" uitype="Input" mask="Num"></span></td>
+    </tr>
+</table>
+
+<p>4、mask="Money"，金额模板</p>
+<pre class="brush: xml;">
+    &lt;span id="input3" uitype="Input" mask="Money" &gt;&lt;/span&gt;
+</pre>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0" style="width:100%;">
+    <tr>
+        <td class="label" style="width:42px;">例：</td>
+        <td><span id="input3" uitype="Input" mask="Money"></span></td>
+    </tr>
+</table>
+
+<h4>二、配置Mask系统默认模板</h4>
+<p>1、mask="Dec"，小数保留2位，不使用分隔符</p>
+<pre class="brush: xml;">
+    &lt;span id="input4" uitype="Input" mask="Dec" maskoptions="{'precision':2, 'separator':''}" &gt;&lt;/span&gt;
+</pre>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0" style="width:100%;">
+    <tr>
+        <td class="label" style="width:42px;">例：</td>
+        <td><span id="input4" uitype="Input" mask="Dec" maskoptions="{'precision':2, 'separator':''}"></span></td>
+    </tr>
+</table>
+<p>2、mask="Money"，要以"￥"为前缀</p>
+<pre class="brush: xml;">
+    &lt;span id="input5" uitype="Input" mask="Dec" maskoptions="{'prefix':'￥'}" &gt;&lt;/span&gt;
+</pre>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0" style="width:100%;">
+    <tr>
+        <td class="label" style="width:42px;">例：</td>
+        <td><span id="input5" uitype="Input" mask="Money" maskoptions="{'prefix':'￥'}"></span></td>
+    </tr>
+</table>
+
+<h4>二、自定义模板</h4>
+<p>1、mask="Custom"，自定义手机模板输入</p>
+<pre class="brush: xml;">
+    &lt;span id="input6" uitype="Input" mask="Custom" maskoptions="{'model':'19999999999', 'placeholder':'_'}" &gt;&lt;/span&gt;
+</pre>
+
+<table class="table" border="0" cellpadding="0" cellspacing="0" style="width:100%;">
+    <tr>
+        <td class="label" style="width:42px;">例：</td>
+        <td><span id="input6" uitype="Input" mask="Custom" maskoptions="{'model':'19999999999', 'placeholder':'_'}"></span></td>
+    </tr>
+</table>
+<p>2、mask="Custom"，自定义通配符，#代表1至9，不包含0</p>
+<pre class="brush:js;">
+    //定义通配符
+    comtop.UI.InputMask.definitions['#'] = '[1-9]';
+</pre>
+<pre class="brush: xml;">
+    &lt;span id="input7" uitype="Input" mask="Custom" maskoptions="{'model':'#9%', 'placeholder':'_'}" &gt;&lt;/span&gt;
+</pre>
+<table class="table" border="0" cellpadding="0" cellspacing="0" style="width:100%;">
+    <tr>
+        <td class="label" style="width:42px;">例：</td>
+        <td><span id="input7" uitype="Input" mask="Custom" maskoptions="{'model':'#9%', 'placeholder':'_'}"></span></td>
+    </tr>
+</table>
+<script type="text/javascript">
+    comtop.UI.InputMask.definitions['#'] = '[1-9]';
+</script>
+
+<script type="text/javascript">
+    comtop.UI.scan();
+</script>
+</body>
+</html>
+
+<!--
+<!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="GBK">
+                <title>UI Input maskoptions 自定义匹配更多例子</title>
+
+    <link rel="stylesheet" type="text/css" href="../../cui/themes/default/css/comtop.ui.min.css" media="all" />
+    <script type="text/javascript" src="../../cui/js/comtop.ui.base.js" charset="gbk"></script>
+    <script type="text/javascript" src="../../cui/js/comtop.ui.maskedinput.js" charset="gbk"></script>
+    <script type="text/javascript" src="../../cui/js/comtop.ui.input.js" charset="gbk"></script>
+    <script type="text/javascript" src="../../cui/js/comtop.ui.scan.js" charset="gbk"></script>
+                <style type="text/css">
+                    .table_edit_bg {
+                        background-color: #a3a3a3
+                    }
+
+                    .table_edit_bg td{
+                        font-size: 9pt;
+                    }
+
+                    .td_title {
+                        FONT-SIZE: 9pt;
+                        BORDER-LEFT-COLOR: #b0c4de;
+                        BORDER-BOTTOM-COLOR: #b0c4de;
+                        BORDER-TOP-COLOR: #b0c4de;
+                        LINE-HEIGHT: 1.6;
+                        FONT-FAMILY: Verdana;
+                        BORDER-COLLAPSE: separate;
+                        BACKGROUND-COLOR:#cad4ee;
+                        BORDER-RIGHT-COLOR: #b0c4de;
+                        EMPTY-CELLS: show
+                    }
+                    .td_content {
+                        FONT-SIZE: 9pt;
+                        BORDER-LEFT-COLOR: #b0c4de;
+                        BORDER-BOTTOM-COLOR: #b0c4de;
+                        COLOR: #000000;
+                        WORD-BREAK: break-all;
+                        BORDER-TOP-COLOR: #b0c4de;
+                        LINE-HEIGHT: 1.6;
+                        FONT-FAMILY: Verdana;
+                        BORDER-COLLAPSE: separate;
+                        BACKGROUND-COLOR: #edecec;
+                        BORDER-RIGHT-COLOR: #b0c4de
+                    }
+                </style>
+
+                <script type="text/javascript">
+                    var i = 0;
+                    window.onload = function() {
+                        //  示例代码写在这里 ;
+                        comtop.UI.scan();
+                    }
+
+                </script>
+
+            </head>
+            <body>
+                <h1>maskoptions 自定义匹配更多例子</h1>
+                <p style="color:red">以下内容需要设置 mask="custom" ,例子中不再赘述.<br />
+                    只能用于固定位数数字字母<br />
+                    分割符和占位符号可以是数字字母和符号<br/>
+                    <br />有新需求可以提供过来,做例子补充!</p>
+            <table cellspacing="1" cellpadding="3" style="width:100%" class="table_edit_bg">
+                <tr>
+                    <td class="td_title" style="width: 20%">
+                        maskoptions="{'model': '9999-1m-td2h:59', 'placeholder':'*'}"<br />
+                        1m,td,2h不能单独用.需要组合在一起,看右例.
+                    </td>
+                    <td class="td_content" style="width: 30%">
+                        <span uitype="Input" width="260px" mask="custom" maskoptions="{'model': '9999-1m-td 2h:59', 'placeholder':'*'}"></span>
+                    </td>
+                    <td class="td_title" style="width: 20%">
+                        分步匹配日期<br />
+                        年:maskoptions="{'model': '2999', 'placeholder':'_'}"<br />
+                        月:maskoptions="{'model': '19', 'placeholder':'_'}"<br />
+                        日:maskoptions="{'model': '39', 'placeholder':'_'}"<br />
+                        年月日第一位数字最大为2,1,3.其他是9
+                    </td>
+                    <td class="td_content" style="width: 30%">
+                        <span uitype="Input" width="260" mask="custom" emptytext="年" maskoptions="{'model': '2999', 'placeholder':'_'}"></span>
+                        <span uitype="Input" width="260" mask="custom" emptytext="月" maskoptions="{'model': '19', 'placeholder':'_'}"></span>
+                        <span uitype="Input" width="260" mask="custom" emptytext="日" maskoptions="{'model': '39', 'placeholder':'_'}"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td_title" style="width: 20%">
+                        百分比:<br />
+                        maskoptions="{'model': '99%', 'placeholder':'_'}"<br />
+                        maskoptions="{'model': '99.99%', 'placeholder':'_'}"
+                    </td>
+                    <td class="td_content" style="width: 30%">
+                        <span uitype="Input" width="260px" mask="custom" maskoptions="{'model': '99%', 'placeholder':'_'}"></span>
+                        <span uitype="Input" width="260px" mask="custom" maskoptions="{'model': '99.99%', 'placeholder':'_'}"></span>
+                    </td>
+                    <td class="td_title" style="width: 20%">
+                        手机号码:<br />
+                        maskoptions="{'model': '199-99999999', 'placeholder':'_'}"
+                     </td>
+                    <td class="td_content" style="width: 30%">
+                        <span uitype="Input" width="260px" mask="custom" maskoptions="{'model': '199-99999999', 'placeholder':'_'}"></span>
+                    </td>
+                </tr>
+            </table>
+
+            </body>
+            </html>
+-->

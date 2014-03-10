@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <title>多级收缩有选定状态导航</title>
+        <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css" type="text/css" />
+        <script src="../../ui/js/comtop.ui.min.js" type="text/javascript"></script>
+    </head>
+    <body>
+        <h5>初始选中</h5>
+    <div style="width:200px; border:1px solid #ccc;font: 12px/25px Arial;">
+        <!--说明:组件占位从这里下面这行开始,外层div不属于组件内容-->
+        <div id="multinav_box" uitype="MultiNav" datasource="menu" initchecked="[1,0,1]"></div>
+        <!--说明:组件占位从这里结束-->
+    </div>
+        <script type="text/javascript">
+            function tip() {
+                alert("这里有事件绑定")
+            }
+
+            var menu = [
+                { 
+                    name : "本地",
+                    href : "#"
+                },
+                {
+                    name : "存储",
+                    children : [
+                        {
+                            name : "可移动存储",
+                            children : [
+                                {
+                                    name : "媒体",
+                                    href : "#"
+                                },
+                                {
+                                    name : "库 (试试单击)",
+                                    bind : {
+                                        on_click : tip
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            name : "磁盘碎片整理程序",
+                            href : "#"
+                        }
+                    ]
+                },
+                {
+                    name : "服务和应用程序",
+                    children : [
+                        {
+                            name : "服务",
+                            href : "#"
+                        },
+                        {
+                            name : "WMI 控件 (试试双击)",
+                            ondblclick : "tip()"
+                        },
+                        {
+                            name : "索引服务",
+                            children : [
+                                {
+                                    name : "System",
+                                    children : [
+                                        {
+                                            name : "目录",
+                                            href : "#"
+                                        },
+                                        {
+                                            name : "属性",
+                                            href : "#"
+                                        }
+                                    ]
+                                },
+                                {
+                                    name : "Visio",
+                                    children : [
+                                        {
+                                            name : "目录",
+                                            href : "#"
+                                        },
+                                        {
+                                            name : "属性",
+                                            href : "#"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+            comtop.UI.scan();
+
+            //cui('#multinav_box').setDatasource(menu2);
+        </script>
+    </body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <title>CUI组件Grid示例</title>
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <style type="text/css">
+        body{margin:10px; background: #fff; font-size: 12px}
+        .click{cursor: pointer;}
+        button{padding:0; margin: 0 2px;}
+        #result{color:red;}
+    </style>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+    <!--Demo数据js-->
+    <script type="text/javascript" src="data.js"></script>
+</head>
+<body>
+本页面有：全选回调，单击双击回调，加载完毕回调，数据增加回调，数据删除回调。
+<br /><br />
+<span id="result">回调结果：</span>
+<br /><br />
+<span uitype="button" on_click="delandselect" label="第4行后增加3行并选中"></span>
+<span uitype="button" on_click="remove" label="删除第6, 9行"></span>
+<span uitype="button" on_click="getselect" label="获取选中行索引号(从0开始)"></span>
+<span uitype="button" on_click="select" label="选中第1,2,10行"></span>
+<span uitype="button" on_click="hightlight" label="第4行高亮"></span>
+<span uitype="button" on_click="change" label="改变第1行数据"></span>
+<br /><br />
+<div>
+    <table id="grid1" uitype="grid" gridwidth="800" gridheight="500" oddevenrow="true" datasource="initData"  adddata_callback="addCallback" removedata_callback="removeCallback"
+           rowclick_callback="clickCallback" rowdblclick_callback="dblclickCallback" loadcomplate_callback="loadCallback" selectall_callback="selectCallback">
+        <thead>
+        <tr>
+            <th rowspan="3" style="width:40px"><input type="checkbox"/></th>
+            <th rowspan="3" renderStyle="text-align: center" bindName="1" style="width:40px">#</th>
+            <th renderStyle="text-align: center;" bindName="info.name" render="a" options="{'url':'#'}">姓名</th>
+            <th renderStyle="text-align: center" bindName="chinese">语文</th>
+            <th renderStyle="text-align: center" bindName="english">英语</th>
+            <th renderStyle="text-align: center" bindName="politics">政治</th>
+            <th renderStyle="text-align: center" bindName="history">历史</th>
+            <th renderStyle="text-align: center" bindName="geography">地理</th>
+            <th renderStyle="text-align: center" bindName="math">数学</th>
+            <th renderStyle="text-align: center" bindName="physics">物理</th>
+            <th renderStyle="text-align: center" bindName="organisms">生物</th>
+            <th renderStyle="text-align: center" bindName="chemistry">化学</th>
+            <th renderStyle="text-align: center" bindName="pass" render="image" options="imgoptions">是否毕业</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+<script type="text/javascript">
+    function initData (gridObj, query) {
+        gridObj.setDatasource(data.slice((query.pageNo - 1) * query.pageSize, query.pageNo * query.pageSize), 100);
+    }
+    var imgoptions = {
+        'compare' : {'1':'yes.gif', '0' : 'no.gif'},
+        'title' : {'1':'设为未毕业', '0' : '设为已毕业'},
+        'click' : 'changeData',
+        'className' : 'click'
+    };
+    function changeData (a) {
+        a.pass = a.pass === 1 ? 0 : 1;
+        cui("#grid1").changeData(a);
+    }
+    //回调
+    var result = document.getElementById("result");
+    function addCallback() {
+        result.innerHTML += "增加成功！";
+    }
+    function removeCallback() {
+        result.innerHTML += "删除成功！";
+    }
+    function clickCallback(data, checked, index) {
+        index ++;
+        result.innerHTML += "单击" + (checked ? "选中" : "取消") + "第" + index + "行！";
+    }
+    function dblclickCallback(data, index) {
+        index ++;
+        result.innerHTML += "双击第" + index + "行！";
+    }
+    function loadCallback(data, checked, index) {
+        result.innerHTML += "数据加载完毕！";
+    }
+    function selectCallback() {
+        result.innerHTML += "全选成功！";
+    }
+
+    comtop.UI.scan();
+    //方法
+    var grid1 = cui("#grid1");
+    function delandselect() {//第4行后增加3行并选中
+        grid1.addData(data.splice(80, 3), 4);
+        grid1.selectRowsByIndex([4, 5, 6])
+    }
+    function remove() {//删除第6, 9行
+        grid1.removeData([5, 8])
+    }
+    function getselect() {//获取选中行索引号(从0开始)
+        alert(grid1.getSelectedIndex());
+    }
+    function select() {//选中第1,2,10行
+        grid1.selectRowsByIndex([0, 1, 9]);
+    }
+    function hightlight() {//第4行高亮
+        grid1.setHighLight(3);
+    }
+    function change() {//改变第1行数据
+        var newData = {
+            "ID":0,
+            "info":{"name":"临时工"},
+            "chinese":99,
+            "english":99,
+            "politics":99,
+            "history":99,
+            "geography":99,
+            "math":99,
+            "physics":99,
+            "organisms":99,
+            "chemistry":99,
+            "pass":0
+            };
+        grid1.changeData(newData);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>button</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+</head>
+<body>
+<span uitype="button" label="确认"></span>
+<span uitype="button" label="删除" id="se" disable="true"></span>
+<span uitype="button" label="搜索" icon="find.gif"></span>
+<span uitype="button" label="启用/禁用第二个按钮" on_click="tip"></span>
+<script type="text/javascript">
+    var flg = true;
+    function tip () {
+        var se = cui("#se");
+        se.disable(flg = !flg);
+    }
+    comtop.UI.scan();
+</script>
+</body>
+</html>

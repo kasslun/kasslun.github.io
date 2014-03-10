@@ -1,0 +1,17 @@
+#myDialog {
+    padding: 5px;
+    overflow: auto;
+    zoom:1;
+    display: none;
+}
+
+#myDialog p{
+    margin-left: 10px;
+}
+
+#myDialog p label{
+    display: inline-block;
+    width: 70px;
+    text-align: right;
+}
+td{padding:5px 10px; font-size:12px;}

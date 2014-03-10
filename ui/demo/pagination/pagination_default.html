@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>UI Pagination Demos</title>
+    <link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css"  />
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+</head>
+<body>
+
+<div id="pagination" uitype="Pagination" count="100" pagesize="25" pageno="1" pagesize_list="[25,50,100]" on_page_change="changePage"></div>
+
+<div>
+    <h5>接口调用例子：</h5>
+    <input type="button" value="上一页" onclick="prev();"/>
+    <input type="button" value="下一页" onclick="next();"/>
+    <input type="button" value="跳到第4页" onclick="go(4);"/>
+    <input type="button" value="设置每页显示记录数为50条" onclick="setPagesize(50);"/>
+</div>
+
+<script type="text/javascript">
+    comtop.UI.scan();   //扫描生成分页条
+    var pg = cui('#pagination').pagination();
+    function changePage(pageno, pagesize) {
+        //页码改变时执行操作，如果是异步分页，一般需要执行下面这句话，重绘分页条
+        this.setCount(100).reDraw();
+    }
+    function next() {
+        pg.next();
+    }
+
+    function prev() {
+        pg.prev();
+    }
+
+    function go(num) {
+        pg.go(num);
+    }
+    function setPagesize(num) {
+        pg.setPagesize(num).reDraw();
+    }
+</script>
+
+</body>
+</html>

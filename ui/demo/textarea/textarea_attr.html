@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>UI textarea Demos</title>
+<link rel="stylesheet" type="text/css" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+<script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+<link rel="stylesheet" href="textarea.css"/>
+</head>
+<body>
+
+<table cellspacing="1" cellpadding="3" style="width:100%" class="table_edit_bg">
+    <tr>
+        <td class="td_title" style="width: 30%">
+            设置width="95%"，height="50px"，value="我的文本域"
+        </td>
+        <td class="td_content" style="width: 70%">
+                    <span uitype="Textarea" id="myTextarea" width="95%" height="50px" value="我的文本域">
+                    </span>
+        </td>
+    </tr>
+    <tr>
+        <td class="td_title" style="width: 30%">
+            设置maxlength="300"限制最大输入字符数，设置relation="relation"将剩余能输入字符数显示到ID为relation的元素上
+        </td>
+        <td class="td_content" style="width: 70%">
+            <span>您还能输入<label id="relation" style="color: red;"></label>个字符</span>
+                    <span uitype="Textarea" id="myTextarea1" relation="relation" databind="myData.remark" maxlength="300" width="95%" height="50px">
+                    </span>
+        </td>
+    </tr>
+    <tr>
+        <td class="td_title" style="width: 30%">
+            设置autoheight="true"使文本域随着输入自增长高度，
+            设置maxheight="100px"限制自增长的最大高度，超过该高度出现滚动条，不设置则不限制自增长高度。
+        </td>
+        <td class="td_content" style="width: 70%">
+                    <span uitype="Textarea" id="myTextarea2" autoheight="true" maxheight="100px" width="95%" height="50px">
+                    </span>
+        </td>
+    </tr>
+    <tr>
+        <td class="td_title" style="width: 30%">
+            设置emptytext="请输入评论！"，当输入框为空时提示用户
+        </td>
+        <td class="td_content" style="width: 70%">
+                    <span uitype="Textarea" id="myTextarea3" emptytext="请输入评论！" width="95%" height="50px">
+                    </span>
+        </td>
+    </tr>
+    <tr>
+        <td class="td_title" style="width: 30%">
+            设置readonly="true"只读模式
+        </td>
+        <td class="td_content" style="width: 70%">
+                    <span uitype="Textarea" id="myTextarea4" readonly="true" value="现在是只读模式" width="95%" height="50px">
+                    </span>
+        </td>
+    </tr>
+</table>
+<script type="text/javascript">
+    var myData = {
+        remark: "测试数据绑定！"
+    }
+    comtop.UI.scan();
+</script>
+
+</body>
+</html>

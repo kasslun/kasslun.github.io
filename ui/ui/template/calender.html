@@ -1,0 +1,376 @@
+<tpls>
+<!--初始化input框-->
+<cmptpl uiType="Calender" var="inputFrame" parse="true">
+    <!---// options-->
+    <!---
+        var compat = comtop.Browser.isQM ? 'QM_C_CR' : '';
+    -->
+    <div class="C_CR_calInput_bd +-compat-+" style="width:+-options.width-+;" events="+-options.trigger-+=_binderHandler;">
+        <!---if(options.icon){-->
+        <a href="javascript:;" class="C_CR_calIcon"
+                ></a><div class="C_CR_calInput_wrap C_CR_calInput_wmr"><b><input type="text"
+                                                                                 class="C_CR_calInput" name="+-options.name-+" /></b></div>
+        <!---}else{-->
+        <div class="C_CR_calInput_wrap" ><input type="text" name="+-options.name-+"
+                                                class="C_CR_calInput"/></div>
+        <!---}-->
+    </div>
+</cmptpl>
+
+<!--日期基本结构，构成分为 标签，年月，功能主区，时间，按钮-->
+<cmptpl uiType="Calender" var="calFrame" parse="false">
+    <!---// options-->
+    <!---var compat = comtop.Browser.isQM ? 'QM_C_CR' : '';-->
+    <div class="cui C_CR +-compat-+" id="C_CR_+-options.uuid-+" hidefocus="true" style="z-index:+-options.zindex-+;">
+        <!---if(options.model == 'all'){-->
+        <div class="C_CR_Tag_wrap" events="mouseup=_tagEventHandle;">
+            <ul>
+                <li><a href="javascript:;" tagIndex="0" val="date" class="C_CR_Tag_cur">日期</a></li>
+                <li><a href="javascript:;" tagIndex="1" val="year">年度</a></li>
+                <li><a href="javascript:;" tagIndex="2" val="quarter">季度</a></li>
+                <li><a href="javascript:;" tagIndex="3" val="month">月份</a></li>
+                <li><a href="javascript:;" tagIndex="4" val="week" style="margin: 0;">周</a></li>
+            </ul>
+        </div>
+        <!---}-->
+        <div class="C_CR_YM_wrap" events="mouseup=_ymEventHandle;">
+            <a class="C_CR_YM_prev" val="prevMonth" href="javascript:;" ></a>
+            <table class="C_CR_YMer_layout" id="C_CR_YMer_layout_+-options.uuid-+">
+                <tr>
+                    <!---for(var m = 0; m < options.panel; m ++){-->
+                    <td align="center">
+                        <table class="C_CR_YMer" val="">
+                            <tr>
+                                <td style="width:54px;">
+                                    <div class="C_CR_YMer_item" pop="year" popIndex="+-m-+">
+                                            <span class="C_CR_YMer_tx_wrap C_CR_YMer_tx_y"><input type="text"
+                                                                                                  maxlength="4" value="" class="C_CR_tx" readonly="readonly"/></span>
+                                        <div class="C_CR_YMer_pop C_CR_YMer_pop_y"></div>
+                                        <i class="C_CR_DisMark"></i>
+                                    </div>
+                                </td>
+                                <td style="width:20px;">年</td>
+                                <td style="width:45px;">
+                                    <div class="C_CR_YMer_item" pop="month" popIndex="+-m-+">
+                                            <span class="C_CR_YMer_tx_wrap C_CR_YMer_tx_m"><input type="text"
+                                                                                                  maxlength="2" value="" class="C_CR_tx" readonly="readonly"/></span>
+                                        <div class="C_CR_YMer_pop C_CR_YMer_pop_m">
+                                            <table>
+                                                <!---
+                                                var kLen = 0;
+                                                for(var k = 0; k < 4; k ++){
+                                                -->
+                                                <tr class="+-k == 3 ? 'C_CR_YMer_pop_lastTr' : ''-+">
+                                                    <td><a href="javascript:;" val="+-kLen-+" panel="m">+-++kLen-+</a></td>
+                                                    <td><a href="javascript:;" val="+-kLen-+" panel="m">+-++kLen-+</a></td>
+                                                    <td class="C_CR_YMer_pop_lastTd"><a href="javascript:;" val="+-kLen-+" panel="m">+-++kLen-+</a></td>
+                                                </tr>
+                                                <!---}-->
+                                            </table>
+                                        </div>
+                                        <i class="C_CR_DisMark"></i>
+                                    </div>
+                                </td>
+                                <td style="width:15px;text-align: right;">月</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <!---}-->
+                </tr>
+            </table>
+            <a class="C_CR_YM_next" val="nextMonth" href="javascript:;" ></a>
+        </div>
+        <div class="C_CR_main_wrap" events="mouseup=_mainEventHandle">
+            <div val="date" class="C_CR_main_panel" isBuild="false"></div>
+            <div val="year" class="C_CR_main_panel" isBuild="false"></div>
+            <div val="quarter" class="C_CR_main_panel" isBuild="false"></div>
+            <div val="month" class="C_CR_main_panel" isBuild="false"></div>
+            <div val="week" class="C_CR_main_panel" isBuild="false"></div>
+            <div class="C_CR_main_loading"><span></span></div>
+        </div>
+
+        <div class="C_CR_Timer_box"></div>
+
+        <div class="C_CR_OPBar_wrap" events="mouseup=_btnEventHandle">
+            <!--另以为下面这写法是乱来的，这是解决inline-block的bug-->
+            <a href="javascript:;" val="clear">清&nbsp;空</a
+                    ><a href="javascript:;" val="cur">今&nbsp;天</a
+                ><a <!---if(!options.okbtn){-->style="display:none;"<!---}--> href="javascript:;" val="ok">确&nbsp;定</a>
+        </div>
+        <!---if(comtop.Browser.isIE6){-->
+        <iframe frameborder="0"></iframe>
+        <!---}-->
+    </div>
+</cmptpl>
+
+<!--年弹出层-->
+<cmptpl uiType="Calender" var="yearPopFrame" parse="false">
+    <!---// popData-->
+    <table cellspacing="0" cellpadding="0" border="0" val="+-popData-+">
+        <!---var len = popData.length, n = 0;-->
+        <tr>
+            <th><a href="javascript:;" val="prevPop">&lt;</a></th>
+            <th><a href="javascript:;" val="closePop">x</a></th>
+            <th class="C_CR_YMer_pop_lastTd"><a href="javascript:;" val="nextPop">&gt;</a></th>
+        </tr>
+        <!---for(var i = 0; i < 4; i ++){-->
+        <tr class="+-i==3?'C_CR_YMer_pop_lastTr':''-+">
+            <!---for(var k = 0; k < 3; k ++){if(n < len){-->
+            <td class="+-k==2?'C_CR_YMer_pop_lastTd':''-+"><a href="javascript:;"
+                                                              val="+-popData[n]-+" panel="y" class="">+-popData[n]-+</a></td>
+            <!---n ++;}else{-->
+            <td>&nbsp;</td>
+            <!---}}-->
+        </tr>
+        <!---}-->
+    </table>
+</cmptpl>
+
+<!--日期-->
+<cmptpl uiType="Calender" var="dateFrame" parse="false">
+    <!---// options-->
+    <table>
+        <tr>
+            <!---
+                var weeklabel = options.sunday_first ? ['周', '日', '一', '二', '三', '四', '五', '六'] :
+                    ['周', '一', '二', '三', '四', '五', '六', '日'];
+                for(var m = 0; m < options.datePanel.length; m ++){
+            -->
+            <td class="C_CR_main_item" style="padding-left:+-m!=0?'3px':'0'-+">
+                <table class="C_CR_Date" cellspacing="0" cellpadding="0" border="0">
+                    <tr class="C_CR_Date_title">
+                        <!---for(var i = 0; i < 8;i ++){-->
+                        <th>+-weeklabel[i]-+</th>
+                        <!---}-->
+                    </tr>
+                    <!---var cur = 0;-->
+                    <!---for(var i = 0; i < 6; i ++){-->
+                    <tr>
+                        <!---
+                        for(var k = 0; k < 8; k ++, cur ++){
+                            if(options.datePanel[m].date[cur][1] == 1){
+                            var dateP = [];
+                            dateP.push(options.datePanel[m].date[cur][2],
+                            options.datePanel[m].date[cur][3],options.datePanel[m].date[cur][0]);
+                        -->
+                        <td><a href="javascript:;" class="+-options.datePanel[m].date[cur][3] != options.datePanel[m].month ? 'C_CR_Date_noCurMonth' : ''-+" id="C_CR_date_+-dateP.join('_')-+_+-options.uuid-+"
+                               val="+-dateP.join('|')-+"
+                                >+-options.datePanel[m].date[cur][0]-+</a></td>
+                        <!---}else if(k == 0){-->
+                        <td class="C_CR_Date_week"><span>+-options.datePanel[m].date[cur][0]-+</span></td>
+                        <!---}else{-->
+                        <td><span>+-options.datePanel[m].date[cur][0]-+</span></td>
+                        <!---}}-->
+                    </tr>
+                    <!---}-->
+                </table>
+            </td>
+            <!---}-->
+        </tr>
+    </table>
+</cmptpl>
+
+<!--年度-->
+<cmptpl uiType="Calender" var="yearFrame" parse="false">
+    <!---// options-->
+    <table>
+        <tr>
+            <!---
+                for(var m = 0; m < options.yearPanel.length; m ++){
+                var num = 0;
+            -->
+            <td class="C_CR_main_item" style="padding-left:+-m!=0?'3px':'0'-+">
+                <table class="C_CR_main_DateList">
+                    <!---for(var i = 0; i < 6; i ++){-->
+                    <tr>
+                        <!---
+                        for(var n = 0; n < 3; n ++, num ++){
+                        -->
+                        <td><a href="javascript:;" id="C_CR_year_+-options.yearPanel[m].data[num]-+_+-options.uuid-+"
+                               val="+-options.yearPanel[m].data[num]-+">+-options.yearPanel[m].data[num]-+年</a></td>
+                        <!---}-->
+                    </tr>
+                    <!---}-->
+                </table>
+            </td>
+            <!---}-->
+        </tr>
+    </table>
+</cmptpl>
+
+<!--月份-->
+<cmptpl uiType="Calender" var="monthFrame" parse="false">
+    <!---// options-->
+    <table>
+        <tr>
+            <!---
+                for(var m = 0; m < options.monthPanel.length; m ++){
+                var num = 0;
+            -->
+            <td class="C_CR_main_item" style="padding-left:+-m!=0?'3px':'0'-+">
+                <table class="C_CR_main_DateList">
+                    <!---for(var i = 0; i < 6; i ++){-->
+                    <tr>
+                        <!---
+                        for(var n = 0; n < 2; n ++, num ++){
+                        var monthP = [];
+                        monthP.push(options.monthPanel[m].year,options.monthPanel[m].data[num][0]);
+                        -->
+                        <td><a href="javascript:;" id="C_CR_month_+-monthP.join('_')-+_+-options.uuid-+"
+                               val="+-monthP.join('|')-+"
+                                >+-options.monthPanel[m].year-+年+-options.monthPanel[m].data[num][1]-+月</a></td>
+                        <!---}-->
+                    </tr>
+                    <!---}-->
+                </table>
+            </td>
+            <!---}-->
+        </tr>
+    </table>
+</cmptpl>
+
+<!--季度-->
+<cmptpl uiType="Calender" var="quarterFrame" parse="false">
+    <!---// options-->
+    <table>
+        <tr>
+            <!---
+                for(var m = 0; m < options.quarterPanel.length; m ++){
+                var num = 0;
+            -->
+            <td class="C_CR_main_item" style="padding-left:+-m!=0?'3px':'0'-+">
+                <table class="C_CR_main_DateList">
+                    <!---
+                    for(var i = 0; i < 4; i ++, num ++){
+                        var quarterP = [];
+                        quarterP.push(options.quarterPanel[m].year,options.quarterPanel[m].quarter[num]);
+                    -->
+                    <tr>
+                        <td><a href="javascript:;" id="C_CR_quarter_+-quarterP.join('_')-+_+-options.uuid-+"
+                               val="+-quarterP.join('|')-+"
+                                >+-options.quarterPanel[m].year-+年第+-options.quarterPanel[m].quarter[num]-+季度</a></td>
+                    </tr>
+                    <!---}-->
+                    <tr><td>&nbsp;</td></tr>
+                    <tr><td>&nbsp;</td></tr>
+                </table>
+            </td>
+            <!---}-->
+        </tr>
+    </table>
+</cmptpl>
+
+<cmptpl uiType="Calender" var="timeFrame" parse="false">
+    <!---// options-->
+    <div class="C_CR_Timer_wrap" events="mouseup=_timerEventHandle">
+        <!---
+            var tipW = ["开始","结束"], txType = ['h','m','s'], len = options.isrange ? 2 : 1;
+            for(var m = 0; m < len; m ++){
+            var num = 0;
+        -->
+        <div class="C_CR_Timer_item">
+            <table class="C_CR_Timer">
+                <tr>
+                    <td>
+                        <!---if(options.isrange){-->
+                        +-tipW[m]-+：
+                        <!---}-->
+                    </td>
+                    <!---
+                    for(var i = 0; i < 3; i ++){
+                    var timeP = options.timePanel[m][i];
+                    -->
+                    <td class="C_CR_Timer_com_+-txType[i]-+">
+                                <span class="C_CR_Timer_tx_wrap" title="点击打开选择面板">
+                                    <input readonly="readonly" type="text" val="+-txType[i]-+" name="timer_+-txType[i]-+"
+                                           maxlength="2" value="+-timeP < 10 ? ('0' + (timeP + '')) : timeP-+" class="C_CR_tx noIME"/>
+                                    <!---if(i == 0){-->
+                                    <div class="C_CR_Timer_pop C_CR_Timer_pop_h">
+                                        <table>
+                                            <!---
+                                            var kLen = 0;
+                                            for(var k = 0; k < 4; k ++){
+                                            -->
+                                            <tr class="+-k == 3 ? 'C_CR_Timer_pop_lastTr' : ''-+">
+                                                <td><a href="javascript:;" val="+-kLen-+">+-kLen++-+</a></td><td><a href="javascript:;" val="+-kLen-+">+-kLen++-+</a></td>
+                                                <td><a href="javascript:;" val="+-kLen-+">+-kLen++-+</a></td><td><a href="javascript:;" val="+-kLen-+">+-kLen++-+</a></td>
+                                                <td><a href="javascript:;" val="+-kLen-+">+-kLen++-+</a></td>
+                                                <td class="C_CR_Timer_pop_lastTd"><a href="javascript:;" val="+-kLen-+">+-kLen++-+</a></td>
+                                            </tr>
+                                            <!---}-->
+                                        </table>
+                                    </div>
+                                    <!---}else{-->
+                                    <div class="C_CR_Timer_pop +-i==1?'C_CR_Timer_pop_m':'C_CR_Timer_pop_s'-+">
+                                        <table>
+                                            <tr>
+                                                <td><a href="javascript:;" val="0">0</a></td><td><a href="javascript:;" val="5">5</a></td>
+                                                <td><a href="javascript:;" val="10">10</a></td><td><a href="javascript:;" val="15">15</a></td>
+                                                <td><a href="javascript:;" val="20">20</a></td>
+                                                <td class="C_CR_Timer_pop_lastTd"><a href="javascript:;" val="25">25</a></td>
+                                            </tr>
+                                            <tr class="C_CR_Timer_pop_lastTr">
+                                                <td><a href="javascript:;" val="30">30</a></td><td><a href="javascript:;" val="35">35</a></td>
+                                                <td><a href="javascript:;" val="40">40</a></td><td><a href="javascript:;" val="45">45</a></td>
+                                                <td><a href="javascript:;" val="50">50</a></td>
+                                                <td class="C_CR_Timer_pop_lastTd"><a href="javascript:;" val="55">55</a></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <!---}-->
+                                </span><div class="C_CR_Timer_op">
+                        <a href="javascript:;" class="C_CR_Timer_up"><span
+                                class="C_CR_Timer_up_span" val="up"></span></a>
+                        <a href="javascript:;" class="C_CR_Timer_down"><span
+                                class="C_CR_Timer_down_span" val="down"></span></a>
+                    </div>
+                    </td>
+                    <!---if(i < 2){-->
+                    <td>：</td>
+                    <!---}-->
+                    <!---}-->
+                </tr>
+            </table>
+        </div>
+        <!---}-->
+    </div>
+</cmptpl>
+
+<cmptpl uiType="Calender" var="weekFrame" parse="false">
+    <!---// options-->
+    <table>
+        <tr>
+            <!---
+                for(var m = 0; m < options.weekPanel.length; m ++){
+                var num = 0;
+            -->
+            <td class="C_CR_main_item" style="padding-left:+-m!=0?'3px':'0'-+">
+                <table class="C_CR_Date">
+                    <!---
+                    for(var i = 0; i < 7; i ++){
+                    -->
+                    <tr>
+                        <!---
+                        for(var n = 0; n < 8; n ++, num ++){
+                            if(num < options.weekPanel[m].data.length){
+                            var week = [options.weekPanel[m].year, options.weekPanel[m].data[num][0]];
+                        -->
+                        <td><a href="javascript:;" id="C_CR_week_+-week.join('_')-+_+-options.uuid-+" val="+-week.join('|')-+">
+                            +-options.weekPanel[m].data[num][0]-+</a></td>
+                        <!---
+                            }else{
+                        -->
+                        <td>&nbsp;</td>
+                        <!---
+                            }
+                        }
+                        -->
+                    </tr>
+                    <!---}-->
+                </table>
+            </td>
+            <!---}-->
+        </tr>
+    </table>
+</cmptpl>
+</tpls>

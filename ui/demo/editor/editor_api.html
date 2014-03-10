@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Baisc editor</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css" charset="gbk">
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.editor.min.js" charset="gbk"></script>
+</head>
+<body>
+
+<div class="demoContainer">
+    <input type="button" value="set" onClick="cui('#ed1').set('width',500);"/>
+    <input type="button" value="setHtml" onClick="cui('#ed1').setHtml('<h1>hello everyone!</h1>')"/>
+    <input type="button" value="getHtml" onClick="alert(cui('#ed1').getHtml());"/>
+    <input type="button" value="getText" onClick="alert(cui('#ed1').getText());"/>
+    <input type="button" value="disable" onClick="cui('#ed1').disable();"/>
+    <input type="button" value="enable" onClick="cui('#ed1').enable()"/>
+    <input type="button" value="show" onClick="cui('#ed1').show();"/>
+    <input type="button" value="hide" onClick="cui('#ed1').hide();"/>
+    <input type="button" value="destroy" onClick="cui('#ed1').destroy();"/>
+</div>
+
+<div id="ed1" uitype="editor" initial_content="hello, world" min_frame_height="200"></div>
+
+<script type="text/javascript">
+    comtop.UI.scan();
+</script>
+</body>
+</html>

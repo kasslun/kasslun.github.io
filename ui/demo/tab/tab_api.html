@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="gbk">
+    <title>Tab页Demo</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css">
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js"></script>
+     <link rel="stylesheet" href="../css/tabexample.css">  
+</head>
+<body>
+
+<center><h1>Tab API</h1></center>
+
+
+<div id="demo-container">
+
+<ul id="simple-menu">
+<li><a  href="index.html" target="_self" >W3C STRICT.DTD</a></li>
+<li><a   href="tab_nodoc.html" target="_self">怪异模式</a></li>
+<li><a   href="tab_autoresize.html" target="_blank">Tab resize</a></li>
+
+<li><a   href="tab_scanner.html" target="_self">使用扫描器创建Tab</a></li>
+<li><a   href="tab_api.html" target="_self" class="current">Tab API</a></li> 
+</ul>
+
+</div> 
+ 
+
+<h3>API 演示</h3>
+
+<p>
+            <input type="button" value="第几个被选中" id="prev" onClick="index();">
+             <input type="button" value="prev" id="prev" onClick="tab1_1.prev();">
+            <input type="button" value="next" onClick="tab1_1.next();">
+            <input type="button" value="add" id="tab1_1" onClick="add(this);">
+            <input type="button" value="remove" onClick="tab1_1.removeTab(1);">			
+			<input type="button" value="获取 Tab attr" onClick="alert(tab1_1.attr('height'))">
+				
+			<input type="button" value="设置 Tab attr" onClick="tab1_1.attr({'height':150})">
+			
+			<input type="button" value="resize(h,w) w可选" onClick="tab1_1.resize(400,600)">
+			
+ 
+ </p>
+<p>
+
+<input type="button" value="switchTo" onClick="tab1_1.switchTo(3)">
+
+<input type="button" value="getTab(index, name)" onClick="alert('第4个tab的名字是：'+tab1_1.getTab(3,'title'))"> 
+
+<input type="button" value="setTab(index, name)" onClick="tab1_1.setTab(0,'title','hello');alert('我改变了第一个tab的title');"> 
+
+<input type="button" value="getContent(index)" onClick=" tab1_1.getContent(0).style.backgroundColor='#333';alert('我获取到了第一个tab的内容，改变了backgroundColor');"> 
+
+
+</p>
+
+
+ <div id="demo1_1" ></div>
+ 
+ 
+
+ 
+ 
+
+    <script type="text/javascript">
+ 
+ 
+       function add(o){
+         window[o.id].addTab({title:'标题4',html:'hello, iam a new one',tab_width:120, 'closeable': true});
+	   
+	   }
+ 
+        function index() {
+            alert(tab1_1.index())
+        }
+
+         var tab1_1 = cui("#demo1_1").tab({
+		   height:300,
+            tabs: [{
+                title: "待处理",
+                // html: document.getElementById("in-tab")
+                html: "21213546546"
+            }, {
+                title: "标题2",
+                html: "<div style='height:500px; background-color:green'>hello</div>"
+            }, {
+                title: "标题3",
+                html: "<div style='height:300px; background-color:red'>hello</div>"
+            },{
+                title: "iframe1",
+                url:"testTab/h0.html"
+            }, {
+                title: "iframe2",
+                url:"testTab/h1.html"
+            }, {
+                title: "iframe3",
+                url:"testTab/h2.html" 
+            }],
+            closeable: false
+        });
+  
+ 
+
+   
+		
+    </script>
+
+
+</body>
+</html>

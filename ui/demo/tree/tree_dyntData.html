@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Tree动态加载数据</title>
+    <link rel="stylesheet" href="../../ui/themes/default/css/comtop.ui.min.css"/>
+    <script type="text/javascript" src="../../ui/js/comtop.ui.min.js" charset="gbk"></script>
+</head>
+<body>
+<div id="dt1" uitype="tree" children="initTreeData"></div>
+<script type="text/javascript">
+    function initTreeData(obj){
+        //这里执行数据加载，可以是dwr或ajax
+        var data = [
+            {title:"设备类别结构",key: "k1"},
+            {title: "Folder 2",
+                key: "k2",
+                isFolder: true,
+                children: [
+                    {title: "无形资产", key: "k2-1" },
+                    {title: "有形资产", key: "k2-2" }
+                ]
+            },
+            {   title: "其他",
+                key: "k3",
+                hideCheckbox: true
+            }
+        ];
+        obj.setDatasource(data);
+    }
+    comtop.UI.scan();
+</script>
+</body>
+</html>
