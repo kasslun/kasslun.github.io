@@ -170,7 +170,7 @@
                 var value = trim(this.value),
                     length = value.length;
                 if (length > 1 && length < 21) {
-                    if (this.data) {
+                    if (self.data) {
                         self.updateData(value);
                     }
                 }
